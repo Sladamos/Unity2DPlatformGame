@@ -11,6 +11,9 @@ namespace MIIProjekt
         public event Action KeyCollected;
 
         [SerializeField]
+        private string keyIdentifier;
+
+        [SerializeField]
         private bool active;
 
         private SpriteRenderer spriteRenderer;
@@ -18,7 +21,7 @@ namespace MIIProjekt
 
         /// <summary>
         /// Sets the visibility and collision for an object.
-        /// </summary>
+        /// </summary>x`
         /// <param name="value"></param>
         public void SetActive(bool value)
         {
@@ -42,6 +45,18 @@ namespace MIIProjekt
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            KeyCollector collector = other.GetComponent<KeyCollector>();
+            
+            if (collector == null) {
+                // Object that entered the key's collider is not a KeyCollector
+                return;
+            }
+
+            if (!collector.AcceptKey(keyIdentifier)) {
+                // Collector did not accept a key
+                return;
+            }
+            
             SetActive(false);
             KeyCollected?.Invoke();
         }

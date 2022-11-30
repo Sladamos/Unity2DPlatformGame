@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5282649692916866629}
   - component: {fileID: 5282649692916866630}
   - component: {fileID: 7421663023234971225}
+  - component: {fileID: 2275023403653963760}
   m_Layer: 0
   m_Name: Fox
   m_TagString: Player
@@ -185,3 +186,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &2275023403653963760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282649692916866639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f86d42f182d8e19b425c9d3767e71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 1
