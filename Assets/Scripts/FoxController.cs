@@ -25,7 +25,7 @@ public class FoxController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         isWalking = false;
         Vector2 input = Vector2.zero;
