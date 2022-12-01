@@ -50,12 +50,6 @@ public class FoxController : MonoBehaviour
                 Flip();
         }
 
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-        {
-            if (IsGrounded())
-                Jump();
-        }
-
         Vector2 velocity = input * moveSpeed * Time.deltaTime;
 
         transform.Translate(velocity.x, 0.0f, 0.0f, Space.World);
@@ -63,6 +57,15 @@ public class FoxController : MonoBehaviour
         //Debug.DrawRay(transform.position, rayLength * Vector3.down, Color.blue, 0.2f, false);
         animator.SetBool("isGrounded", IsGrounded());     
         animator.SetBool("isWalking", isWalking);     
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        {
+            if (IsGrounded())
+                Jump();
+        }
     }
 
     private void Jump()
