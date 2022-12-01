@@ -19,13 +19,19 @@ public class FoxController : MonoBehaviour
     private bool isFacingRight = true;
     private int score = 0;
 
+    public void Finish()
+    {
+        enabled = false;
+        Debug.Log($"Ukonczono gre. Zebrano {score} punktow. :)");
+    }
+
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         isWalking = false;
         Vector2 input = Vector2.zero;
