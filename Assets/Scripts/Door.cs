@@ -12,6 +12,19 @@ namespace MIIProjekt
         [SerializeField]
         private KeyCollectorComponent keyCollector;
 
+        private bool AreAllKeysCollected()
+        {
+            foreach (string requiredKey in requiredKeys)
+            {
+                if (!keyCollector.ContainsKey(requiredKey))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private void Awake()
         {
             if (keyCollector == null)
@@ -26,13 +39,10 @@ namespace MIIProjekt
 
         private void OnKeyCollected()
         {
-            foreach (string requiredKey in requiredKeys) {
-                if (!keyCollector.ContainsKey(requiredKey)) {
-                    return;
-                } 
+            if (AreAllKeysCollected()) {
+                Debug.Log("All keys collected. Opening door...");
+                gameObject.SetActive(false);
             }
-
-            GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }

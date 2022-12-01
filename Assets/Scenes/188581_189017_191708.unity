@@ -8174,7 +8174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34, y: -1, z: -10}
+  m_LocalPosition: {x: -34, y: -2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17153,7 +17153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515297190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34, y: -1, z: -10}
+  m_LocalPosition: {x: -34, y: -2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17482,7 +17482,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5282649692916866628, guid: 3b6c97c2ade590c66b084dabe1835ee4, type: 3}
       propertyPath: jumpForce
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5282649692916866628, guid: 3b6c97c2ade590c66b084dabe1835ee4, type: 3}
       propertyPath: moveSpeed
@@ -17498,7 +17498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5282649692916866633, guid: 3b6c97c2ade590c66b084dabe1835ee4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5282649692916866633, guid: 3b6c97c2ade590c66b084dabe1835ee4, type: 3}
       propertyPath: m_LocalPosition.z

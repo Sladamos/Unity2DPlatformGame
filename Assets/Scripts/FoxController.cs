@@ -19,6 +19,12 @@ public class FoxController : MonoBehaviour
     private bool isFacingRight = true;
     private int score = 0;
 
+    public void Finish()
+    {
+        enabled = false;
+        Debug.Log($"Ukonczono gre. Zebrano {score} punktow. :)");
+    }
+
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
