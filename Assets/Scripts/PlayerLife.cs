@@ -27,6 +27,15 @@ public class PlayerLife : MonoBehaviour
 
     private void Die()
     {
+        DecreaseLives(1);
+        if (lives > 0)
+            this.SendMessage("ReturnToSpawn");
+        else
+            Death();
+    }
+
+    private void Death()
+    {
         rb.bodyType = RigidbodyType2D.Static;
         anim.SetTrigger("death");
         fc.enabled = false;
@@ -35,6 +44,12 @@ public class PlayerLife : MonoBehaviour
     private void IncreaseLives(int numberOfLives)
     {
         lives += numberOfLives;
+        Debug.Log("Current number of lives: " + lives);
+    }
+
+    private void DecreaseLives(int numberOfLives)
+    {
+        lives -= numberOfLives;
         Debug.Log("Current number of lives: " + lives);
     }
 }

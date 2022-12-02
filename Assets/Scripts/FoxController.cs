@@ -98,4 +98,9 @@ public class FoxController : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
     }
+
+    private void ReturnToSpawn()
+    {
+        transform.position = startPosition;
+    }
 }
