@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLife : MonoBehaviour
@@ -8,8 +6,7 @@ public class PlayerLife : MonoBehaviour
     private FoxController fc;
     private Animator anim;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -31,4 +28,8 @@ public class PlayerLife : MonoBehaviour
         fc.enabled = false;
     }
 
+    private void CollidedWithEnemy()
+    {
+        Debug.Log("Collided with enemy");
+    }
 }
