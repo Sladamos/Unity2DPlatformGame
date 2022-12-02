@@ -7,6 +7,7 @@ public class PlayerLife : MonoBehaviour
     private Rigidbody2D rb;
     private FoxController fc;
     private Animator anim;
+    private int lives = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -31,4 +32,9 @@ public class PlayerLife : MonoBehaviour
         fc.enabled = false;
     }
 
+    private void IncreaseLives(int numberOfLives)
+    {
+        lives += numberOfLives;
+        Debug.Log("Current number of lives: " + lives);
+    }
 }

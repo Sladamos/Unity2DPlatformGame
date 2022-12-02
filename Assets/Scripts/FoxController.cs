@@ -18,6 +18,7 @@ public class FoxController : MonoBehaviour
     private bool isWalking = false;
     private bool isFacingRight = true;
     private int score = 0;
+    Vector2 startPosition;
 
     public void Finish()
     {
@@ -29,6 +30,7 @@ public class FoxController : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        startPosition = transform.position;
     }
 
     private void FixedUpdate()
