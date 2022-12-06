@@ -8,8 +8,6 @@ namespace MIIProjekt
     [RequireComponent(typeof(Collider2D))]
     public class Key : MonoBehaviour
     {
-        public event Action KeyCollected;
-
         [SerializeField]
         private string keyIdentifier;
 
@@ -27,13 +25,11 @@ namespace MIIProjekt
         {
             active = value;
 
-            if (spriteRenderer == null) {
-                // The component is not initialized yet
-                return;
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = value;
+                colliderComponent.enabled = value;
             }
-
-            spriteRenderer.enabled = value;
-            colliderComponent.enabled = value;
         }
 
         private void Awake()
@@ -46,19 +42,16 @@ namespace MIIProjekt
         private void OnTriggerEnter2D(Collider2D other)
         {
             KeyCollector collector = other.GetComponent<KeyCollector>();
-            
-            if (collector == null) {
-                // Object that entered the key's collider is not a KeyCollector
-                return;
-            }
 
-            if (!collector.AcceptKey(keyIdentifier)) {
-                // Collector did not accept a key
-                return;
+            if (isCollectorValidate(collector) && collector.AcceptedKey(keyIdentifier))
+            {
+                SetActive(false);
             }
-            
-            SetActive(false);
-            KeyCollected?.Invoke();
+        }
+
+        private bool isCollectorValidate(KeyCollector collector)
+        {
+            return collector != null;
         }
     }
 }

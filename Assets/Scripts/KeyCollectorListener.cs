@@ -4,26 +4,13 @@ using UnityEngine;
 
 namespace MIIProjekt
 {
-    public class Door : MonoBehaviour
+    public class KeyCollectorListener : MonoBehaviour
     {
         [SerializeField]
         private List<string> requiredKeys;
 
         [SerializeField]
         private KeyCollectorComponent keyCollector;
-
-        private bool AreAllKeysCollected()
-        {
-            foreach (string requiredKey in requiredKeys)
-            {
-                if (!keyCollector.ContainsKey(requiredKey))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
 
         private void Awake()
         {
@@ -39,10 +26,24 @@ namespace MIIProjekt
 
         private void OnKeyCollected()
         {
-            if (AreAllKeysCollected()) {
+            if (AreAllKeysCollected()) 
+            {
+                //gameObject.SendMessage('OnAllKeysCollected');
                 Debug.Log("All keys collected. Opening door...");
                 gameObject.SetActive(false);
             }
+        }
+        private bool AreAllKeysCollected()
+        {
+            foreach (string requiredKey in requiredKeys)
+            {
+                if (!keyCollector.ContainsKey(requiredKey))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

@@ -7,7 +7,6 @@ namespace MIIProjekt
     public class KeyCollectorComponent : MonoBehaviour, KeyCollector
     {
         public event Action KeyCollected;
-
         [SerializeField]
         private List<string> collectedKeys = new List<string>();
 
@@ -15,24 +14,18 @@ namespace MIIProjekt
         private bool isActive;
 
 
-        public bool AcceptKey(string keyIdentifier)
+        public bool AcceptedKey(string keyIdentifier)
         {
-            if (!isActive)
+            if (isActive && !ContainsKey(keyIdentifier))
             {
-                return false;
+                Debug.Log($"Collected key: {keyIdentifier}");
+                collectedKeys.Add(keyIdentifier);
+                KeyCollected?.Invoke();
+
+                return true;
             }
 
-            if (collectedKeys.Contains(keyIdentifier))
-            {
-                return false;
-            }
-
-            Debug.Log($"Collected key: {keyIdentifier}");
-            collectedKeys.Add(keyIdentifier);
-
-            KeyCollected?.Invoke();
-
-            return true;
+            return false;
         }
 
         public bool ContainsKey(string keyIdentifier)
