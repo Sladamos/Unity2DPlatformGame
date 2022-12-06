@@ -7,15 +7,35 @@ namespace MIIProjekt
 {
     public class FinishTrigger : MonoBehaviour
     {
+        private bool nextLevelIsUnlocked = false;
+
         private void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.CompareTag("Player"))
             {
-                collider.gameObject
-                    .GetComponent<FoxController>()
-                    .VerifyNotNull()
-                    .Finish();
+                collisionWithPlayer(collider);
             }
+        }
+
+        private void collisionWithPlayer(Collider2D player)
+        {
+            if (nextLevelIsUnlocked)
+            {
+                player.gameObject
+                  .GetComponent<FoxController>()
+                  .VerifyNotNull()
+                  .Finish();
+            }
+            else
+            {
+                Debug.Log("Zbierz wszystkie klucze!");
+            }
+        }
+
+        private void OnAllKeysCollected()
+        {
+            Debug.Log("Udaj siê do wyjœcia!");
+            nextLevelIsUnlocked = true;
         }
     }
 }

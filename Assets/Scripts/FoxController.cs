@@ -22,6 +22,9 @@ public class FoxController : MonoBehaviour
 
     public void Finish()
     {
+        myRigidbody.bodyType = RigidbodyType2D.Static;
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isGrounded", true);
         enabled = false;
         Debug.Log($"Ukonczono gre. Zebrano {score} punktow. :)");
     }

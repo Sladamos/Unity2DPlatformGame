@@ -26,11 +26,10 @@ namespace MIIProjekt
 
         private void OnKeyCollected()
         {
-            if (AreAllKeysCollected()) 
+            if (AreAllKeysCollected())
             {
-                //gameObject.SendMessage('OnAllKeysCollected');
-                Debug.Log("All keys collected. Opening door...");
-                gameObject.SetActive(false);
+                keyCollector.KeyCollected -= OnKeyCollected;
+                gameObject.SendMessage("OnAllKeysCollected");
             }
         }
         private bool AreAllKeysCollected()
