@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLife : MonoBehaviour
@@ -9,8 +7,7 @@ public class PlayerLife : MonoBehaviour
     private Animator anim;
     private int lives = 3;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -51,5 +48,9 @@ public class PlayerLife : MonoBehaviour
     {
         lives -= numberOfLives;
         Debug.Log("Current number of lives: " + lives);
+    }
+    private void CollidedWithEnemy()
+    {
+        Debug.Log("Collided with enemy");
     }
 }
