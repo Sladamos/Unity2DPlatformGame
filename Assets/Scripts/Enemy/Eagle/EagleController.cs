@@ -47,24 +47,22 @@ namespace MIIProjekt.Enemy
         private void OnTriggerEnter2D(Collider2D collider)
         {
             Debug.Log($"bool: {animator.GetBool("isDead")}");
-            if (animator.GetBool("isDead"))
-            {
-                return;
-            }
 
-            if (!collider.CompareTag("Player"))
+            if (animator.GetBool("isDead") || !collider.CompareTag("Player"))
             {
                 return;
             }
 
             Debug.Log($"{collider.transform.position.y} > {transform.position.y}");
+
             if (collider.transform.position.y > transform.position.y)
             {
                 animator.SetBool("isDead", true);
-                return;
             }
-
-            collider.SendMessage("CollidedWithEnemy");
+            else
+            {
+                collider.SendMessage("CollidedWithEnemy");
+            }
         }
 
         private void SetInactive()

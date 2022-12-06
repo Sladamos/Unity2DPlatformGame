@@ -14,15 +14,7 @@ public class PlayerLife : MonoBehaviour
         fc = GetComponent<FoxController>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Trap"))
-        {
-            Die();
-        }
-    }
-
-    private void Die()
+    private void GetHit()
     {
         DecreaseLives(1);
         if (lives > 0)
@@ -49,8 +41,10 @@ public class PlayerLife : MonoBehaviour
         lives -= numberOfLives;
         Debug.Log("Current number of lives: " + lives);
     }
+
     private void CollidedWithEnemy()
     {
+        GetHit();
         Debug.Log("Collided with enemy");
     }
 }
