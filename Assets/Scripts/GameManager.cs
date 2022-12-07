@@ -12,11 +12,12 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private GameState currentGameState = GameState.GS_PAUSEMENU;
+    private GameState currentGameState;
 
     void Awake()
     {
         instance = this;
+        PauseMenu();
     }
 
     // Update is called once per frame
@@ -25,12 +26,16 @@ public class GameManager : MonoBehaviour
         CheckPauseActivation();
     }
 
+    public bool IsGameCurrentlyPlayed()
+    {
+        return currentGameState == GameState.GS_GAME;
+    }
+
     private void CheckPauseActivation()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Game paused: " + !isGameCurrentlyPaused());
-            if (isGameCurrentlyPaused())
+            if (IsGameCurrentlyPaused())
             {
                 InGame();
             }
@@ -41,28 +46,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private bool isGameCurrentlyPaused()
+    private bool IsGameCurrentlyPaused()
     {
         return currentGameState == GameState.GS_PAUSEMENU;
     }
 
     public void PauseMenu()
     {
+        Time.timeScale = 0f;
         SetGameState(GameState.GS_PAUSEMENU);
     }
 
     public void LevelComleted()
     {
+        Time.timeScale = 0f;
         SetGameState(GameState.GS_LEVELCOMPLETED);
     }
 
     public void GameOver()
     {
+        Time.timeScale = 0f;
         SetGameState(GameState.GS_GAME_OVER);
     }
 
     public void InGame()
     {
+        Time.timeScale = 1f;
         SetGameState(GameState.GS_GAME);
     }
 

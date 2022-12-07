@@ -69,11 +69,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (GameManager.instance.IsGameCurrentlyPlayed())
         {
-            if (IsGrounded())
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                Jump();
+                if (IsGrounded())
+                {
+                    Jump();
+                }
             }
         }
     }
