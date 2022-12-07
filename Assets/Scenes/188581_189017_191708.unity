@@ -933,6 +933,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1364872858407488194, guid: c5b4c1335ea5d8133b9556ed65a62172, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5850349676062945106, guid: c5b4c1335ea5d8133b9556ed65a62172, type: 3}
       propertyPath: m_Name
       value: EagleEnemy
@@ -945,7 +949,8 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1754831155}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7704801894074639308, guid: c5b4c1335ea5d8133b9556ed65a62172, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: c5b4c1335ea5d8133b9556ed65a62172, type: 3}
 --- !u!4 &318876866 stripped

@@ -21,10 +21,7 @@ namespace MIIProjekt
         {
             if (nextLevelIsUnlocked)
             {
-                player.gameObject
-                  .GetComponent<PlayerController>()
-                  .VerifyNotNull()
-                  .Finish();
+                player.SendMessage("Finish");
             }
             else
             {
