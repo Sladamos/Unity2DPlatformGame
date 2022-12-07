@@ -22,7 +22,7 @@ namespace MIIProjekt
             if (nextLevelIsUnlocked)
             {
                 player.gameObject
-                  .GetComponent<FoxController>()
+                  .GetComponent<PlayerController>()
                   .VerifyNotNull()
                   .Finish();
             }

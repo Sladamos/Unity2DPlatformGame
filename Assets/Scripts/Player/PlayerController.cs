@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FoxController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private const float rayLength = 0.25f;
 
@@ -17,7 +17,6 @@ public class FoxController : MonoBehaviour
     private Animator animator;
     private bool isWalking = false;
     private bool isFacingRight = true;
-    private int score = 0;
     Vector2 startPosition;
 
     public void Finish()
@@ -26,7 +25,7 @@ public class FoxController : MonoBehaviour
         animator.SetBool("isWalking", false);
         animator.SetBool("isGrounded", true);
         enabled = false;
-        Debug.Log($"Ukonczono gre. Zebrano {score} punktow. :)");
+        //Debug.Log($"Ukonczono gre. Zebrano {score} punktow. :)");
     }
 
     private void Awake()
@@ -45,14 +44,18 @@ public class FoxController : MonoBehaviour
             input.x += 1;
             isWalking = true;
             if (!isFacingRight)
+            {
                 Flip();
+            }
         }
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             input.x += -1;
             isWalking = true;
             if (isFacingRight)
+            {
                 Flip();
+            }
         }
 
         Vector2 velocity = input * moveSpeed * Time.deltaTime;
@@ -66,10 +69,12 @@ public class FoxController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (IsGrounded())
+            {
                 Jump();
+            }
         }
     }
 
@@ -90,16 +95,6 @@ public class FoxController : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.Raycast(transform.position, Vector2.down, rayLength, groundLayer.value);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bonus"))
-        {
-            score += 15;
-            Debug.Log("Score: " + score);
-            collision.gameObject.SetActive(false);
-        }
     }
 
     private void ReturnToSpawn()

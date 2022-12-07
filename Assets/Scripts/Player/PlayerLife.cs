@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerLife : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private FoxController fc;
+    private PlayerController pc;
     private Animator anim;
     private int lives = 3;
 
@@ -11,7 +11,7 @@ public class PlayerLife : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        fc = GetComponent<FoxController>();
+        pc = GetComponent<PlayerController>();
     }
 
     private void GetHit()
@@ -27,7 +27,7 @@ public class PlayerLife : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Static;
         anim.SetTrigger("death");
-        fc.enabled = false;
+        pc.enabled = false;
     }
 
     private void IncreaseLives(int numberOfLives)
