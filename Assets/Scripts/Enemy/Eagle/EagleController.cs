@@ -31,6 +31,7 @@ namespace MIIProjekt.Enemy
         {
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            GetComponent<Rigidbody2D>().gravityScale = 0f;
         }
 
         private void Update()
@@ -44,10 +45,11 @@ namespace MIIProjekt.Enemy
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collider)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
+            Collider2D collider = collision.collider;
             Debug.Log($"bool: {animator.GetBool("isDead")}");
-
+            
             if (animator.GetBool("isDead") || !collider.CompareTag("Player"))
             {
                 return;
@@ -58,13 +60,13 @@ namespace MIIProjekt.Enemy
             if (collider.transform.position.y > transform.position.y)
             {
                 animator.SetBool("isDead", true);
+                GetComponent<Collider2D>().isTrigger = true;
             }
             else
             {
                 collider.SendMessage("CollidedWithEnemy");
             }
         }
-
         private void SetInactive()
         {
             gameObject.SetActive(false);
