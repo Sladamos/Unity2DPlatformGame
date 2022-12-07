@@ -31,7 +31,6 @@ namespace MIIProjekt.Enemy
         {
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            GetComponent<Rigidbody2D>().gravityScale = 0f;
         }
 
         private void Update()
@@ -40,7 +39,6 @@ namespace MIIProjekt.Enemy
             {
                 Vector2 velocity = GetTargetDirection() * speed;
                 spriteRenderer.flipX = velocity.x > 0.0f;
-
                 transform.position += (Vector3)(velocity * Time.deltaTime);
             }
         }
