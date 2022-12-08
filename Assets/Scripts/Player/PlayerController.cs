@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isWalking", false);
         animator.SetBool("isGrounded", true);
         enabled = false;
-        //Debug.Log($"Ukonczono gre. Zebrano {score} punktow. :)");
     }
 
     private void Awake()
