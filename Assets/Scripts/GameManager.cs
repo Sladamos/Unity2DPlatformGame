@@ -9,6 +9,7 @@ public enum GameState
     GS_LEVELCOMPLETED,
     GS_GAME_OVER
 }
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -20,7 +21,6 @@ public class GameManager : MonoBehaviour
         PauseMenu();
     }
 
-    // Update is called once per frame
     void Update()
     {
         CheckPauseActivation();
