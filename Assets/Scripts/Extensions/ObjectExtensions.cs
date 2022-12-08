@@ -19,10 +19,5 @@ namespace MIIProjekt.Extensions
 
             return obj;
         }
-
-        public static void foo() {
-            Object objectz = new Object();
-            objectz.VerifyNotNull();
-        }
     }
 }
