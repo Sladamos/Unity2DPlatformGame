@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isWalking = false;
     private bool isFacingRight = true;
-    Vector2 startPosition;
+    private Vector2 startPosition;
 
     public void Finish()
     {
@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isWalking", false);
         animator.SetBool("isGrounded", true);
         enabled = false;
-        //Debug.Log($"Ukonczono gre. Zebrano {score} punktow. :)");
     }
 
     private void Awake()

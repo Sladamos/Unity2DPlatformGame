@@ -32,6 +32,7 @@ namespace MIIProjekt
                 gameObject.SendMessage("OnAllKeysCollected");
             }
         }
+
         private bool AreAllKeysCollected()
         {
             foreach (string requiredKey in requiredKeys)
