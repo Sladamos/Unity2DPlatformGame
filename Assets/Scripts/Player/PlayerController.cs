@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isWalking = false;
     private bool isFacingRight = true;
-    Vector2 startPosition;
+    private Vector2 startPosition;
 
     public void Finish()
     {
