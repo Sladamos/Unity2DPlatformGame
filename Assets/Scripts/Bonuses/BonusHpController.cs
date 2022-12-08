@@ -5,7 +5,8 @@ using UnityEngine;
 public class BonusHpController : MonoBehaviour
 {
     [SerializeField]
-    int numberOfLives;
+    private int numberOfLives;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

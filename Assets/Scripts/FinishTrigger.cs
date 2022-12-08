@@ -13,11 +13,11 @@ namespace MIIProjekt
         {
             if (collider.CompareTag("Player"))
             {
-                collisionWithPlayer(collider);
+                CollisionWithPlayer(collider);
             }
         }
 
-        private void collisionWithPlayer(Collider2D player)
+        private void CollisionWithPlayer(Collider2D player)
         {
             if (nextLevelIsUnlocked)
             {
