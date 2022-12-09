@@ -7,6 +7,7 @@ namespace MIIProjekt.Enemy
     {
         [SerializeField]
         private Transform target;
+
         [SerializeField]
         private float speed;
 
@@ -65,6 +66,7 @@ namespace MIIProjekt.Enemy
                 collider.SendMessage("CollidedWithEnemy");
             }
         }
+
         private void SetInactive()
         {
             gameObject.SetActive(false);

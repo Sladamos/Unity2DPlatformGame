@@ -20,7 +20,6 @@ public class WaypointFollower : MonoBehaviour
     {
         if (ReachedTheWaypoint())
         {
-            Debug.Log(ReachedLastWaypoint());
             ChangeMovementDirectionIfNecessary();
             UpdateCurrentWaypoint();
         }
@@ -38,7 +37,9 @@ public class WaypointFollower : MonoBehaviour
     private void ChangeMovementDirectionIfNecessary()
     {
         if (cyclicalMovement)
+        {
             return;
+        }
 
         if (ReachedLastWaypoint() || ReachedFirstWaypoint())
         {
