@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreDisplaying : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text scoreText;
@@ -14,5 +14,4 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText.text = score.ToString("000");
     }
-
 }

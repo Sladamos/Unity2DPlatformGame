@@ -24,6 +24,11 @@ namespace MIIProjekt
             }
         }
 
+        public List<string> GetRequiredKeys()
+        {
+            return requiredKeys;
+        }
+
         private void OnKeyCollected()
         {
             if (AreAllKeysCollected())

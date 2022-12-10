@@ -45,6 +45,9 @@ namespace MIIProjekt
 
             if (isCollectorValidate(collector) && collector.AcceptedKey(keyIdentifier))
             {
+                Color keyColor = gameObject.GetComponent<SpriteRenderer>().color;
+                Tuple<string, Color> key = new(keyIdentifier, keyColor);
+                GameManager.instance.SendMessage("DisplayKey", key);
                 SetActive(false);
             }
         }
