@@ -12,6 +12,9 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private Canvas inGameCanvas;
+
     public static GameManager instance;
     private GameState currentGameState;
 
@@ -53,30 +56,36 @@ public class GameManager : MonoBehaviour
 
     public void PauseMenu()
     {
-        Time.timeScale = 0f;
         SetGameState(GameState.GS_PAUSEMENU);
     }
 
     public void LevelComleted()
     {
-        Time.timeScale = 0f;
         SetGameState(GameState.GS_LEVELCOMPLETED);
     }
 
     public void GameOver()
     {
-        Time.timeScale = 0f;
         SetGameState(GameState.GS_GAME_OVER);
     }
 
     public void InGame()
     {
-        Time.timeScale = 1f;
         SetGameState(GameState.GS_GAME);
     }
 
     private void SetGameState(GameState newGameState)
     {
+        if (newGameState == GameState.GS_GAME)
+        {
+            inGameCanvas.enabled = true;
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            inGameCanvas.enabled = false;
+            Time.timeScale = 0f;
+        }
         currentGameState = newGameState;
     }
 }
