@@ -12,9 +12,6 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private Canvas inGameCanvas;
-
     public static GameManager instance;
     private GameState currentGameState;
 
@@ -34,22 +31,7 @@ public class GameManager : MonoBehaviour
         return currentGameState == GameState.GS_GAME;
     }
 
-    private void CheckPauseActivation()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (IsGameCurrentlyPaused())
-            {
-                InGame();
-            }
-            else
-            {
-                PauseMenu();
-            }
-        }
-    }
-
-    private bool IsGameCurrentlyPaused()
+    public bool IsGameCurrentlyPaused()
     {
         return currentGameState == GameState.GS_PAUSEMENU;
     }
@@ -74,18 +56,25 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.GS_GAME);
     }
 
+    private void CheckPauseActivation()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (IsGameCurrentlyPaused())
+            {
+                InGame();
+            }
+            else
+            {
+                PauseMenu();
+            }
+        }
+    }
+
     private void SetGameState(GameState newGameState)
     {
-        if (newGameState == GameState.GS_GAME)
-        {
-            inGameCanvas.enabled = true;
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            inGameCanvas.enabled = false;
-            Time.timeScale = 0f;
-        }
         currentGameState = newGameState;
+        SendMessage("UpdateDisplay");
+        SendMessage("UpdateTime");
     }
 }
