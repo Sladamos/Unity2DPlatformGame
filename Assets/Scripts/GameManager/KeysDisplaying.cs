@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 namespace MIIProjekt
 {
-    using KeyAttributes = Tuple<string, Color>;
-
     public class KeysDisplaying : MonoBehaviour
     {
-
         [SerializeField]
         private Image[] keysImages;
 
@@ -30,8 +27,8 @@ namespace MIIProjekt
 
         private void DisplayKey(KeyAttributes keyAttributes)
         {
-            String keyIdentifier = keyAttributes.Item1;
-            Color keyColor = keyAttributes.Item2;
+            String keyIdentifier = keyAttributes.GetIdentifier();
+            Color keyColor = keyAttributes.GetColor();
             if (keysIdentifiers.ContainsKey(keyIdentifier))
             {
                 ActivateKeyImage(keysIdentifiers[keyIdentifier], keyColor);

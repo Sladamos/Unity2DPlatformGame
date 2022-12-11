@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace MIIProjekt
 {
-    using KeyAttributes = Tuple<string, Color>;
-
     public class KeyCollectorComponent : MonoBehaviour, KeyCollector
     {
         [SerializeField]
@@ -18,7 +16,7 @@ namespace MIIProjekt
 
         public bool AcceptedKey(KeyAttributes keyAttributes)
         {
-            string keyIdentifier = keyAttributes.Item1;
+            string keyIdentifier = keyAttributes.GetIdentifier();
 
             if (isActive && !ContainsKey(keyIdentifier))
             {

@@ -3,8 +3,6 @@ using UnityEngine;
 
 namespace MIIProjekt
 {
-    using KeyAttributes = Tuple<string, Color>;
-
     public interface KeyCollector
     {
         public event Action KeyCollected;
@@ -13,7 +11,7 @@ namespace MIIProjekt
         /// </summary>
         /// <param name="keyAttributes">Key attributes.</param>
         /// <returns>True if an object successfully accepted a key. Otherwise, false.</returns>
-        public bool AcceptedKey(KeyAttributes key);
+        public bool AcceptedKey(KeyAttributes keyAttributes);
         
         /// <summary>
         /// Checks wheteher the collector contains a key by the given identifier.
