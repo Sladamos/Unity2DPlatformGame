@@ -4,6 +4,8 @@ using MIIProjekt.Extensions;
 
 namespace MIIProjekt
 {
+    using KeyAttributes = Tuple<string, Color>;
+
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Collider2D))]
     public class Key : MonoBehaviour
@@ -42,14 +44,19 @@ namespace MIIProjekt
         private void OnTriggerEnter2D(Collider2D other)
         {
             KeyCollector collector = other.GetComponent<KeyCollector>();
+            KeyAttributes keyAttributes = GetKeyAttributes();
 
-            if (isCollectorValidate(collector) && collector.AcceptedKey(keyIdentifier))
-            {
-                Color keyColor = gameObject.GetComponent<SpriteRenderer>().color;
-                Tuple<string, Color> key = new(keyIdentifier, keyColor);
-                GameManager.instance.SendMessage("DisplayKey", key);
+            if (isCollectorValidate(collector) && collector.AcceptedKey(keyAttributes))
+            {    
                 SetActive(false);
             }
+        }
+
+        private KeyAttributes GetKeyAttributes()
+        {
+            Color keyColor = gameObject.GetComponent<SpriteRenderer>().color;
+            KeyAttributes keyAttributes = new(keyIdentifier, keyColor);
+            return keyAttributes;
         }
 
         private bool isCollectorValidate(KeyCollector collector)

@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace MIIProjekt
 {
+    using KeyAttributes = Tuple<string, Color>;
+
     public class KeyCollectorComponent : MonoBehaviour, KeyCollector
     {
         [SerializeField]
@@ -14,11 +16,14 @@ namespace MIIProjekt
 
         public event Action KeyCollected;
 
-        public bool AcceptedKey(string keyIdentifier)
+        public bool AcceptedKey(KeyAttributes keyAttributes)
         {
+            string keyIdentifier = keyAttributes.Item1;
+
             if (isActive && !ContainsKey(keyIdentifier))
             {
                 collectedKeys.Add(keyIdentifier);
+                GameManager.instance.SendMessage("DisplayKey", keyAttributes);
                 KeyCollected?.Invoke();
 
                 return true;

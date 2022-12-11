@@ -1,16 +1,19 @@
 using System;
+using UnityEngine;
 
 namespace MIIProjekt
 {
+    using KeyAttributes = Tuple<string, Color>;
+
     public interface KeyCollector
     {
         public event Action KeyCollected;
         /// <summary>
         /// Tries to accept a key.
         /// </summary>
-        /// <param name="keyIdentifier">Key identifier.</param>
+        /// <param name="keyAttributes">Key attributes.</param>
         /// <returns>True if an object successfully accepted a key. Otherwise, false.</returns>
-        public bool AcceptedKey(string keyIdentifier);
+        public bool AcceptedKey(KeyAttributes key);
         
         /// <summary>
         /// Checks wheteher the collector contains a key by the given identifier.
