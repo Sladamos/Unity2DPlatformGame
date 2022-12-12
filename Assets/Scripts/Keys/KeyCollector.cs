@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using UnityEngine;
 
-namespace MIIProjekt
+namespace MIIProjekt.Keys
 {
     public interface KeyCollector
     {

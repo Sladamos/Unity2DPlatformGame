@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerScore : MonoBehaviour
+namespace MIIProjekt.Player
 {
-    private int score = 0;
-
-    void Start()
+    public class PlayerScore : MonoBehaviour
     {
-        GameManager.instance.SendMessage("SetScore", score);    
-    }
+        private int score = 0;
 
-    private void IncreaseScore(int value)
-    {
-        score += value;
-        GameManager.instance.SendMessage("SetScore", score);
+        void Start()
+        {
+            GameManager.instance.SendMessage("SetScore", score);
+        }
+
+        private void IncreaseScore(int value)
+        {
+            score += value;
+            GameManager.instance.SendMessage("SetScore", score);
+        }
     }
 }

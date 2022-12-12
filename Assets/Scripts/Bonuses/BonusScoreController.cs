@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BonusScoreController : MonoBehaviour
+namespace MIIProjekt.Bonuses
 {
-    [SerializeField]
-    private int scoreValue;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class BonusScoreController : MonoBehaviour
     {
-        if (collision.CompareTag("Player"))
+        [SerializeField]
+        private int scoreValue;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            collision.SendMessage("IncreaseScore", scoreValue);
-            this.gameObject.SetActive(false);
+            if (collision.CompareTag("Player"))
+            {
+                collision.SendMessage("IncreaseScore", scoreValue);
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }
