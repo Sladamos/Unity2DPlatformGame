@@ -1,5 +1,4 @@
-﻿using System;
-using MIIProjekt.Extensions;
+﻿using MIIProjekt.Extensions;
 using UnityEngine;
 
 namespace MIIProjekt

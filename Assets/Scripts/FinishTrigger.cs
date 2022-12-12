@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using MIIProjekt.Extensions;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace MIIProjekt
 {
