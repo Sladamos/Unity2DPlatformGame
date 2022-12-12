@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using MIIProjekt.Extensions;
+ï»¿using UnityEngine;
 
 namespace MIIProjekt
 {
@@ -31,7 +28,7 @@ namespace MIIProjekt
 
         private void OnAllKeysCollected()
         {
-            Debug.Log("Udaj siê do wyjœcia!");
+            Debug.Log("Udaj sie do wyjscia!");
             nextLevelIsUnlocked = true;
         }
     }

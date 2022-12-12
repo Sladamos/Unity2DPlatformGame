@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerScore : MonoBehaviour
+namespace MIIProjekt.Player
 {
-    private int score = 0;
-
-    private void IncreaseScore(int value)
+    public class PlayerScore : MonoBehaviour
     {
-        score += value;
-        Debug.Log("Score: " + score);
+        private int score = 0;
+
+        private void IncreaseScore(int value)
+        {
+            score += value;
+            Debug.Log("Score: " + score);
+        }
     }
 }

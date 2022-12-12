@@ -1,9 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EagleStateDead : StateMachineBehaviour
+namespace MIIProjekt.Enemy.Eagle
 {
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class EagleStateDead : StateMachineBehaviour
     {
-        animator.SendMessage("SetInactive");
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            animator.SendMessage("SetInactive");
+        }
     }
 }
