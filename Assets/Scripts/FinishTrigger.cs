@@ -28,7 +28,7 @@ namespace MIIProjekt
 
         private void OnAllKeysCollected()
         {
-            Debug.Log("Udaj si� do wyj�cia!");
+            Debug.Log("Udaj sie do wyjscia!");
             nextLevelIsUnlocked = true;
         }
     }
