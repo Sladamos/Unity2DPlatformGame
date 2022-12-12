@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace MIIProjekt.Extensions
 {
@@ -12,10 +12,10 @@ namespace MIIProjekt.Extensions
         /// <exception cref="NullReferenceException">If the passed argument is null.</exception>
         public static T VerifyNotNull<T>(this T obj)
         {
-            if (obj == null) 
+            if (obj == null)
             {
                 throw new NullReferenceException();
-            } 
+            }
 
             return obj;
         }

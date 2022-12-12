@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace MIIProjekt.Enemy
 {
@@ -47,7 +47,7 @@ namespace MIIProjekt.Enemy
         {
             Collider2D collider = collision.collider;
             Debug.Log($"bool: {animator.GetBool("isDead")}");
-            
+
             if (animator.GetBool("isDead") || !collider.CompareTag("Player"))
             {
                 return;

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         isWalking = false;
         Vector2 input = Vector2.zero;
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        { 
+        {
             input.x += 1;
             isWalking = true;
             if (!isFacingRight)
@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour
         transform.Translate(velocity.x, 0.0f, 0.0f, Space.World);
 
         //Debug.DrawRay(transform.position, rayLength * Vector3.down, Color.blue, 0.2f, false);
-        animator.SetBool("isGrounded", IsGrounded());     
-        animator.SetBool("isWalking", isWalking);     
+        animator.SetBool("isGrounded", IsGrounded());
+        animator.SetBool("isWalking", isWalking);
     }
 
     private void Update()

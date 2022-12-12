@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace MIIProjekt
 {
@@ -11,7 +11,7 @@ namespace MIIProjekt
         /// <param name="keyIdentifier">Key identifier.</param>
         /// <returns>True if an object successfully accepted a key. Otherwise, false.</returns>
         public bool AcceptedKey(string keyIdentifier);
-        
+
         /// <summary>
         /// Checks wheteher the collector contains a key by the given identifier.
         /// </summary>
