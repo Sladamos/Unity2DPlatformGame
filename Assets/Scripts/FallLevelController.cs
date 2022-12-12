@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 
-public class FallLevelController : MonoBehaviour
+namespace MIIProjekt
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class FallLevelController : MonoBehaviour
     {
-        if (collision.CompareTag("Player"))
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            collision.SendMessage("GetHit");
+            if (collision.CompareTag("Player"))
+            {
+                collision.SendMessage("GetHit");
+            }
         }
     }
 }

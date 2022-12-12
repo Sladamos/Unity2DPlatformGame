@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MIIProjekt.Enemy
+namespace MIIProjekt.Enemy.Eagle
 {
     [RequireComponent(typeof(Animator))]
     public class EagleController : MonoBehaviour

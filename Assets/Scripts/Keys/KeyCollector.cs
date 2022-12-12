@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MIIProjekt
+namespace MIIProjekt.Keys
 {
     public interface KeyCollector
     {

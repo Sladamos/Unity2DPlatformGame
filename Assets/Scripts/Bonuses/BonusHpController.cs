@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 
-public class BonusHpController : MonoBehaviour
+namespace MIIProjekt.Bonuses
 {
-    [SerializeField]
-    private int numberOfLives;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class BonusHpController : MonoBehaviour
     {
-        if (collision.CompareTag("Player"))
+        [SerializeField]
+        private int numberOfLives;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            collision.SendMessage("IncreaseLives", numberOfLives);
-            this.gameObject.SetActive(false);
+            if (collision.CompareTag("Player"))
+            {
+                collision.SendMessage("IncreaseLives", numberOfLives);
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }

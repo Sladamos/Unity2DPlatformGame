@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-public class Door : MonoBehaviour
+namespace MIIProjekt
 {
-    private void OnAllKeysCollected()
+    public class Door : MonoBehaviour
     {
-        Debug.Log("All keys collected. Opening door...");
-        gameObject.SetActive(false);
+        private void OnAllKeysCollected()
+        {
+            Debug.Log("All keys collected. Opening door...");
+            gameObject.SetActive(false);
+        }
     }
 }

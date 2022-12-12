@@ -1,7 +1,7 @@
 ﻿using MIIProjekt.Extensions;
 using UnityEngine;
 
-namespace MIIProjekt
+namespace MIIProjekt.Keys
 {
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Collider2D))]
