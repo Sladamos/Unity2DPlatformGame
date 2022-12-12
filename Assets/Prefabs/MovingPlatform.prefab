@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 2777828993642529846}
   - component: {fileID: 2777828993642529847}
   - component: {fileID: 2357366138217523350}
+  - component: {fileID: 4357303658368164405}
+  - component: {fileID: -2625974700299512000}
   m_Layer: 6
-  m_Name: platform-long
+  m_Name: MovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,3 +113,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4357303658368164405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777828993642529832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e025616ba890af44ca13e38ad1b163cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  speed: 1
+  cyclicalMovement: 0
+--- !u!114 &-2625974700299512000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777828993642529832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebddd848654af641855ba04fbc38a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
