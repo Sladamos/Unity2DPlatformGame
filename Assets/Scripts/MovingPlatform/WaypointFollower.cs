@@ -1,77 +1,78 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class WaypointFollower : MonoBehaviour
+namespace MIIProjekt.MovingPlatform
 {
-    [SerializeField]
-    private GameObject[] waypoints;
-
-    [SerializeField]
-    private float speed = 1.0f;
-
-    [SerializeField]
-    private bool cyclicalMovement = false;
-
-    private int currentWaypoint = 0;
-    private bool goingToLastWaypoint = true;
-
-    private void Update()
+    public class WaypointFollower : MonoBehaviour
     {
-        if (ReachedTheWaypoint())
-        {
-            ChangeMovementDirectionIfNecessary();
-            UpdateCurrentWaypoint();
-        }
-        else
-        {
-            MoveToCurrentWaypoint();
-        }
-    }
+        [SerializeField]
+        private GameObject[] waypoints;
 
-    private bool ReachedTheWaypoint()
-    {
-        return Vector2.Distance(transform.position, waypoints[currentWaypoint].transform.position) < 0.1f;
-    }
+        [SerializeField]
+        private float speed = 1.0f;
 
-    private void ChangeMovementDirectionIfNecessary()
-    {
-        if (cyclicalMovement)
+        [SerializeField]
+        private bool cyclicalMovement = false;
+
+        private int currentWaypoint = 0;
+        private bool goingToLastWaypoint = true;
+
+        private void Update()
         {
-            return;
+            if (ReachedTheWaypoint())
+            {
+                ChangeMovementDirectionIfNecessary();
+                UpdateCurrentWaypoint();
+            }
+            else
+            {
+                MoveToCurrentWaypoint();
+            }
         }
 
-        if (ReachedLastWaypoint() || ReachedFirstWaypoint())
+        private bool ReachedTheWaypoint()
         {
-            goingToLastWaypoint = !goingToLastWaypoint;
+            return Vector2.Distance(transform.position, waypoints[currentWaypoint].transform.position) < 0.1f;
         }
-    }
 
-    private bool ReachedLastWaypoint()
-    {
-        return currentWaypoint == waypoints.Length - 1 && goingToLastWaypoint;
-    }
-
-    private bool ReachedFirstWaypoint()
-    {
-        return currentWaypoint == 0 && !goingToLastWaypoint;
-    }
-
-    private void UpdateCurrentWaypoint()
-    {
-        if(goingToLastWaypoint)
+        private void ChangeMovementDirectionIfNecessary()
         {
-            currentWaypoint++;
-            currentWaypoint %= waypoints.Length;
-        }
-        else
-        {
-            currentWaypoint--;
-        }
-    }
+            if (cyclicalMovement)
+            {
+                return;
+            }
 
-    private void MoveToCurrentWaypoint()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].transform.position, speed * Time.deltaTime);
+            if (ReachedLastWaypoint() || ReachedFirstWaypoint())
+            {
+                goingToLastWaypoint = !goingToLastWaypoint;
+            }
+        }
+
+        private bool ReachedLastWaypoint()
+        {
+            return currentWaypoint == waypoints.Length - 1 && goingToLastWaypoint;
+        }
+
+        private bool ReachedFirstWaypoint()
+        {
+            return currentWaypoint == 0 && !goingToLastWaypoint;
+        }
+
+        private void UpdateCurrentWaypoint()
+        {
+            if (goingToLastWaypoint)
+            {
+                currentWaypoint++;
+                currentWaypoint %= waypoints.Length;
+            }
+            else
+            {
+                currentWaypoint--;
+            }
+        }
+
+        private void MoveToCurrentWaypoint()
+        {
+            transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].transform.position, speed * Time.deltaTime);
+        }
     }
 }

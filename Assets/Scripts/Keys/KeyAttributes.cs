@@ -1,24 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class KeyAttributes
+namespace MIIProjekt.Keys
 {
-    private Tuple<string, Color> keyAttributes;
-
-    public KeyAttributes(string keyIdentifier, Color keyColor)
+    public class KeyAttributes
     {
-        keyAttributes = new Tuple<string, Color>(keyIdentifier, keyColor);
-    }
+        private Tuple<string, Color> keyAttributes;
 
-    public string GetIdentifier()
-    {
-        return keyAttributes.Item1;
-    }
+        public KeyAttributes(string keyIdentifier, Color keyColor)
+        {
+            keyAttributes = new Tuple<string, Color>(keyIdentifier, keyColor);
+        }
 
-    public Color GetColor()
-    {
-        return keyAttributes.Item2;
+        public string GetIdentifier()
+        {
+            return keyAttributes.Item1;
+        }
+
+        public Color GetColor()
+        {
+            return keyAttributes.Item2;
+        }
     }
 }

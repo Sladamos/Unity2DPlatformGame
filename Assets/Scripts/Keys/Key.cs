@@ -46,7 +46,7 @@ namespace MIIProjekt.Keys
             KeyCollector collector = other.GetComponent<KeyCollector>();
 
             if (isCollectorValidate(collector) && collector.AcceptedKey(keyAttributes))
-            {    
+            {
                 SetActive(false);
             }
         }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using MIIProjekt.Keys;
 using UnityEngine;
 using UnityEngine.UI;
-using MIIProjekt.Keys;
 
-namespace MIIProjekt
+namespace MIIProjekt.GameManagers
 {
     public class KeysDisplaying : MonoBehaviour
     {

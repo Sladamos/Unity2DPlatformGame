@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Transporter : MonoBehaviour
+namespace MIIProjekt.MovingPlatform
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    public class Transporter : MonoBehaviour
     {
-        if (collision.gameObject.CompareTag("Player"))
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            collision.gameObject.transform.SetParent(transform);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                collision.gameObject.transform.SetParent(transform);
+            }
         }
-    }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        collision.gameObject.transform.SetParent(null);
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            collision.gameObject.transform.SetParent(null);
+        }
     }
 }

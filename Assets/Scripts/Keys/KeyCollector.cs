@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 
 namespace MIIProjekt.Keys
 {
@@ -12,7 +11,7 @@ namespace MIIProjekt.Keys
         /// <param name="keyAttributes">Key attributes.</param>
         /// <returns>True if an object successfully accepted a key. Otherwise, false.</returns>
         public bool AcceptedKey(KeyAttributes keyAttributes);
-        
+
         /// <summary>
         /// Checks wheteher the collector contains a key by the given identifier.
         /// </summary>
