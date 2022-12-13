@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace MIIProjekt.GameManagers
@@ -30,7 +30,8 @@ namespace MIIProjekt.GameManagers
         private void Awake()
         {
             text = GetComponent<TextMeshProUGUI>();
-            if (timeManager != null) {
+            if (timeManager != null)
+            {
                 timeManager.TimeUpdated += UpdateDisplayedTime;
             }
         }
