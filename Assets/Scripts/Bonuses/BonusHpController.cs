@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using MIIProjekt.Player;
 
 namespace MIIProjekt.Bonuses
 {
@@ -7,11 +8,11 @@ namespace MIIProjekt.Bonuses
         [SerializeField]
         private int numberOfLives;
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            if (collision.CompareTag("Player"))
+            if (collider.CompareTag("Player") && collider.GetComponent<PlayerLife>().CanPickupBonusLife())
             {
-                collision.SendMessage("IncreaseLives", numberOfLives);
+                collider.SendMessage("IncreaseLives", numberOfLives);
                 this.gameObject.SetActive(false);
             }
         }

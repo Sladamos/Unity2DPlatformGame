@@ -10,6 +10,9 @@ namespace MIIProjekt.Player
         [SerializeField]
         private int startingLives = 3;
 
+        [SerializeField]
+        private int maximumLives = 5;
+
         private Rigidbody2D rb;
         private PlayerController pc;
         private Animator anim;
@@ -35,6 +38,11 @@ namespace MIIProjekt.Player
             Lives = startingLives;
         }
 
+        public bool CanPickupBonusLife()
+        {
+            return lives < maximumLives;
+        }
+
         private void GetHit()
         {
             DecreaseLives(1);
@@ -53,7 +61,14 @@ namespace MIIProjekt.Player
 
         private void IncreaseLives(int numberOfLives)
         {
-            Lives += numberOfLives;
+            if (numberOfLives + lives < maximumLives)
+            {
+                Lives += numberOfLives;
+            }
+            else
+            {
+                Lives = maximumLives;
+            }
         }
 
         private void DecreaseLives(int numberOfLives)
