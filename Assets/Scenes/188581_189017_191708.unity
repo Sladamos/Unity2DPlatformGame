@@ -40494,7 +40494,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4660641409792775501, guid: 20e3a03540c3417479ee0290a8d5a784, type: 3}
       propertyPath: m_Name
-      value: KeyImage (1)
+      value: KeyImage 1
       objectReference: {fileID: 0}
     - target: {fileID: 6999398116096486578, guid: 20e3a03540c3417479ee0290a8d5a784, type: 3}
       propertyPath: m_Pivot.x
