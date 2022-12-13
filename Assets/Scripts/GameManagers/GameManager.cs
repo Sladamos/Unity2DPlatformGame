@@ -66,7 +66,7 @@ namespace MIIProjekt.GameManagers
         private void SetGameState(GameState newGameState)
         {
             currentGameState = newGameState;
-            SendMessage("UpdateDisplay");
+            DisplayManager.instance.SendMessage("UpdateDisplay");
             SendMessage("UpdateTime");
         }
     }

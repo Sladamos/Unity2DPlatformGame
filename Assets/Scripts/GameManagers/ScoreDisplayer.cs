@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MIIProjekt.GameManagers
 {
-    public class ScoreDisplaying : MonoBehaviour
+    public class ScoreDisplayer : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text scoreText;

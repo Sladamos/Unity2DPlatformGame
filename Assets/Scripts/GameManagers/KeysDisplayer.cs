@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace MIIProjekt.GameManagers
 {
-    public class KeysDisplaying : MonoBehaviour
+    public class KeysDisplayer : MonoBehaviour
     {
         [SerializeField]
         private Image[] keysImages;

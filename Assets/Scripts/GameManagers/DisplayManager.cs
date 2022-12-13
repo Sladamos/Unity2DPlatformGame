@@ -4,10 +4,16 @@ using UnityEngine;
 
 namespace MIIProjekt.GameManagers
 {
-    public class GuiManager : MonoBehaviour
+    public class DisplayManager : MonoBehaviour
     {
+        public static DisplayManager instance;
+
         [SerializeField]
         private Canvas inGameCanvas;
+        void Awake()
+        {
+            instance = this;
+        }
 
         private void UpdateDisplay()
         {

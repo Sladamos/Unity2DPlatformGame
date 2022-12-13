@@ -5,14 +5,14 @@ using UnityEngine;
 namespace MIIProjekt.GameManagers
 {
     [Obsolete("Temporary class created to showcase some functionality")]
-    [RequireComponent(typeof(TextMeshProUGUI))]
     public class DeadEnemyCounterDisplayer : MonoBehaviour
     {
         public static DeadEnemyCounterDisplayer Instance { get; private set; }
 
-        private TextMeshProUGUI text;
+        [SerializeField]
+        private TMP_Text counterText;
 
-        private int counter = 0;
+        private int counter;
 
         public void IncrementCounter()
         {
@@ -22,17 +22,12 @@ namespace MIIProjekt.GameManagers
 
         private void UpdateCounter()
         {
-            if (text != null)
-            {
-                text.SetText(string.Format("{0:0}", counter));
-            }
+            counterText.SetText(string.Format("{0:0}", counter));
         }
 
         private void Awake()
         {
             Instance = this;
-
-            text = GetComponent<TextMeshProUGUI>();
         }
     }
 }

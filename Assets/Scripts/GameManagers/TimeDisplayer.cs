@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace MIIProjekt.GameManagers
 {
-    [RequireComponent(typeof(TextMeshProUGUI))]
     public class TimeDisplayer : MonoBehaviour
     {
         private const int SECONDS_IN_MINUTE = 60;
@@ -13,23 +12,19 @@ namespace MIIProjekt.GameManagers
         [SerializeField]
         private TimeManager timeManager;
 
-        private TextMeshProUGUI text;
+        [SerializeField]
+        private TMP_Text timeText;
 
         private void UpdateDisplayedTime(float secondsPassed)
         {
-            if (text != null)
-            {
-                int millisecondsPassed = (int)(secondsPassed * 1000.0f);
-                int minutes = millisecondsPassed / MILLISECONDS_IN_MINUTE;
-                int seconds = (millisecondsPassed / MILLISECONDS_IN_SECOND) % SECONDS_IN_MINUTE;
-                int milliseconds = millisecondsPassed % MILLISECONDS_IN_SECOND;
-                text.SetText(string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds));
-            }
+            int seconds = (int)(secondsPassed);
+            int minutes = seconds / SECONDS_IN_MINUTE;
+            seconds %= SECONDS_IN_MINUTE;
+            timeText.SetText(string.Format("{0:00}:{1:00}", minutes, seconds));
         }
 
         private void Awake()
         {
-            text = GetComponent<TextMeshProUGUI>();
             if (timeManager != null)
             {
                 timeManager.TimeUpdated += UpdateDisplayedTime;

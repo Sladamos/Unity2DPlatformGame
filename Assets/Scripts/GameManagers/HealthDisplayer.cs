@@ -4,26 +4,24 @@ using UnityEngine;
 
 namespace MIIProjekt.GameManagers
 {
-    [RequireComponent(typeof(TextMeshProUGUI))]
     public class HealthDisplayer : MonoBehaviour
     {
         [SerializeField]
         private PlayerLife playerLife;
 
-        private TextMeshProUGUI text;
+        [SerializeField]
+        private TMP_Text hitpointsText;
 
         private void OnPlayerLifeChanged(int value)
         {
-            if (text != null)
+            if (hitpointsText != null)
             {
-                text.SetText($"{value}");
+                hitpointsText.SetText($"{value}");
             }
         }
 
         private void Awake()
         {
-            text = GetComponent<TextMeshProUGUI>();
-
             if (playerLife != null)
             {
                 playerLife.PlayerLifeChanged += OnPlayerLifeChanged;

@@ -9,13 +9,13 @@ namespace MIIProjekt.Player
 
         void Start()
         {
-            GameManager.instance.SendMessage("SetScore", score);
+            DisplayManager.instance.SendMessage("SetScore", score);
         }
 
         private void IncreaseScore(int value)
         {
             score += value;
-            GameManager.instance.SendMessage("SetScore", score);
+            DisplayManager.instance.SendMessage("SetScore", score);
         }
     }
 }
