@@ -1,25 +1,44 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace MIIProjekt.Player
 {
     public class PlayerLife : MonoBehaviour
     {
+        public event Action<int> PlayerLifeChanged;
+
+        [SerializeField]
+        private int startingLives = 3;
+
         private Rigidbody2D rb;
         private PlayerController pc;
         private Animator anim;
-        private int lives = 3;
+        private int lives = 0;
+
+        private int Lives
+        {
+            get => lives;
+            set
+            {
+                lives = value;
+                PlayerLifeChanged?.Invoke(value);
+                Debug.Log("Current number of lives: " + Lives);
+            }
+        }
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
             pc = GetComponent<PlayerController>();
+
+            Lives = startingLives;
         }
 
         private void GetHit()
         {
             DecreaseLives(1);
-            if (lives > 0)
+            if (Lives > 0)
                 this.SendMessage("ReturnToSpawn");
             else
                 Death();
@@ -34,14 +53,12 @@ namespace MIIProjekt.Player
 
         private void IncreaseLives(int numberOfLives)
         {
-            lives += numberOfLives;
-            Debug.Log("Current number of lives: " + lives);
+            Lives += numberOfLives;
         }
 
         private void DecreaseLives(int numberOfLives)
         {
-            lives -= numberOfLives;
-            Debug.Log("Current number of lives: " + lives);
+            Lives -= numberOfLives;
         }
 
         private void CollidedWithEnemy()
