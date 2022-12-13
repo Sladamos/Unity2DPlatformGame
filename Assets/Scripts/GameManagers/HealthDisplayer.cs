@@ -1,6 +1,6 @@
 ﻿using MIIProjekt.Player;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MIIProjekt.GameManagers
 {
@@ -10,14 +10,23 @@ namespace MIIProjekt.GameManagers
         private PlayerLife playerLife;
 
         [SerializeField]
-        private TMP_Text hitpointsText;
+        private Image[] hitpointsImages;
 
         private void OnPlayerLifeChanged(int value)
         {
-            if (hitpointsText != null)
+            int numberOfImages = hitpointsImages.Length;
+            for (int i = 0; i < numberOfImages; i++)
             {
-                hitpointsText.SetText($"{value}");
+                if (i < value)
+                {
+                    hitpointsImages[i].enabled = true;
+                }
+                else
+                {
+                    hitpointsImages[i].enabled = false;
+                }
             }
+
         }
 
         private void Awake()
