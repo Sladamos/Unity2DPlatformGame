@@ -18,10 +18,10 @@ namespace MIIProjekt.Player
         private Animator anim;
         private int lives = 0;
 
-        private int Lives
+        public int Lives
         {
             get => lives;
-            set
+            private set
             {
                 lives = value;
                 PlayerLifeChanged?.Invoke(value);

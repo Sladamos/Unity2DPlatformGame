@@ -19,7 +19,7 @@ namespace MIIProjekt
         {
             if (nextLevelIsUnlocked)
             {
-                //player.GetComponent<PlayerScore>().
+                player.SendMessage("MultiplyScoreByLives", 100);
                 player.SendMessage("Finish");
                 GameManagers.GameManager.instance.LevelCompleted();
             }

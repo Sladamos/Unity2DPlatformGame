@@ -17,5 +17,9 @@ namespace MIIProjekt.Player
             score += value;
             DisplayManager.instance.SendMessage("SetScore", score);
         }
+        private void MultiplyScoreByLives(int multiplicator)
+        {
+            IncreaseScore(multiplicator * GetComponent<PlayerLife>().Lives);
+        }
     }
 }

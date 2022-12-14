@@ -86869,6 +86869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 665894990}
+  endScoreText: {fileID: 235324667}
 --- !u!114 &1779180502
 MonoBehaviour:
   m_ObjectHideFlags: 0
