@@ -86870,6 +86870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 665894990}
   endScoreText: {fileID: 235324667}
+  highScoreText: {fileID: 1357206313}
 --- !u!114 &1779180502
 MonoBehaviour:
   m_ObjectHideFlags: 0
