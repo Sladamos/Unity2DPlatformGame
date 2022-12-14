@@ -14,6 +14,9 @@ namespace MIIProjekt.GameManagers
         [SerializeField]
         private Canvas levelCompletedCanvas;
 
+        [SerializeField]
+        private Canvas pauseMenuCanvas;
+
         private Canvas currentlyDisplayedCanvas;
 
         void Awake()
@@ -22,6 +25,7 @@ namespace MIIProjekt.GameManagers
             currentlyDisplayedCanvas = null;
             levelCompletedCanvas.enabled = false;
             inGameCanvas.enabled = false;
+            pauseMenuCanvas.enabled = false;
         }
 
         private void UpdateDisplay(GameState newGameState)
@@ -39,6 +43,9 @@ namespace MIIProjekt.GameManagers
                 case GameState.GS_LEVELCOMPLETED:
                     currentlyDisplayedCanvas = levelCompletedCanvas;
                     break;
+                case GameState.GS_PAUSEMENU:
+                    currentlyDisplayedCanvas = pauseMenuCanvas;
+                    break;
                 default:
                     currentlyDisplayedCanvas = null;
                     break;
@@ -48,6 +55,8 @@ namespace MIIProjekt.GameManagers
             {
                 currentlyDisplayedCanvas.enabled = true;
             }
+
         }
+
     }
 }
