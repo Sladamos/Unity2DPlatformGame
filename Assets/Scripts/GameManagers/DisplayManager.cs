@@ -10,20 +10,43 @@ namespace MIIProjekt.GameManagers
 
         [SerializeField]
         private Canvas inGameCanvas;
+
+        [SerializeField]
+        private Canvas levelCompletedCanvas;
+
+        private Canvas currentlyDisplayedCanvas;
+
         void Awake()
         {
             instance = this;
+            currentlyDisplayedCanvas = null;
+            levelCompletedCanvas.enabled = false;
+            inGameCanvas.enabled = false;
         }
 
-        private void UpdateDisplay()
+        private void UpdateDisplay(GameState newGameState)
         {
-            if (GameManager.instance.IsGameCurrentlyPlayed())
+            if (currentlyDisplayedCanvas != null)
             {
-                inGameCanvas.enabled = true;
+                currentlyDisplayedCanvas.enabled = false;
             }
-            else
+
+            switch(newGameState)
             {
-                inGameCanvas.enabled = false;
+                case GameState.GS_GAME:
+                    currentlyDisplayedCanvas = inGameCanvas;
+                    break;
+                case GameState.GS_LEVELCOMPLETED:
+                    currentlyDisplayedCanvas = levelCompletedCanvas;
+                    break;
+                default:
+                    currentlyDisplayedCanvas = null;
+                    break;
+            }
+
+            if (currentlyDisplayedCanvas != null)
+            {
+                currentlyDisplayedCanvas.enabled = true;
             }
         }
     }

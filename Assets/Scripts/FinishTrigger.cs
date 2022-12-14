@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using MIIProjekt.Player;
 
 namespace MIIProjekt
 {
@@ -18,7 +19,9 @@ namespace MIIProjekt
         {
             if (nextLevelIsUnlocked)
             {
+                //player.GetComponent<PlayerScore>().
                 player.SendMessage("Finish");
+                GameManagers.GameManager.instance.LevelCompleted();
             }
             else
             {

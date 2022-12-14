@@ -10,6 +10,10 @@ namespace MIIProjekt.GameManagers
         void Awake()
         {
             instance = this;
+        }
+
+        private void Start()
+        {
             PauseMenu();
         }
 
@@ -33,7 +37,7 @@ namespace MIIProjekt.GameManagers
             SetGameState(GameState.GS_PAUSEMENU);
         }
 
-        public void LevelComleted()
+        public void LevelCompleted()
         {
             SetGameState(GameState.GS_LEVELCOMPLETED);
         }
@@ -66,7 +70,7 @@ namespace MIIProjekt.GameManagers
         private void SetGameState(GameState newGameState)
         {
             currentGameState = newGameState;
-            DisplayManager.instance.SendMessage("UpdateDisplay");
+            DisplayManager.instance.SendMessage("UpdateDisplay", newGameState);
             SendMessage("UpdateTime");
         }
     }
