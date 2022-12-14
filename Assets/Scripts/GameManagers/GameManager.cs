@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MIIProjekt.GameManagers
 {
@@ -61,6 +62,21 @@ namespace MIIProjekt.GameManagers
                     PauseMenu();
                 }
             }
+        }
+
+        public void onResumeButtonClicked()
+        {
+            InGame();
+        }
+
+        public void onRestartButtonClicked()
+        {
+            SceneManager.LoadScene((SceneManager.GetActiveScene().name));
+        }
+
+        public void OnReturnToMainMenuButtonClicked()
+        {
+            SceneManager.LoadScene("MainMenu");
         }
 
         private void SetGameState(GameState newGameState)

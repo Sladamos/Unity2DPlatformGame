@@ -10,6 +10,9 @@ namespace MIIProjekt.GameManagers
 
         [SerializeField]
         private Canvas inGameCanvas;
+
+        [SerializeField]
+        private Canvas pauseMenuCanvas;
         void Awake()
         {
             instance = this;
@@ -25,6 +28,16 @@ namespace MIIProjekt.GameManagers
             {
                 inGameCanvas.enabled = false;
             }
+
+            if (GameManager.instance.IsGameCurrentlyPaused())
+            {
+                pauseMenuCanvas.enabled = true;
+            }
+            else
+            {
+                pauseMenuCanvas.enabled = false;
+            }
         }
+
     }
 }
