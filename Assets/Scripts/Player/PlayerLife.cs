@@ -1,10 +1,13 @@
 ﻿using System;
+using NLog;
 using UnityEngine;
 
 namespace MIIProjekt.Player
 {
     public class PlayerLife : MonoBehaviour
     {
+        private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
         public event Action<int> PlayerLifeChanged;
 
         [SerializeField]
@@ -25,7 +28,7 @@ namespace MIIProjekt.Player
             {
                 lives = value;
                 PlayerLifeChanged?.Invoke(value);
-                Debug.Log("Current number of lives: " + Lives);
+                Logger.Debug("Current number of lives: " + lives);
             }
         }
 
@@ -78,8 +81,8 @@ namespace MIIProjekt.Player
 
         private void CollidedWithEnemy()
         {
+            Logger.Debug("Collided with enemy");
             GetHit();
-            Debug.Log("Collided with enemy");
         }
     }
 }

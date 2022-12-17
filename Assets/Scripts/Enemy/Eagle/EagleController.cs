@@ -47,14 +47,11 @@ namespace MIIProjekt.Enemy.Eagle
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Collider2D collider = collision.collider;
-            Debug.Log($"bool: {animator.GetBool("isDead")}");
 
             if (animator.GetBool("isDead") || !collider.CompareTag("Player"))
             {
                 return;
             }
-
-            Debug.Log($"{collider.transform.position.y} > {transform.position.y}");
 
             if (collider.transform.position.y > transform.position.y)
             {

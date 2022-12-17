@@ -85,7 +85,6 @@ namespace MIIProjekt.Player
 
         private void Jump()
         {
-            Debug.Log("Jumping");
             myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 

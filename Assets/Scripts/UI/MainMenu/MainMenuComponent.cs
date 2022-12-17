@@ -1,25 +1,34 @@
-﻿using UnityEngine;
+﻿using MIIProjekt.Logging;
+using NLog;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace MIIProjekt.UI.MainMenu
 {
     public class MainMenuComponent : MonoBehaviour
     {
+        private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
         public void OnClickedButtonLevel1()
         {
-            Debug.Log("On clicked level 1");
+            Logger.Debug("On clicked level 1");
             SceneManager.LoadScene("Level1");
         }
         
         public void OnClickedButtonLevel2()
         {
-            Debug.Log("On clicked level 2");
+            Logger.Debug("On clicked level 2");
         }
 
         public void OnClickedButtonExitGame()
         {
-            Debug.Log("Exit game");
+            Logger.Debug("Exit game");
             Application.Quit();
+        }
+
+        private void Awake()
+        {
+            LoggingManager.InitializeLogging();
         }
     }
 }

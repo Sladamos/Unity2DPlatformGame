@@ -1,11 +1,20 @@
 ﻿using UnityEngine;
 using MIIProjekt.Player;
+using NLog;
+using MIIProjekt.Logging;
 
 namespace MIIProjekt
 {
     public class FinishTrigger : MonoBehaviour
     {
+        private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
         private bool nextLevelIsUnlocked = false;
+
+        private void Awake()
+        {
+            LoggingManager.InitializeLogging();
+        }
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
@@ -23,15 +32,11 @@ namespace MIIProjekt
                 player.SendMessage("Finish");
                 GameManagers.GameManager.instance.LevelCompleted();
             }
-            else
-            {
-                Debug.Log("Zbierz wszystkie klucze!");
-            }
         }
 
         private void OnAllKeysCollected()
         {
-            Debug.Log("Udaj sie do wyjscia!");
+            Logger.Info("Zebrano wszystkie klucze");
             nextLevelIsUnlocked = true;
         }
     }

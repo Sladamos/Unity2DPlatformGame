@@ -1,12 +1,21 @@
-﻿using UnityEngine;
+﻿using MIIProjekt.Logging;
+using NLog;
+using UnityEngine;
 
 namespace MIIProjekt
 {
     public class Door : MonoBehaviour
     {
+        private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
+        private void Awake()
+        {
+            LoggingManager.InitializeLogging();
+        }
+
         private void OnAllKeysCollected()
         {
-            Debug.Log("All keys collected. Opening door...");
+            Logger.Info("All keys collected. Opening door...");
             gameObject.SetActive(false);
         }
     }
