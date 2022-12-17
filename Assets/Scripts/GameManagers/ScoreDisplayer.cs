@@ -19,7 +19,7 @@ namespace MIIProjekt.GameManagers
 
         private void Awake()
         {
-            if(!PlayerPrefs.HasKey(keyHighScore))
+            if (!PlayerPrefs.HasKey(keyHighScore))
             {
                 PlayerPrefs.SetInt(keyHighScore, 0);
             }
@@ -35,10 +35,10 @@ namespace MIIProjekt.GameManagers
         private void CheckHighestScore(int score)
         {
             Scene currentScene = SceneManager.GetActiveScene();
-            if(currentScene.name == "Level1")
+            if (currentScene.name == "Level1")
             {
                 int highScore = PlayerPrefs.GetInt(keyHighScore);
-                if(highScore < score)
+                if (highScore < score)
                 {
                     highScore = score;
                     PlayerPrefs.SetInt(keyHighScore, score);

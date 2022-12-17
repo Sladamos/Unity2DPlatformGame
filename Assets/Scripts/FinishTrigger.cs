@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using MIIProjekt.Player;
+﻿using MIIProjekt.Logging;
 using NLog;
-using MIIProjekt.Logging;
+using UnityEngine;
 
 namespace MIIProjekt
 {

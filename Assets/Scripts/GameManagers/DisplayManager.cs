@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace MIIProjekt.GameManagers
 {
@@ -35,7 +33,7 @@ namespace MIIProjekt.GameManagers
                 currentlyDisplayedCanvas.enabled = false;
             }
 
-            switch(newGameState)
+            switch (newGameState)
             {
                 case GameState.GS_GAME:
                     currentlyDisplayedCanvas = inGameCanvas;

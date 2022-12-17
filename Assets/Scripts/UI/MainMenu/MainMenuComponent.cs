@@ -14,7 +14,7 @@ namespace MIIProjekt.UI.MainMenu
             Logger.Debug("On clicked level 1");
             SceneManager.LoadScene("Level1");
         }
-        
+
         public void OnClickedButtonLevel2()
         {
             Logger.Debug("On clicked level 2");

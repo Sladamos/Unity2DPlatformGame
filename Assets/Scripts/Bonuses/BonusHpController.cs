@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using MIIProjekt.Player;
+﻿using MIIProjekt.Player;
+using UnityEngine;
 
 namespace MIIProjekt.Bonuses
 {
