@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using NLog;
@@ -9,43 +10,28 @@ namespace MIIProjekt.Logging
 {
     public static class LoggingManager
     {
+        private const string ConfigurationPath = "Assets/Libraries/NLog.config";
+
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         static LoggingManager()
         {
-            string logDirectory = GetLogDirectory();
-
             try
             {
-                // Load the configuration from a file in the unity project directory
-                using var streamReader = new StreamReader("Assets/Libraries/NLog.config");
-                using var xmlReader = XmlReader.Create(streamReader);
+                var readConfiguration = LoadConfigurationFromAssets(ConfigurationPath);
 
-                var readConfiguration = new XmlLoggingConfiguration(xmlReader, null);
-
-                // Update file log directory
                 var fileLogTarget = readConfiguration.FindTargetByName<FileTarget>("logFile");
-                fileLogTarget.FileName = logDirectory + fileLogTarget.FileName;
-                fileLogTarget.ArchiveFileName = logDirectory + fileLogTarget.ArchiveFileName;
+                UpdateFileLogDirectory(fileLogTarget);
 
                 // Create a Unity target to log to
-                var unityDebugLogTarget = new UnityDebugLogTarget()
-                {
-                    Name = "LogUnity"
-                };
+                var unityDebugLogTarget = new UnityDebugLogTarget() { Name = "LogUnity" };
 
                 // Update all rules to contain file and unity target
-                foreach (var rule in readConfiguration.LoggingRules)
-                {
-                    rule.Targets.Clear();
-                    rule.Targets.Add(fileLogTarget);
-                    rule.Targets.Add(unityDebugLogTarget);
-                }
+                UpdateRulesToContainWriteToTarget(readConfiguration, new List<Target>() { fileLogTarget, unityDebugLogTarget });
 
                 LogManager.Configuration = readConfiguration;
 
                 Logger.Info("Initialized logger config");
-                UnityEngine.Debug.Log($"Log files location: {logDirectory}");
             }
             catch (Exception ex)
             {
@@ -66,6 +52,36 @@ namespace MIIProjekt.Logging
         public static string GetLogDirectory()
         {
             return UnityEngine.Application.persistentDataPath + "/";
+        }
+
+        private static LoggingConfiguration LoadConfigurationFromAssets(string filePath)
+        {
+            // Load the configuration from a file in the unity project directory
+            using var streamReader = new StreamReader(filePath);
+            using var xmlReader = XmlReader.Create(streamReader);
+
+            return new XmlLoggingConfiguration(xmlReader, null);
+        }
+
+        private static void UpdateFileLogDirectory(FileTarget fileTarget)
+        {
+            string logDirectory = GetLogDirectory();
+            fileTarget.FileName = logDirectory + fileTarget.FileName;
+            fileTarget.ArchiveFileName = logDirectory + fileTarget.ArchiveFileName;
+            UnityEngine.Debug.Log($"Updating file log directory to: {logDirectory}");
+        }
+
+        private static void UpdateRulesToContainWriteToTarget(LoggingConfiguration configuration, List<Target> targets)
+        {
+            foreach (var rule in configuration.LoggingRules)
+            {
+                rule.Targets.Clear();
+
+                foreach (var target in targets)
+                {
+                    rule.Targets.Add(target);
+                }
+            }
         }
     }
 }
