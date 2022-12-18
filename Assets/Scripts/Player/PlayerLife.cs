@@ -8,7 +8,7 @@ namespace MIIProjekt.Player
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public event Action<int> PlayerLifeChanged;
+        public event Action<int, int> PlayerLifeChanged;
 
         [SerializeField]
         private int startingLives = 3;
@@ -26,9 +26,12 @@ namespace MIIProjekt.Player
             get => lives;
             private set
             {
+                int oldValue = lives;
+
                 lives = value;
-                PlayerLifeChanged?.Invoke(value);
-                Logger.Debug("Current number of lives: " + lives);
+                
+                Logger.Debug("Changed number of lives: {} -> {}", oldValue, value);
+                PlayerLifeChanged?.Invoke(oldValue, value);
             }
         }
 

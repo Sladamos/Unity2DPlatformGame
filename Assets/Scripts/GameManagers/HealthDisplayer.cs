@@ -12,7 +12,7 @@ namespace MIIProjekt.GameManagers
         [SerializeField]
         private Image[] hitpointsImages;
 
-        private void OnPlayerLifeChanged(int value)
+        private void OnPlayerLifeChanged(int oldValue, int value)
         {
             int numberOfImages = hitpointsImages.Length;
             for (int i = 0; i < numberOfImages; i++)
