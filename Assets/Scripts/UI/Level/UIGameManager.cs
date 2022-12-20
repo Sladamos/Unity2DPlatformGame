@@ -41,7 +41,12 @@ namespace MIIProjekt.UI.Level
             }
 
             playerLifeDisplay = GetComponentInChildren<PlayerLifeDisplay>();
-            if (playerLifeDisplay == null)
+            if (playerLifeDisplay != null)
+            {
+                int? optionalLives = playerLife?.Lives;
+                playerLifeDisplay.DisplayHearts(optionalLives.GetValueOrDefault(0));
+            }
+            else
             {
                 Logger.Error("PlayerLifeDisplay dependency not found. Game object name = {}", name);
             }
