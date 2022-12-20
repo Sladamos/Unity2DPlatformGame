@@ -11,6 +11,7 @@ namespace MIIProjekt.UI.Level
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
         private PlayerLifeDisplay playerLifeDisplay;
+        private PlayerScoreDisplay playerScoreDisplay;
 
         [SerializeField]
         private PlayerLife playerLife;
@@ -44,11 +45,22 @@ namespace MIIProjekt.UI.Level
             if (playerLifeDisplay != null)
             {
                 int? optionalLives = playerLife?.Lives;
-                playerLifeDisplay.DisplayHearts(optionalLives.GetValueOrDefault(0));
+                playerLifeDisplay.DisplayHearts(optionalLives.GetValueOrDefault());
             }
             else
             {
                 Logger.Error("PlayerLifeDisplay dependency not found. Game object name = {}", name);
+            }
+
+            playerScoreDisplay = GetComponentInChildren<PlayerScoreDisplay>();
+            if (playerScoreDisplay == null)
+            {
+                int? optionalScore = playerScore?.Score;
+                playerScoreDisplay.UpdateScore(optionalScore.GetValueOrDefault());
+            }
+            else
+            {
+                Logger.Error("PlayerScoreDisplay dependency not found. Game object name = {}", name);
             }
         }
 
@@ -59,7 +71,7 @@ namespace MIIProjekt.UI.Level
 
         private void OnPlayerScoreChanged(int oldValue, int newValue)
         {
-            throw new NotImplementedException();
+            playerScoreDisplay?.UpdateScore(newValue);
         }
     }
 }
