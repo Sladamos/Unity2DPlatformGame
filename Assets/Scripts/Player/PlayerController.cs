@@ -71,14 +71,11 @@ namespace MIIProjekt.Player
 
         private void Update()
         {
-            if (GameManager.instance.IsGameCurrentlyPlayed())
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (IsGrounded())
                 {
-                    if (IsGrounded())
-                    {
-                        Jump();
-                    }
+                    Jump();
                 }
             }
         }

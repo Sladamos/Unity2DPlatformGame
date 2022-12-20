@@ -1,5 +1,4 @@
 ﻿using System;
-using MIIProjekt.GameManagers;
 using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;
@@ -35,18 +34,19 @@ namespace MIIProjekt.Player
 
         void Start()
         {
-            DisplayManager.instance.SendMessage("SetScore", Score);
+            Score = 0;
         }
 
         private void IncreaseScore(int value)
         {
             Score += value;
-            DisplayManager.instance.SendMessage("SetScore", Score);
         }
 
         private void MultiplyScoreByLives(int multiplicator)
         {
-            IncreaseScore(multiplicator * GetComponent<PlayerLife>().Lives);
+            throw new NotImplementedException();
+            // TODO: Remove depenedency on PlayerLife
+            // IncreaseScore(multiplicator * GetComponent<PlayerLife>().Lives);
         }
     }
 }

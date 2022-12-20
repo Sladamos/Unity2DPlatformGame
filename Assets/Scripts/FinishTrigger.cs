@@ -1,4 +1,5 @@
-﻿using MIIProjekt.Logging;
+﻿using System;
+using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;
 
@@ -29,7 +30,9 @@ namespace MIIProjekt
             {
                 player.SendMessage("MultiplyScoreByLives", 100);
                 player.SendMessage("Finish");
-                GameManagers.GameManager.instance.LevelCompleted();
+
+                throw new NotImplementedException();
+                // GameManagers.GameManager.instance.LevelCompleted();
             }
         }
 

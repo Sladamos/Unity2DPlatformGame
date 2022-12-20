@@ -15,17 +15,5 @@ namespace MIIProjekt.GameManagers
             TimePassed += Time.deltaTime;
             TimeUpdated?.Invoke(TimePassed);
         }
-
-        private void UpdateTime()
-        {
-            if (GameManager.instance.IsGameCurrentlyPlayed())
-            {
-                Time.timeScale = 1f;
-            }
-            else
-            {
-                Time.timeScale = 0f;
-            }
-        }
     }
 }

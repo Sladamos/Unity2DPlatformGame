@@ -1,4 +1,4 @@
-﻿using MIIProjekt.GameManagers;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +8,7 @@ namespace MIIProjekt.UI.Level
     {
         public void OnClickedButtonResume()
         {
-            GameManager.instance.InGame();
+            throw new NotImplementedException();
         }
 
         public void OnClickedButtonRestart()

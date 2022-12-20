@@ -5,6 +5,7 @@ using System.Xml;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using UnityEditor;
 
 namespace MIIProjekt.Logging
 {
@@ -32,6 +33,8 @@ namespace MIIProjekt.Logging
                 LogManager.Configuration = readConfiguration;
 
                 Logger.Info("Initialized logger config");
+
+                UnityEngine.Application.logMessageReceived += HandleLog;
             }
             catch (Exception ex)
             {
@@ -81,6 +84,16 @@ namespace MIIProjekt.Logging
                 {
                     rule.Targets.Add(target);
                 }
+            }
+        }
+
+        private static void HandleLog(string logString, string stackTrace, UnityEngine.LogType type)
+        {
+            switch (type)
+            {
+                case UnityEngine.LogType.Exception:
+                    Logger.Fatal("Unhandled exception: {} \nStack trace: {}\n", logString, ('\n' + stackTrace));
+                    break;
             }
         }
     }

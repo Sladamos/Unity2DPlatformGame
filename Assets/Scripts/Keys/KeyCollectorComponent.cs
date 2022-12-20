@@ -22,7 +22,10 @@ namespace MIIProjekt.Keys
             if (isActive && !ContainsKey(keyIdentifier))
             {
                 collectedKeys.Add(keyIdentifier);
-                DisplayManager.instance.SendMessage("DisplayKey", keyAttributes);
+                
+                throw new NotImplementedException();
+                // DisplayManager.instance.SendMessage("DisplayKey", keyAttributes);
+                
                 KeyCollected?.Invoke();
 
                 return true;
