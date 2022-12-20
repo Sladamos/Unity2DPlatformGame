@@ -34,12 +34,12 @@ namespace MIIProjekt.Keys
             return requiredKeys;
         }
 
-        private void OnKeyCollected()
+        private void OnKeyCollected(KeyAttributes attributes)
         {
             if (AreAllKeysCollected())
             {
                 keyCollector.KeyCollected -= OnKeyCollected;
-                gameObject.SendMessage("OnAllKeysCollected");
+                SendMessage("OnAllKeysCollected");
             }
         }
 

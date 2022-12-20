@@ -1,32 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using MIIProjekt.GameManagers;
 using UnityEngine;
 
 namespace MIIProjekt.Keys
 {
-    public class KeyCollectorComponent : MonoBehaviour, KeyCollector
+    public class KeyCollectorComponent : MonoBehaviour
     {
+        public event Action<KeyAttributes> KeyCollected;
+
         [SerializeField]
         private List<string> collectedKeys = new List<string>();
 
         [SerializeField]
         private bool isActive;
 
-        public event Action KeyCollected;
-
         public bool AcceptedKey(KeyAttributes keyAttributes)
         {
-            string keyIdentifier = keyAttributes.GetIdentifier();
-
-            if (isActive && !ContainsKey(keyIdentifier))
+            if (isActive && !ContainsKey(keyAttributes.Identifier))
             {
-                collectedKeys.Add(keyIdentifier);
+                collectedKeys.Add(keyAttributes.Identifier);
                 
-                throw new NotImplementedException();
-                // DisplayManager.instance.SendMessage("DisplayKey", keyAttributes);
-                
-                KeyCollected?.Invoke();
+                KeyCollected?.Invoke(keyAttributes);
 
                 return true;
             }

@@ -28,7 +28,6 @@ namespace MIIProjekt
         {
             if (nextLevelIsUnlocked)
             {
-                player.SendMessage("MultiplyScoreByLives", 100);
                 player.SendMessage("Finish");
 
                 throw new NotImplementedException();

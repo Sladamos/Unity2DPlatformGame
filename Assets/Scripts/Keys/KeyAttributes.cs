@@ -5,21 +5,13 @@ namespace MIIProjekt.Keys
 {
     public class KeyAttributes
     {
-        private Tuple<string, Color> keyAttributes;
+        public string Identifier { get; }
+        public Color Color { get; }
 
-        public KeyAttributes(string keyIdentifier, Color keyColor)
+        public KeyAttributes(string identifier, Color color)
         {
-            keyAttributes = new Tuple<string, Color>(keyIdentifier, keyColor);
-        }
-
-        public string GetIdentifier()
-        {
-            return keyAttributes.Item1;
-        }
-
-        public Color GetColor()
-        {
-            return keyAttributes.Item2;
+            this.Identifier = identifier;
+            this.Color = color;
         }
     }
 }

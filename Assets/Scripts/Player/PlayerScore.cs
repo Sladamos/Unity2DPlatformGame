@@ -41,12 +41,5 @@ namespace MIIProjekt.Player
         {
             Score += value;
         }
-
-        private void MultiplyScoreByLives(int multiplicator)
-        {
-            throw new NotImplementedException();
-            // TODO: Remove depenedency on PlayerLife
-            // IncreaseScore(multiplicator * GetComponent<PlayerLife>().Lives);
-        }
     }
 }

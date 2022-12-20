@@ -7,15 +7,15 @@ namespace MIIProjekt.Keys
     [RequireComponent(typeof(Collider2D))]
     public class Key : MonoBehaviour
     {
+        private SpriteRenderer spriteRenderer;
+        private Collider2D colliderComponent;
+        private KeyAttributes keyAttributes;
+
         [SerializeField]
         private string keyIdentifier;
 
         [SerializeField]
         private bool active;
-
-        private SpriteRenderer spriteRenderer;
-        private Collider2D colliderComponent;
-        private KeyAttributes keyAttributes;
 
         /// <summary>
         /// Sets the visibility and collision for an object.
@@ -43,7 +43,7 @@ namespace MIIProjekt.Keys
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            KeyCollector collector = other.GetComponent<KeyCollector>();
+            KeyCollectorComponent collector = other.GetComponent<KeyCollectorComponent>();
 
             if (isCollectorValidate(collector) && collector.AcceptedKey(keyAttributes))
             {
@@ -51,7 +51,7 @@ namespace MIIProjekt.Keys
             }
         }
 
-        private bool isCollectorValidate(KeyCollector collector)
+        private bool isCollectorValidate(KeyCollectorComponent collector)
         {
             return collector != null;
         }
