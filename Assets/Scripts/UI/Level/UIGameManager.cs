@@ -53,7 +53,7 @@ namespace MIIProjekt.UI.Level
             }
 
             playerScoreDisplay = GetComponentInChildren<PlayerScoreDisplay>();
-            if (playerScoreDisplay == null)
+            if (playerScoreDisplay != null)
             {
                 int? optionalScore = playerScore?.Score;
                 playerScoreDisplay.UpdateScore(optionalScore.GetValueOrDefault());
