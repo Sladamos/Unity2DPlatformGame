@@ -34,8 +34,8 @@ namespace MIIProjekt.Keys
 
         private void Awake()
         {
-            spriteRenderer = GetComponent<SpriteRenderer>().VerifyNotNull();
-            colliderComponent = GetComponent<Collider2D>().VerifyNotNull();
+            spriteRenderer = GetComponent<SpriteRenderer>().VerifyNotNull("SpriteRenderer is required.");
+            colliderComponent = GetComponent<Collider2D>().VerifyNotNull("Collider2D is required.");
             Color keyColor = spriteRenderer.color;
             keyAttributes = new(keyIdentifier, keyColor);
             SetActive(active);
