@@ -5,18 +5,18 @@ namespace MIIProjekt.Enemy.Eagle
     [RequireComponent(typeof(Animator))]
     public class EagleController : MonoBehaviour
     {
+        private Animator animator;
+        private SpriteRenderer spriteRenderer;
+
+        private Vector2 velocity;
+
         [SerializeField]
         private Transform target;
 
         [SerializeField]
         private float speed;
 
-        private Animator animator;
-        private SpriteRenderer spriteRenderer;
-
-        private Vector2 velocity;
-
-        private Vector2 GetTargetDirection()
+        private Vector2 FindDirectionToTarget()
         {
             if (target == null)
             {
@@ -38,16 +38,14 @@ namespace MIIProjekt.Enemy.Eagle
         {
             if (!animator.GetBool("isDead"))
             {
-                Vector2 velocity = GetTargetDirection() * speed;
+                Vector2 velocity = FindDirectionToTarget() * speed;
                 spriteRenderer.flipX = velocity.x > 0.0f;
                 transform.position += (Vector3)(velocity * Time.deltaTime);
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            Collider2D collider = collision.collider;
-
             if (animator.GetBool("isDead") || !collider.CompareTag("Player"))
             {
                 return;
@@ -56,17 +54,11 @@ namespace MIIProjekt.Enemy.Eagle
             if (collider.transform.position.y > transform.position.y)
             {
                 animator.SetBool("isDead", true);
-                GetComponent<Collider2D>().isTrigger = true;
             }
             else
             {
                 collider.SendMessage("CollidedWithEnemy");
             }
-        }
-
-        private void SetInactive()
-        {
-            gameObject.SetActive(false);
         }
     }
 }

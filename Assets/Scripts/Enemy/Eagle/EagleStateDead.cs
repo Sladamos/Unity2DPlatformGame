@@ -11,7 +11,7 @@ namespace MIIProjekt.Enemy.Eagle
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             Logger.Debug("Eagle entered dead state.");
-            animator.SendMessage("SetInactive");
+            animator.gameObject.SetActive(false);
         }
 
         private void Awake()
