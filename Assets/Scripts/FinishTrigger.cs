@@ -1,11 +1,12 @@
 ﻿using System;
 using MIIProjekt.Logging;
+using MIIProjekt.Keys;
 using NLog;
 using UnityEngine;
 
 namespace MIIProjekt
 {
-    public class FinishTrigger : MonoBehaviour
+    public class FinishTrigger : MonoBehaviour, IMessageReceiverAllKeysCollected
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -35,7 +36,7 @@ namespace MIIProjekt
             }
         }
 
-        private void OnAllKeysCollected()
+        public void AllKeysCollected()
         {
             Logger.Info("Zebrano wszystkie klucze");
             nextLevelIsUnlocked = true;

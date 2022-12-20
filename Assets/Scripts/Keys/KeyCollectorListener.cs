@@ -39,7 +39,7 @@ namespace MIIProjekt.Keys
             if (AreAllKeysCollected())
             {
                 keyCollector.KeyCollected -= OnKeyCollected;
-                SendMessage("OnAllKeysCollected");
+                SendMessage(nameof(IMessageReceiverAllKeysCollected.AllKeysCollected));
             }
         }
 
