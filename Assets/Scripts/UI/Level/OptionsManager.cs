@@ -2,6 +2,8 @@ using System;
 using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace MIIProjekt.UI.Level
 {
@@ -11,6 +13,12 @@ namespace MIIProjekt.UI.Level
 
         [SerializeField]
         private UIAnimatorController uiAnimatorController;
+
+        [SerializeField]
+        private Slider slider;
+
+        [SerializeField]
+        private TMP_Dropdown dropdown;
 
         public void OnValueChangedMasterVolume(float value)
         {
@@ -37,6 +45,24 @@ namespace MIIProjekt.UI.Level
             if (uiAnimatorController == null)
             {
                 Logger.Warn("UIAnimatorController is not set on OptionsManager instance. GameObject name = {}", name);
+            }
+
+            if (slider != null)
+            {
+                slider.value = AudioListener.volume;
+            }
+            else
+            {
+                Logger.Warn("Slider component is not set on the OptionsManager instance. The default value will not be applied to the slider.");
+            }
+
+            if (dropdown != null)
+            {
+                slider.value = QualitySettings.GetQualityLevel();
+            }
+            else
+            {
+                Logger.Warn("Dropdown component is not set on the OptionsManager instance. The default value will not be applied to the slider.");
             }
         }
     }

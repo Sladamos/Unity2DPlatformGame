@@ -42995,6 +42995,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiAnimatorController: {fileID: 829145494}
+  slider: {fileID: 2085703409}
+  dropdown: {fileID: 1863700129}
 --- !u!1 &658886460
 GameObject:
   m_ObjectHideFlags: 0
