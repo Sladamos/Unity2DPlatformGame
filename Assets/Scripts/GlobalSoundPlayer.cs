@@ -20,6 +20,12 @@ namespace MIIProjekt
         [SerializeField]
         private AudioClip playerScoreIncreasedAudio;
 
+        [SerializeField]
+        private PlayerController playerController;
+
+        [SerializeField]
+        private AudioClip playerJumpedAudio;
+
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -32,6 +38,11 @@ namespace MIIProjekt
             if (playerScore != null)
             {
                 playerScore.PlayerScoreChanged += OnPlayerScoreChanged;
+            }
+
+            if (playerController != null)
+            {
+                playerController.PlayerJumped += OnPlayerJumped;
             }
         }
 
@@ -51,6 +62,11 @@ namespace MIIProjekt
             }
         }
 
+        private void OnPlayerJumped()
+        {
+            TryPlaySoundPlayerJumped();
+        }
+
         private void TryPlaySoundLifeDecreased()
         {
             if (playerLifeDecreasedAudio != null)
@@ -61,9 +77,17 @@ namespace MIIProjekt
 
         private void TryPlaySoundScoreIncreased()
         {
-            if (playerScoreIncreasedAudio)
+            if (playerScoreIncreasedAudio != null)
             {
                 audioSource?.PlayOneShot(playerScoreIncreasedAudio);
+            }
+        }
+
+        private void TryPlaySoundPlayerJumped()
+        {
+            if (playerJumpedAudio != null)
+            {
+                audioSource?.PlayOneShot(playerJumpedAudio);
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using MIIProjekt.GameManagers;
+﻿using System;
 using UnityEngine;
 
 namespace MIIProjekt.Player
@@ -6,6 +6,8 @@ namespace MIIProjekt.Player
     public class PlayerController : MonoBehaviour
     {
         private const float rayLength = 0.25f;
+
+        public event Action PlayerJumped;
 
         [Range(0.01f, 20.0f)]
         [SerializeField]
@@ -83,6 +85,7 @@ namespace MIIProjekt.Player
         private void Jump()
         {
             myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            PlayerJumped?.Invoke();
         }
 
         private void Flip()
