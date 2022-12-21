@@ -1,4 +1,4 @@
-using MIIProjekt.Logging;
+﻿using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;
 
@@ -19,7 +19,7 @@ namespace MIIProjekt.UI.Level.States
 
             if (gameObject != null)
             {
-                gameObject.SetActive(true); 
+                gameObject.SetActive(true);
             }
             else
             {
@@ -33,7 +33,7 @@ namespace MIIProjekt.UI.Level.States
             var gameObject = animator.GetComponent<UIManager>()?.UIObjectGame;
             if (gameObject != null)
             {
-                gameObject.SetActive(false); 
+                gameObject.SetActive(false);
             }
             else
             {

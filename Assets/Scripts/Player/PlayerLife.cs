@@ -36,7 +36,7 @@ namespace MIIProjekt.Player
                 int oldValue = lives;
 
                 lives = value;
-                
+
                 Logger.Debug("Changed number of lives: {} -> {}", oldValue, value);
                 PlayerLifeChanged?.Invoke(oldValue, value);
             }
@@ -76,7 +76,7 @@ namespace MIIProjekt.Player
         private void DecreaseLives(int numberOfLives)
         {
             Lives -= numberOfLives;
-            
+
             if (Lives > 0)
             {
                 this.SendMessage("ReturnToSpawn");

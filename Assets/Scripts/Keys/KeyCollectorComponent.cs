@@ -19,7 +19,7 @@ namespace MIIProjekt.Keys
             if (isActive && !ContainsKey(keyAttributes.Identifier))
             {
                 collectedKeys.Add(keyAttributes.Identifier);
-                
+
                 KeyCollected?.Invoke(keyAttributes);
 
                 return true;

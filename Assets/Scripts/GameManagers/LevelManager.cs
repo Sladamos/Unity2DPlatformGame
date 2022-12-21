@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using MIIProjekt.Extensions;
 using MIIProjekt.Logging;
 using NLog;
@@ -38,7 +38,8 @@ namespace MIIProjekt.GameManagers
         private void Update()
         {
             // TODO: This is temporary. Move this code somewhere else.
-            if (!timeManager.IsGamePaused()) {
+            if (!timeManager.IsGamePaused())
+            {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     Logger.Debug("Detected pause game request");

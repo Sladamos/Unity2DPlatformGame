@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using MIIProjekt.Logging;
 using MIIProjekt.Player;
 using NLog;

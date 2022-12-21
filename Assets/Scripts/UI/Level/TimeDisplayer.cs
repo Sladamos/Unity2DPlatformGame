@@ -20,8 +20,8 @@ namespace MIIProjekt.UI.Level
 
         private void UpdateDisplayedTime(float secondsPassed)
         {
-            int minutes = (int) (secondsPassed / SECONDS_IN_MINUTE);
-            int seconds = (int) (secondsPassed % SECONDS_IN_MINUTE);
+            int minutes = (int)(secondsPassed / SECONDS_IN_MINUTE);
+            int seconds = (int)(secondsPassed % SECONDS_IN_MINUTE);
 
             timeText.SetText(string.Format("{0:00}:{1:00}", minutes, seconds));
         }
@@ -31,7 +31,7 @@ namespace MIIProjekt.UI.Level
             LoggingManager.InitializeLogging();
 
             timeText = GetComponent<TMP_Text>();
-            
+
             if (timeManager != null)
             {
                 timeManager.TimeUpdated += UpdateDisplayedTime;

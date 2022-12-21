@@ -1,4 +1,4 @@
-using MIIProjekt.Extensions;
+﻿using MIIProjekt.Extensions;
 using MIIProjekt.GameManagers;
 using MIIProjekt.Logging;
 using NLog;
@@ -87,7 +87,7 @@ namespace MIIProjekt.UI.Level
         {
             TriggerAnimator(TriggerStringGameOver);
         }
-        
+
         private void OnGamePaused()
         {
             TriggerAnimator(TriggerStringGamePaused);

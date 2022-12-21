@@ -1,4 +1,4 @@
-using MIIProjekt.Logging;
+﻿using MIIProjekt.Logging;
 using NLog;
 using TMPro;
 using UnityEngine;
@@ -18,7 +18,7 @@ namespace MIIProjekt.UI.Level
             {
                 return;
             }
-        
+
             string formattedString = value.ToString("000");
             text.SetText(formattedString);
         }

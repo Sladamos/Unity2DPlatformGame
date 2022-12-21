@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using MIIProjekt.Logging;
 using NLog;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace MIIProjekt.UI.Level
 {

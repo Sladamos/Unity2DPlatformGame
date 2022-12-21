@@ -1,4 +1,4 @@
-using MIIProjekt.Logging;
+﻿using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;
 using UnityEngine.SceneManagement;
