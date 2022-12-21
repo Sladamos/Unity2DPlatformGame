@@ -1,5 +1,4 @@
-﻿using System;
-using MIIProjekt.Logging;
+﻿using MIIProjekt.Logging;
 using NLog;
 using TMPro;
 using UnityEngine;
