@@ -9,6 +9,9 @@ namespace MIIProjekt.UI.Level
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
+        [SerializeField]
+        private UIAnimatorController uiAnimatorController;
+
         public void OnValueChangedMasterVolume(float value)
         {
             Logger.Debug("Master volume set new value: {}", value);
@@ -21,9 +24,20 @@ namespace MIIProjekt.UI.Level
             throw new NotImplementedException();
         }
 
+        public void OnBackButtonClicked()
+        {
+            Logger.Debug("Clicked options menu back button");
+            uiAnimatorController?.InvokeOptionsBackClicked();
+        }
+
         private void Awake()
         {
             LoggingManager.InitializeLogging();
+
+            if (uiAnimatorController == null)
+            {
+                Logger.Warn("UIAnimatorController is not set on OptionsManager instance. GameObject name = {}", name);
+            }
         }
     }
 }

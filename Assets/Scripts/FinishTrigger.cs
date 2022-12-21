@@ -1,6 +1,8 @@
 ﻿using System;
-using MIIProjekt.Logging;
+using MIIProjekt.Extensions;
+using MIIProjekt.GameManagers;
 using MIIProjekt.Keys;
+using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;
 
@@ -12,6 +14,15 @@ namespace MIIProjekt
 
         private bool nextLevelIsUnlocked = false;
 
+        [SerializeField]
+        private LevelManager levelManager;
+
+        public void AllKeysCollected()
+        {
+            Logger.Info("Zebrano wszystkie klucze");
+            nextLevelIsUnlocked = true;
+        }
+
         private void Awake()
         {
             LoggingManager.InitializeLogging();
@@ -21,25 +32,13 @@ namespace MIIProjekt
         {
             if (collider.CompareTag("Player"))
             {
-                CollisionWithPlayer(collider);
+                if (nextLevelIsUnlocked)
+                {
+                    collider.SendMessage("Finish");
+                    levelManager.VerifyNotNull($"LevelManager is not set for FinishTrigger instance. GameObject name = {name}")
+                        .InvokeLevelCompleted();
+                }
             }
-        }
-
-        private void CollisionWithPlayer(Collider2D player)
-        {
-            if (nextLevelIsUnlocked)
-            {
-                player.SendMessage("Finish");
-
-                throw new NotImplementedException();
-                // GameManagers.GameManager.instance.LevelCompleted();
-            }
-        }
-
-        public void AllKeysCollected()
-        {
-            Logger.Info("Zebrano wszystkie klucze");
-            nextLevelIsUnlocked = true;
         }
     }
 }

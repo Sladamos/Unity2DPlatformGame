@@ -12,6 +12,11 @@ namespace MIIProjekt.UI.Level.States
         {
             Logger.Trace("UI state Game entered");
             var gameObject = animator.GetComponent<UIManager>()?.UIObjectGame;
+
+            // TODO: THIS IS INVALID, REMOVE!
+            // TODO: Use TimeManager instead
+            Time.timeScale = 1.0f;
+
             if (gameObject != null)
             {
                 gameObject.SetActive(true); 
