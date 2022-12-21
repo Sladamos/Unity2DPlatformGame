@@ -10,9 +10,6 @@ namespace MIIProjekt.UI.Level
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public event Action ClickedButtonResume;
-        public event Action ClickedButtonOptions;
-
         [SerializeField]
         private UIAnimatorController uiAnimatorController;
 
