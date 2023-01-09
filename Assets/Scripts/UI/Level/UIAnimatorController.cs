@@ -78,6 +78,19 @@ namespace MIIProjekt.UI.Level
             }
         }
 
+        private void Update()
+        {
+            // TODO: This is temporary. Move this code somewhere else.
+            if (timeManager.IsGamePaused())
+            {
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Logger.Debug("Detected unpause game request");
+                    TriggerAnimator(TriggerStringBackKeyClicked);
+                }
+            }
+        }
+
         private void OnLevelCompleted()
         {
             TriggerAnimator(TriggerStringLevelCompleted);
