@@ -1,11 +1,12 @@
-﻿using MIIProjekt.Keys;
+﻿using System.Collections.Generic;
+using MIIProjekt.Collectables;
 using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;
 
 namespace MIIProjekt
 {
-    public class Door : MonoBehaviour, IMessageReceiverAllKeysCollected
+    public class Door : MonoBehaviour, ICollectableTriggerTarget
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -14,11 +15,7 @@ namespace MIIProjekt
             LoggingManager.InitializeLogging();
         }
 
-        private void OnAllKeysCollected()
-        {
-        }
-
-        public void AllKeysCollected()
+        public void InvokeCollectableTarget(List<ICollectable> collectables)
         {
             Logger.Info("All keys collected. Opening door...");
             gameObject.SetActive(false);

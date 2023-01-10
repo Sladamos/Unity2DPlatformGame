@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using NLog;
 using UnityEngine;
 
 namespace MIIProjekt.Collectables
 {
-    public class CollectableChain : MonoBehaviour
+    public class CollectableChain : MonoBehaviour, ICollector
     {
+        private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
         [Header("Settings")]
         [SerializeField]
         private float minRange = 2.0f;
@@ -15,16 +18,34 @@ namespace MIIProjekt.Collectables
         [SerializeField]
         private float maxSpeed = 5.0f;
 
-        [Header("Debug display")]
-        [SerializeField]
-        private List<ICollectable> collectables = new();
+        public List<ICollectable> Collectables { get; }
 
         private float RangeDifference { get => maxRange - minRange; }
+
+        public CollectableChain()
+        {
+            Collectables = new();
+        }
+
+        public void AddCollectable(ICollectable collectable)
+        {
+            if (Collectables.Contains(collectable)) {
+                Logger.Warn("Tried to add collectable that already exists in the list. Collectable: {}", collectable);
+                return;
+            }
+
+            Collectables.Add(collectable);
+        }
+
+        public void RemoveCollectable(ICollectable collectable)
+        {
+            Collectables.Remove(collectable);
+        }
 
         private void Update()
         {
             Transform transformToFollow = transform;
-            foreach (ICollectable collectable in collectables)
+            foreach (ICollectable collectable in Collectables)
             {
                 Transform currentTransform = collectable.Transform;
                 Vector2 difference = transformToFollow.position - currentTransform.position;
