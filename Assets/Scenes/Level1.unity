@@ -90693,6 +90693,9 @@ MonoBehaviour:
   minRange: 1.2
   maxRange: 5
   maxSpeed: 20
+  swayMagnitude: 0.5
+  swaySpeed: 2
+  swayDelay: 0.2
 --- !u!4 &1819424135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1519919414503114968, guid: d7c1c6dfff93baddabbced904af703d4, type: 3}
@@ -93534,6 +93537,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 155779506}
     m_Modifications:
+    - target: {fileID: 1390278072334512163, guid: 2a3176d932cce984c8210b6350f532e5, type: 3}
+      propertyPath: collectableAcceleration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390278072334512163, guid: 2a3176d932cce984c8210b6350f532e5, type: 3}
+      propertyPath: collectableContactDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1390278072334512173, guid: 2a3176d932cce984c8210b6350f532e5, type: 3}
       propertyPath: keyCollector
       value: 

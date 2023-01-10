@@ -4,7 +4,8 @@ namespace MIIProjekt.Collectables
 {
     public interface ICollectable
     {
-        Transform Transform { get; }
+        Vector2 Position { get; set; }
+        Vector2 DisplayOffset { set; }
         string Name { get; }
 
         bool Collidable { set; }

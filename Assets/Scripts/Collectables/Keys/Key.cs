@@ -14,28 +14,55 @@ namespace MIIProjekt.Collectables.Keys
         private bool collidable = true;
         private bool active = true;
 
+        private Vector2? position;
+        private Vector2 displayOffset;
+
         [SerializeField]
         private string keyIdentifier;
 
-        public Transform Transform => transform;
+        public Vector2 Position
+        {
+            get
+            {
+                return (Vector2)(position != null ? position : transform.position);
+            }
+            set
+            {
+                position = value;
+                UpdatePosition();
+            }
+        }
 
         public string Name => keyAttributes.Identifier;
 
-        public bool Collidable 
-        { 
-            set 
+        public bool Collidable
+        {
+            set
             {
                 collidable = value;
                 UpdateComponents();
             }
         }
 
-        public bool Active 
-        { 
-            set 
+        public bool Active
+        {
+            set
             {
                 active = value;
                 UpdateComponents();
+            }
+        }
+
+        public Vector2 DisplayOffset
+        {
+            get
+            {
+                return displayOffset;
+            }
+            set
+            {
+                displayOffset = value;
+                UpdatePosition();
             }
         }
 
@@ -43,6 +70,14 @@ namespace MIIProjekt.Collectables.Keys
         {
             spriteRenderer.enabled = active;
             colliderComponent.enabled = active ? collidable : false;
+        }
+
+        public void UpdatePosition()
+        {
+            if (position != null)
+            {
+                transform.position = Position + displayOffset;
+            }
         }
 
         private void Awake()

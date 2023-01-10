@@ -18,6 +18,15 @@ namespace MIIProjekt.Collectables
         [SerializeField]
         private float maxSpeed = 5.0f;
 
+        [SerializeField]
+        private float swayMagnitude = 3.0f;
+
+        [SerializeField]
+        private float swaySpeed = 3.0f;
+
+        [SerializeField]
+        private float swayDelay = 0.5f;
+
         public List<ICollectable> Collectables { get; }
 
         private float RangeDifference { get => maxRange - minRange; }
@@ -44,11 +53,10 @@ namespace MIIProjekt.Collectables
 
         private void Update()
         {
-            Transform transformToFollow = transform;
+            Vector2 positionToFollow = transform.position;
             foreach (ICollectable collectable in Collectables)
             {
-                Transform currentTransform = collectable.Transform;
-                Vector2 difference = transformToFollow.position - currentTransform.position;
+                Vector2 difference = positionToFollow - collectable.Position;
                 Vector2 direction = difference.normalized;
                 float distance = difference.magnitude;
 
@@ -57,10 +65,18 @@ namespace MIIProjekt.Collectables
                 float velocityScalar = Mathf.Max(0.0f, percent) * maxSpeed;
                 Vector2 velocity = direction * velocityScalar;
 
-                currentTransform.position += (Vector3)(velocity * Time.deltaTime);
+                collectable.Position += (velocity * Time.deltaTime);
 
                 // Next collectable in the list should follow the current transform
-                transformToFollow = collectable.Transform;
+                positionToFollow = collectable.Position;
+            }
+
+            for (int i = 0; i < Collectables.Count; i++)
+            {
+                ICollectable collectable = Collectables[i];
+                float timePassed = Time.time - (i * swayDelay);
+                float swayAmount = Mathf.Cos(timePassed * swaySpeed) * swayMagnitude;
+                collectable.DisplayOffset = new Vector2(0, swayAmount);
             }
         }
     }

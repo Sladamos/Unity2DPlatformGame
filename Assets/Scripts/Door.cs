@@ -59,7 +59,7 @@ namespace MIIProjekt
             {
                 float timeSinceInvoke = Time.time - invokeTimestamp;
                 float velocityScalar = Mathf.Max(0.0f, timeSinceInvoke - (i * collectableDelayPerSecond)) * collectableAcceleration; 
-                Vector2 difference = transform.position - Collectables[i].Transform.position;
+                Vector2 difference = ((Vector2)transform.position) - Collectables[i].Position;
                 float distanceLeft = difference.magnitude;
                 float deltaTimeVelocityScalar = velocityScalar * Time.deltaTime;
 
@@ -69,7 +69,7 @@ namespace MIIProjekt
                 }
                 else
                 {
-                    Collectables[i].Transform.position += (Vector3)(difference.normalized * deltaTimeVelocityScalar);
+                    Collectables[i].Position += difference.normalized * deltaTimeVelocityScalar;
                 }
             }
         }
