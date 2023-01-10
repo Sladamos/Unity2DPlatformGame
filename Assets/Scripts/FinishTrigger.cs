@@ -1,7 +1,7 @@
 ﻿using System;
+using MIIProjekt.Collectables.Keys;
 using MIIProjekt.Extensions;
 using MIIProjekt.GameManagers;
-using MIIProjekt.Keys;
 using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;

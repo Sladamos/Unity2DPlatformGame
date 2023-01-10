@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using MIIProjekt.Collectables;
 using UnityEngine;
 
-namespace MIIProjekt.Keys
+namespace MIIProjekt.Collectables.Keys
 {
     public class KeyCollectorComponent : MonoBehaviour
     {
@@ -13,6 +14,8 @@ namespace MIIProjekt.Keys
 
         [SerializeField]
         private bool isActive;
+
+        public List<ICollectable> Collectables => throw new NotImplementedException();
 
         public bool AcceptedKey(KeyAttributes keyAttributes)
         {
@@ -31,6 +34,16 @@ namespace MIIProjekt.Keys
         public bool ContainsKey(string keyIdentifier)
         {
             return collectedKeys.Contains(keyIdentifier);
+        }
+
+        public void AddCollectable(ICollectable collectable)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveCollectable(ICollectable collectable)
+        {
+            throw new NotImplementedException();
         }
     }
 }

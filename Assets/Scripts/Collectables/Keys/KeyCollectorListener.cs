@@ -3,7 +3,7 @@ using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;
 
-namespace MIIProjekt.Keys
+namespace MIIProjekt.Collectables.Keys
 {
     public class KeyCollectorListener : MonoBehaviour
     {
