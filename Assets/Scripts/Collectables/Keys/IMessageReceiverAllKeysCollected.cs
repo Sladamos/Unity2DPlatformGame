@@ -1,4 +1,4 @@
-﻿namespace MIIProjekt.Keys
+﻿namespace MIIProjekt.Collectables.Keys
 {
     public interface IMessageReceiverAllKeysCollected
     {
