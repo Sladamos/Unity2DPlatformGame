@@ -87731,8 +87731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9cf517561ba64308dd45fc63c9d922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowTemperatureColor: {r: 0, g: 0.041470766, b: 1, a: 0}
-  lowTemperatureChangeTime: 10
+  lowTemperatureColor: {r: 1, g: 0.06668343, b: 0.0037735105, a: 0}
+  lowTemperatureChangeTime: 2
   timeManager: {fileID: 1142893780}
 --- !u!1 &1360653526
 GameObject:
@@ -94069,90 +94069,3 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 817316300}
   m_SourcePrefab: {fileID: 100100000, guid: 3b6c97c2ade590c66b084dabe1835ee4, type: 3}
---- !u!1001 &8187071152127354489
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 2
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 580365396676780117, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_Name
-      value: TemperatureTriggerer
-      objectReference: {fileID: 0}
-    - target: {fileID: 2074303470641868952, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: triggerFunction.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2074303470641868952, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: triggerFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2074303470641868952, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: triggerFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1355463717}
-    - target: {fileID: 2074303470641868952, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: triggerFunction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2074303470641868952, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: triggerFunction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnLowTemperature
-      objectReference: {fileID: 0}
-    - target: {fileID: 2074303470641868952, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: triggerFunction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MIIProjekt.GlobalLightController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2074303470641868952, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: triggerFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_RootOrder
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387144001348757586, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_AddedGameObjects: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5887bc867e258b54bac7b4b4d34dab00, type: 3}
