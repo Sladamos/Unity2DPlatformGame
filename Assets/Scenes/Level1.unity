@@ -1848,6 +1848,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1754831155}
     - target: {fileID: 7233144592343777732, guid: c5b4c1335ea5d8133b9556ed65a62172, type: 3}
+      propertyPath: attackRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233144592343777732, guid: c5b4c1335ea5d8133b9556ed65a62172, type: 3}
       propertyPath: attackCooldown
       value: 2
       objectReference: {fileID: 0}
@@ -84484,6 +84488,7 @@ GameObject:
   - component: {fileID: 829145493}
   - component: {fileID: 829145492}
   - component: {fileID: 829145494}
+  - component: {fileID: 829145495}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -84560,6 +84565,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1142893782}
   timeManager: {fileID: 1142893780}
+--- !u!114 &829145495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829145490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea74f5b609cdd264aa67b38bd62930e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelMusic: {fileID: 1833190257}
+  backgroundMusic: {fileID: 8300000, guid: b8886baae7133c447a2d5d1714597362, type: 3}
+  levelCompletedMusic: {fileID: 8300000, guid: b7558aedc6502f24ebf94bdac66d359c, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: e070c65f32380a441a6e11f51040ea1e, type: 3}
 --- !u!1 &830148658
 GameObject:
   m_ObjectHideFlags: 0
@@ -91609,7 +91630,7 @@ AudioSource:
   Priority: 118
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 264.59576
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

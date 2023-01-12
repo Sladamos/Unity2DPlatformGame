@@ -12,6 +12,8 @@ namespace MIIProjekt.UI.Level.States
         {
             Logger.Trace("UI state GameOver entered");
             var gameObject = animator.GetComponent<UIManager>()?.UIObjectGameOver;
+            SoundsManager soundsManager = animator.GetComponent<SoundsManager>();
+
             if (gameObject != null)
             {
                 gameObject.SetActive(true);
@@ -20,6 +22,8 @@ namespace MIIProjekt.UI.Level.States
             {
                 Logger.Warn("Cannot set GameOver UI GameObject as active");
             }
+
+            soundsManager.PlayGameOverSound();
         }
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
