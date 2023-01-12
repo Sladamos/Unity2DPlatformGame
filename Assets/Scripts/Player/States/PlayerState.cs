@@ -30,6 +30,11 @@ namespace MIIProjekt.Player.States
         public virtual void PhysicsProcess() { }
         public virtual void ExitState() { }
 
+        public void InvokeTransition(PlayerTransition transition)
+        {
+            Controller.InvokeTransition(transition);
+        }
+
         protected void AddGravityAndLimitFallingSpeed()
         {
             Vector2 velocity = Controller.Velocity;

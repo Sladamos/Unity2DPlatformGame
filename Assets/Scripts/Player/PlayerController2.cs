@@ -9,6 +9,7 @@ namespace MIIProjekt.Player
     public class PlayerController2 : MonoBehaviour
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+        private Dictionary<PlayerStateEnum, Dictionary<PlayerTransition, PlayerStateEnum>> Transitions { get; }
         private Dictionary<PlayerStateEnum, PlayerState> StateMap { get; }
 
         private new Rigidbody2D rigidbody2D;
@@ -22,8 +23,20 @@ namespace MIIProjekt.Player
         [SerializeField]
         private PlayerStateEnum playerState;
 
+        [SerializeField]
+        private float minJumpTime;
+
+        [SerializeField]
+        private float maxJumpTime;
+        
+        [SerializeField]
+        private float jumpForce;
+
         public float Gravity => gravity;
         public float MaxFallingSpeed => maxFallingSpeed;
+        public float MinJumpTime => minJumpTime;
+        public float MaxJumpTime => maxJumpTime;
+        public float JumpForce => jumpForce;
 
         public Vector2 Velocity
         {
@@ -39,11 +52,44 @@ namespace MIIProjekt.Player
 
         public PlayerController2()
         {
+            Dictionary<PlayerTransition, PlayerStateEnum> transitionsFalling = new();
+            transitionsFalling.Add(PlayerTransition.PlayerOnGround, PlayerStateEnum.OnGround);
+
+            Dictionary<PlayerTransition, PlayerStateEnum> transitionsJumping = new();
+            transitionsJumping.Add(PlayerTransition.JumpingFinished, PlayerStateEnum.Falling);
+
+            Dictionary<PlayerTransition, PlayerStateEnum> transitionsOnGround = new();
+
+            Transitions = new();
+            Transitions.Add(PlayerStateEnum.Falling, transitionsFalling);
+            Transitions.Add(PlayerStateEnum.Jumping, transitionsJumping);
+            Transitions.Add(PlayerStateEnum.OnGround, transitionsOnGround);
+
             StateMap = new();
             playerState = PlayerStateEnum.Falling;
         }
 
-        public void ChangeState(PlayerStateEnum playerState)
+        public void InvokeTransition(PlayerTransition transition)
+        {
+            Dictionary<PlayerTransition, PlayerStateEnum> currentStateTransitions = Transitions.GetValueOrDefault(playerState);
+            if (currentStateTransitions == null)
+            {
+                Logger.Error("No transitions for state {}", playerState);
+                return;
+            }
+
+            PlayerStateEnum? nextState = currentStateTransitions.GetValueOrDefault(transition);
+
+            if (nextState == null)
+            {
+                Logger.Debug("No next state for transition {}", transition);
+                return;
+            }
+
+            ChangeState((PlayerStateEnum)nextState);
+        }
+
+        private void ChangeState(PlayerStateEnum playerState)
         {
             if (this.playerState == playerState)
             {
@@ -72,6 +118,25 @@ namespace MIIProjekt.Player
         private void FixedUpdate()
         {
             StateMap[playerState].PhysicsProcess();
+        }
+
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            bool groundCollide = false;
+            for (int i = 0; i < collision.contactCount; i++)
+            {
+                ContactPoint2D contact = collision.GetContact(i);
+                if (contact.point.y < transform.position.y)
+                {
+                    groundCollide = true;
+                    break;
+                }
+            }
+
+            if (groundCollide)
+            {
+                InvokeTransition(PlayerTransition.PlayerOnGround);
+            }
         }
     }
 }
