@@ -6,7 +6,11 @@ namespace MIIProjekt.Player.States
     {
         public PlayerStateOnGround(PlayerController2 playerController) : base(playerController)
         {
-            
+        }
+
+        public override void EnterState()
+        {
+            ChangeAnimation("OnGround");
         }
 
         public override void Process()
@@ -21,6 +25,8 @@ namespace MIIProjekt.Player.States
         {
             AddGravityAndLimitFallingSpeed();
             MovePlayer();
+
+            Controller.animator.SetFloat("VelocityX", Mathf.Abs(Velocity.x));
         }
     }
 }

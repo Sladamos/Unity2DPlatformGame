@@ -9,6 +9,11 @@ namespace MIIProjekt.Player.States
 
         }
 
+        public override void EnterState()
+        {
+            ChangeAnimation("InAir");
+        }
+
         public override void PhysicsProcess()
         {
             AddGravityAndLimitFallingSpeed();

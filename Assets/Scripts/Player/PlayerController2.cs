@@ -5,17 +5,22 @@ using UnityEngine;
 
 namespace MIIProjekt.Player
 {
+    [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Animator))]
     public class PlayerController2 : MonoBehaviour
     {
         private const float UpVectorAngle = Mathf.PI / 2f;
         private const float AngleEpsilon = Mathf.PI / 4f;
+        private const float FlipThreshold = 0.1f;
 
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
         private Dictionary<PlayerStateEnum, Dictionary<PlayerTransition, PlayerStateEnum>> Transitions { get; }
         private Dictionary<PlayerStateEnum, PlayerState> StateMap { get; }
 
+        private SpriteRenderer spriteRenderer;
         private new Rigidbody2D rigidbody2D;
+        public Animator animator;
 
         private bool isOnGround;
 
@@ -120,8 +125,6 @@ namespace MIIProjekt.Player
             ChangeState((PlayerStateEnum)nextState);
         }
 
-
-
         private void ChangeState(PlayerStateEnum playerState)
         {
             if (this.playerState == playerState)
@@ -141,12 +144,24 @@ namespace MIIProjekt.Player
             StateMap.Add(PlayerStateEnum.OnGround, new PlayerStateOnGround(this));
             StateMap.Add(PlayerStateEnum.Falling, new PlayerStateFalling(this));
             StateMap.Add(PlayerStateEnum.Jumping, new PlayerStateJumping(this));
+            spriteRenderer = GetComponent<SpriteRenderer>();
             rigidbody2D = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
         }
 
         private void Update()
         {
             StateMap[playerState].Process();
+
+            Logger.Debug("Velocity: {}", Velocity.x);
+            if (Velocity.x > FlipThreshold) 
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (Velocity.x < -FlipThreshold)
+            {
+                spriteRenderer.flipX = true;
+            }
         }
 
         private void FixedUpdate()
@@ -163,7 +178,6 @@ namespace MIIProjekt.Player
 
                 float angle = Mathf.Atan2(contact.normal.y, contact.normal.x);
                 float angleDifference = Mathf.Abs(angle - UpVectorAngle);
-                Logger.Debug("Angle: {}, difference = {}, angleEpsilon = {} position = {}", angle, angleDifference, AngleEpsilon, contact.point);
                 if (angleDifference > AngleEpsilon)
                 {
                     continue;

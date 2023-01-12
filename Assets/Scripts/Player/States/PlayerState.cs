@@ -35,6 +35,11 @@ namespace MIIProjekt.Player.States
             Controller.InvokeTransition(transition);
         }
 
+        protected void ChangeAnimation(string animation)
+        {
+            Controller.animator.SetTrigger(animation);
+        }
+
         protected void AddGravityAndLimitFallingSpeed()
         {
             Vector2 velocity = Controller.Velocity;

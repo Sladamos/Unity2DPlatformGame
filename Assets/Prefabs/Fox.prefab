@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 5282649692916866629}
   - component: {fileID: 7421663023234971225}
   - component: {fileID: -6205242709280431722}
-  - component: {fileID: -7133846967016274337}
   - component: {fileID: 1818645404}
   - component: {fileID: 1818645405}
   - component: {fileID: 1818645409}
@@ -150,7 +149,7 @@ Transform:
   m_Children:
   - {fileID: 817316300}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5282649692916866632
 SpriteRenderer:
@@ -220,7 +219,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c85d97e3a1368b705a7a72c59c2cf3a2, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
@@ -254,7 +253,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5282649692916866639}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c85d97e3a1368b705a7a72c59c2cf3a2, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -281,18 +280,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c2e6f0d9acc7f9428ce67bb44cd88fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-7133846967016274337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5282649692916866639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080380cf83580744eaeb07df0beba4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1818645404
@@ -325,11 +312,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ce5e345495cfa728acc17476e1d57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   playerState: 2
   moveSpeed: 10
   gravity: 70
   maxFallingSpeed: 40
-  playerColliderWidth: 0.9
+  coyoteTime: 1
   minJumpTime: 0.2
   maxJumpTime: 0.5
   jumpForce: 25
