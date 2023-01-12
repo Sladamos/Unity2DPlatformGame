@@ -20,6 +20,9 @@ namespace MIIProjekt.Collectables.Keys
         [SerializeField]
         private string keyIdentifier;
 
+        [SerializeField]
+        private int score = 100;
+
         public Vector2 Position
         {
             get
@@ -34,6 +37,7 @@ namespace MIIProjekt.Collectables.Keys
         }
 
         public string Name => keyAttributes.Identifier;
+        public int Score => score;
 
         public bool Collidable
         {

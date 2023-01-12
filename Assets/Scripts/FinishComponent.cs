@@ -1,4 +1,5 @@
-﻿using MIIProjekt.Collectables;
+﻿using System;
+using MIIProjekt.Collectables;
 using MIIProjekt.GameManagers;
 using MIIProjekt.Logging;
 using MIIProjekt.Player;
@@ -11,6 +12,8 @@ namespace MIIProjekt
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
+        public event Action<ICollectable> EndGameCollectableCollected;
+
         [SerializeField]
         private LevelManager levelManager;
 
@@ -20,6 +23,7 @@ namespace MIIProjekt
         private void CollectableArrived(ICollectable collectable)
         {
             Logger.Info("Collectable!");
+            EndGameCollectableCollected?.Invoke(collectable);
         }
 
         private void AllCollectablesArrived()
