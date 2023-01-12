@@ -1,4 +1,4 @@
-using NLog;
+﻿using NLog;
 using UnityEngine;
 
 namespace MIIProjekt.Player.States
@@ -14,6 +14,7 @@ namespace MIIProjekt.Player.States
         public override void EnterState()
         {
             Logger.Info("Player is dead!");
+            Velocity = Vector2.zero;
             ChangeAnimation("Dead");
         }
     }

@@ -1,4 +1,4 @@
-namespace MIIProjekt.Player.States
+﻿namespace MIIProjekt.Player.States
 {
     public enum PlayerTransition
     {
@@ -9,5 +9,6 @@ namespace MIIProjekt.Player.States
         PlayerNotOnGround,
         CoyoteTimeFinished,
         Died,
+        Finish,
     }
 }

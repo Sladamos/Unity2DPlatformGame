@@ -10,5 +10,7 @@ namespace MIIProjekt.Collectables
 
         bool Collidable { set; }
         bool Active { set; }
+
+        int Score { get; }
     }
 }

@@ -83,6 +83,13 @@ namespace MIIProjekt.Player
             GetHit();
         }
 
+        private void CollidedWithSpike()
+        {
+            Logger.Debug("Collided with spike");
+            GetHit();
+        }
+
+
         private void Awake()
         {
 

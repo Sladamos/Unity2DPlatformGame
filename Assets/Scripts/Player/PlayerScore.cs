@@ -1,4 +1,5 @@
 ﻿using System;
+using MIIProjekt.Collectables;
 using MIIProjekt.Logging;
 using NLog;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace MIIProjekt.Player
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
         public event Action<int, int> PlayerScoreChanged;
+
+        [SerializeField]
+        private FinishComponent finishComponent;
 
         private int score = 0;
         private int scoreForLive = 100;
@@ -28,12 +32,22 @@ namespace MIIProjekt.Player
             }
         }
 
+        public void OnEndGameCollectableCollected(ICollectable collectable)
+        {
+            Score += collectable.Score;
+        }
+
         private void Awake()
         {
             LoggingManager.InitializeLogging();
+
+            if (finishComponent != null)
+            {
+                finishComponent.EndGameCollectableCollected += OnEndGameCollectableCollected;
+            }
         }
 
-        void Start()
+        private void Start()
         {
             Score = 0;
         }
