@@ -91526,12 +91526,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ce5e345495cfa728acc17476e1d57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerState: 2
+  moveSpeed: 10
   gravity: 70
   maxFallingSpeed: 40
-  playerState: 2
   minJumpTime: 0.2
   maxJumpTime: 0.5
   jumpForce: 25
+  gravityEffectTimePercent: 0.95
 --- !u!114 &1818645409
 MonoBehaviour:
   m_ObjectHideFlags: 0

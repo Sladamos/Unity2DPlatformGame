@@ -12,6 +12,7 @@ namespace MIIProjekt.Player.States
         public override void PhysicsProcess()
         {
             AddGravityAndLimitFallingSpeed();
+            MovePlayer();
         }
     }
 }

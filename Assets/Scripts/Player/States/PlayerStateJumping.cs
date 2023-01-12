@@ -30,6 +30,8 @@ namespace MIIProjekt.Player.States
 
         public override void PhysicsProcess()
         {
+            MovePlayer();
+
             if (!ShouldJumpingContinue())
             {
                 InvokeTransition(PlayerTransition.JumpingFinished);

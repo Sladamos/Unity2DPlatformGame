@@ -16,6 +16,15 @@ namespace MIIProjekt.Player
 
         private bool isOnGround;
 
+        [Header("Debug")]
+        [SerializeField]
+        private PlayerStateEnum playerState;
+
+        [Header("Moving")]
+        [SerializeField]
+        private float moveSpeed;
+
+        [Header("Falling")]
         [SerializeField]
         private float gravity = 50;
 
@@ -23,8 +32,9 @@ namespace MIIProjekt.Player
         private float maxFallingSpeed = 20;
 
         [SerializeField]
-        private PlayerStateEnum playerState;
+        private float playerColliderWidth;
 
+        [Header("Jumping")]
         [SerializeField]
         private float minJumpTime;
 
@@ -45,6 +55,7 @@ namespace MIIProjekt.Player
         public float JumpForce => jumpForce;
         public bool IsOnGround => isOnGround;
         public float GravityEffectTimePercent => gravityEffectTimePercent;
+        public float MoveSpeed => moveSpeed;
 
         public Vector2 Velocity
         {
@@ -152,6 +163,11 @@ namespace MIIProjekt.Player
             {
                 InvokeTransition(PlayerTransition.PlayerOnGround);
             }
+        }
+
+        private void OnGizmosDraw()
+        {
+            Gizmos.DrawWireCube(transform.position, new Vector3(playerColliderWidth, 0.1f, 0.0f));
         }
     }
 }

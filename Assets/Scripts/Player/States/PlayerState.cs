@@ -42,5 +42,17 @@ namespace MIIProjekt.Player.States
             velocity.y = Mathf.Max(-Controller.MaxFallingSpeed, velocity.y);
             Velocity = velocity;
         }
+
+        protected void MovePlayer()
+        {
+            float input = Input.GetAxis("Horizontal");
+
+            float speed = Controller.MoveSpeed;
+            Vector2 velocity = Controller.Velocity;
+
+            velocity.x = input * speed;
+
+            Controller.Velocity = velocity;
+        }
     }
 }
