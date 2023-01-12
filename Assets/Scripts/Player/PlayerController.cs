@@ -28,6 +28,7 @@ namespace MIIProjekt.Player
             myRigidbody.bodyType = RigidbodyType2D.Static;
             animator.SetBool("isWalking", false);
             animator.SetBool("isGrounded", true);
+            this.SendMessage("CalculateFinalScore");
             enabled = false;
         }
 
