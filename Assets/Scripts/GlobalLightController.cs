@@ -21,9 +21,6 @@ namespace MIIProjekt
         [SerializeField]
         private float lowTemperatureChangeTime;
 
-        [SerializeField]
-        private TimeManager timeManager;
-
         public void OnLowTemperature()
         {
             ChangeGlobalLightColorGradually(lowTemperatureColor, lowTemperatureChangeTime);
@@ -37,7 +34,7 @@ namespace MIIProjekt
 
         private void Update()
         {
-            if(ItIsNecessaryToChangeTheColor() && !timeManager.IsGamePaused())
+            if(ItIsNecessaryToChangeTheColor())
             {
                 controlledLight.color += colorDelta * Time.deltaTime;
                 modificatorTimer = Math.Max(0, modificatorTimer - Time.deltaTime);
