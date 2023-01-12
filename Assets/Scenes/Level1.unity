@@ -2250,6 +2250,67 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &383007221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383007224}
+  - component: {fileID: 383007223}
+  - component: {fileID: 383007222}
+  m_Layer: 0
+  m_Name: EndGameCollectableEndPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &383007222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383007221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fec1ddb02bd65044b3c255ca7b41e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelManager: {fileID: 1142893782}
+--- !u!114 &383007223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383007221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db6701a3f2bc99938b55d4ef500caa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectableDelayPerSecond: 0.4
+  collectableAcceleration: 15
+  collectableContactDistance: 0.2
+--- !u!4 &383007224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383007221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 147, y: 18, z: 464.95422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &385529237 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7252816233633553922, guid: e76145c4975a47843accf1386dc2c177, type: 3}
@@ -42596,7 +42657,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 11.25
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -87118,81 +87179,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229517624}
   m_CullTransparentMesh: 1
---- !u!1 &1235550423
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1235550424}
-  - component: {fileID: 1235550426}
-  - component: {fileID: 1235550425}
-  m_Layer: 0
-  m_Name: DoorTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1235550424
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235550423}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1726561093}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1235550425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235550423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a1d5c9675978f55faf1439b5ba7cc01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectableTriggerTargetTransform: {fileID: 1726561093}
-  requiredCollectableNames:
-  - Key1Door1
-  - Key2Door1
---- !u!61 &1235550426
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235550423}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5}
-  m_EdgeRadius: 0
 --- !u!1 &1236491782
 GameObject:
   m_ObjectHideFlags: 0
@@ -88372,7 +88358,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1355463716
 MonoBehaviour:
@@ -90191,7 +90177,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1644018527
 PrefabInstance:
@@ -90717,7 +90703,6 @@ GameObject:
   - component: {fileID: 1706491808}
   - component: {fileID: 1706491807}
   - component: {fileID: 1706491809}
-  - component: {fileID: 1706491810}
   m_Layer: 0
   m_Name: TriggerEndGame
   m_TagString: Untagged
@@ -90775,27 +90760,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1706491806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99baf7b47d987fbff90141d7372b0451, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a1d5c9675978f55faf1439b5ba7cc01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 1142893782}
---- !u!114 &1706491810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706491806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67a312ab81c25a25abcb6fcb3da66953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredKeys:
-  - Key1End
-  - Key2End
-  - Key3End
-  keyCollector: {fileID: 0}
+  collectableTriggerTargetTransform: {fileID: 383007224}
+  requiredCollectableNames: []
+  commonCollectableName: End
 --- !u!1001 &1724251646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93808,7 +93778,7 @@ Transform:
   - {fileID: 2022751070}
   - {fileID: 1833190256}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2053312740
 PrefabInstance:
@@ -94641,18 +94611,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 155779506}
     m_Modifications:
-    - target: {fileID: 1390278072334512163, guid: 2a3176d932cce984c8210b6350f532e5, type: 3}
-      propertyPath: collectableAcceleration
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1390278072334512163, guid: 2a3176d932cce984c8210b6350f532e5, type: 3}
-      propertyPath: collectableContactDistance
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1390278072334512173, guid: 2a3176d932cce984c8210b6350f532e5, type: 3}
-      propertyPath: keyCollector
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1390278072334512174, guid: 2a3176d932cce984c8210b6350f532e5, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -94702,10 +94660,7 @@ PrefabInstance:
       value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1390278072334512174, guid: 2a3176d932cce984c8210b6350f532e5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1235550424}
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a3176d932cce984c8210b6350f532e5, type: 3}
 --- !u!1001 &1581824911456270393
 PrefabInstance:

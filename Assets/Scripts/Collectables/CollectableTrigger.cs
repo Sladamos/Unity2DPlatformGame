@@ -20,8 +20,16 @@ namespace MIIProjekt.Collectables
         [SerializeField]
         private List<string> requiredCollectableNames;
 
+        [SerializeField]
+        string commonCollectableName;
+
         private bool doesCollectorContainAllRequiredCollectables(ICollector collector)
         {
+            if (!String.IsNullOrEmpty(commonCollectableName))
+            {
+                return true;
+            }
+
             foreach (string requiredCollectableName in requiredCollectableNames)
             {
                 if (!collector.Contains(requiredCollectableName))
@@ -70,7 +78,16 @@ namespace MIIProjekt.Collectables
             }
 
             List<ICollectable> collectables = collector.Collectables
-                .Where(x => requiredCollectableNames.Contains(x.Name))
+                .Where((x) => 
+                {
+                    Logger.Debug("{} {} {} {}", String.IsNullOrEmpty(commonCollectableName), commonCollectableName, requiredCollectableNames.Contains(x.Name), x.Name);
+                    if (!String.IsNullOrEmpty(commonCollectableName))
+                    {
+                        return x.Name.Contains(commonCollectableName);
+                    }
+                    
+                    return requiredCollectableNames.Contains(x.Name);
+                })
                 .ToList();
 
             foreach (ICollectable collectable in collectables)
