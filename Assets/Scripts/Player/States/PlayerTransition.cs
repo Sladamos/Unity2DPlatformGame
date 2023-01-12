@@ -6,5 +6,7 @@ namespace MIIProjekt.Player.States
         JumpingFinished,
         PlayerOnGround,
         Jumped,
+        PlayerNotOnGround,
+        CoyoteTimeFinished,
     }
 }

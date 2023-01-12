@@ -37,6 +37,9 @@ namespace MIIProjekt.Player
         [SerializeField]
         private float playerColliderWidth;
 
+        [SerializeField]
+        private float coyoteTime = 1.0f;
+
         [Header("Jumping")]
         [SerializeField]
         private float minJumpTime;
@@ -59,6 +62,7 @@ namespace MIIProjekt.Player
         public bool IsOnGround => isOnGround;
         public float GravityEffectTimePercent => gravityEffectTimePercent;
         public float MoveSpeed => moveSpeed;
+        public float CoyoteTime => coyoteTime;
 
         private List<Vector2> collisionPositions = new List<Vector2>();
 
@@ -84,11 +88,17 @@ namespace MIIProjekt.Player
 
             Dictionary<PlayerTransition, PlayerStateEnum> transitionsOnGround = new();
             transitionsOnGround.Add(PlayerTransition.Jumped, PlayerStateEnum.Jumping);
+            transitionsOnGround.Add(PlayerTransition.PlayerNotOnGround, PlayerStateEnum.CoyoteJump);
+
+            Dictionary<PlayerTransition, PlayerStateEnum> transitionsCoyoteJump = new();
+            transitionsCoyoteJump.Add(PlayerTransition.CoyoteTimeFinished, PlayerStateEnum.Falling);
+            transitionsCoyoteJump.Add(PlayerTransition.Jumped, PlayerStateEnum.Jumping);
 
             Transitions = new();
             Transitions.Add(PlayerStateEnum.Falling, transitionsFalling);
             Transitions.Add(PlayerStateEnum.Jumping, transitionsJumping);
             Transitions.Add(PlayerStateEnum.OnGround, transitionsOnGround);
+            Transitions.Add(PlayerStateEnum.CoyoteJump, transitionsCoyoteJump);
 
             StateMap = new();
             playerState = PlayerStateEnum.Falling;

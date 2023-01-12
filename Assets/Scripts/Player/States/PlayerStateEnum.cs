@@ -6,5 +6,6 @@ namespace MIIProjekt.Player.States
         OnGround,
         Jumping,
         Falling,
+        CoyoteJump,
     }
 }
