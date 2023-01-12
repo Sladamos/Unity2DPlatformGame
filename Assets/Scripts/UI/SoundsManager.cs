@@ -19,6 +19,9 @@ namespace MIIProjekt.UI
         [SerializeField]
         private AudioClip gameOverMusic;
 
+        [SerializeField]
+        private AudioClip highTemperatureMusic;
+
         private const float FADE_TIME_SECONDS = 2.0f;
 
         public void PlayLevelCompletedSound()
@@ -34,6 +37,11 @@ namespace MIIProjekt.UI
         public void PlayGameOverSound()
         {
             PlaySound(gameOverMusic);
+        }
+
+        public void PlayHighTemperatureSong()
+        {
+            PlaySoundWithFade(highTemperatureMusic);
         }
 
         private void PlaySound(AudioClip clip)

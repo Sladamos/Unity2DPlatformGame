@@ -84581,6 +84581,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 8300000, guid: b8886baae7133c447a2d5d1714597362, type: 3}
   levelCompletedMusic: {fileID: 8300000, guid: b7558aedc6502f24ebf94bdac66d359c, type: 3}
   gameOverMusic: {fileID: 8300000, guid: e070c65f32380a441a6e11f51040ea1e, type: 3}
+  highTemperatureMusic: {fileID: 8300000, guid: fd82a6da01277a540a967575e25cc8e4, type: 3}
 --- !u!1 &830148658
 GameObject:
   m_ObjectHideFlags: 0
