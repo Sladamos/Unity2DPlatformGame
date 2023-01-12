@@ -23,6 +23,12 @@ namespace MIIProjekt.UI
         private AudioClip highTemperatureMusic;
 
         private const float FADE_TIME_SECONDS = 2.0f;
+        private AudioClip currentGameMusic;
+
+        private void Awake()
+        {
+            currentGameMusic = backgroundMusic;
+        }
 
         public void PlayLevelCompletedSound()
         {
@@ -31,7 +37,7 @@ namespace MIIProjekt.UI
 
         public void PlayGameSound()
         {
-            PlaySound(backgroundMusic);
+            PlaySound(currentGameMusic);
         }
 
         public void PlayGameOverSound()
@@ -41,6 +47,7 @@ namespace MIIProjekt.UI
 
         public void PlayHighTemperatureSong()
         {
+            currentGameMusic = highTemperatureMusic;
             PlaySoundWithFade(highTemperatureMusic);
         }
 
