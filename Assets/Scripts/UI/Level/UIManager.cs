@@ -25,6 +25,9 @@ namespace MIIProjekt.UI.Level
         private GameObject uiObjectPauseMenu;
 
         [SerializeField]
+        private GameObject drawings;
+
+        [SerializeField]
         private Canvas canvas;
 
         public GameObject UIObjectGame { get => uiObjectGame; }
@@ -72,6 +75,12 @@ namespace MIIProjekt.UI.Level
             foreach (RectTransform child in canvas.transform)
             {
                 child.gameObject.SetActive(true);
+                child.gameObject.SetActive(false);
+            }
+
+            drawings.SetActive(true);
+            foreach (RectTransform child in drawings.transform)
+            {
                 child.gameObject.SetActive(false);
             }
         }

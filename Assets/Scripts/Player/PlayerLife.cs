@@ -5,18 +5,11 @@ using UnityEngine;
 
 namespace MIIProjekt.Player
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(PlayerController))]
-    [RequireComponent(typeof(Animator))]
     public class PlayerLife : MonoBehaviour
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
         public event Action<int, int> PlayerLifeChanged;
-
-        private Rigidbody2D playerRigidbody;
-        private PlayerController playerController;
-        private Animator animator;
         private int lives = 0;
 
         [SerializeField]
@@ -35,7 +28,7 @@ namespace MIIProjekt.Player
             {
                 int oldValue = lives;
 
-                lives = value;
+                lives = Mathf.Max(0, value);
 
                 Logger.Debug("Changed number of lives: {} -> {}", oldValue, value);
                 PlayerLifeChanged?.Invoke(oldValue, value);
@@ -54,10 +47,7 @@ namespace MIIProjekt.Player
 
         private void Death()
         {
-            playerRigidbody.bodyType = RigidbodyType2D.Static;
-            animator.SetTrigger("death");
-            playerController.enabled = false;
-
+            SendMessage("PlayerDied");
             levelManager?.InvokeGameOver();
         }
 
@@ -95,9 +85,6 @@ namespace MIIProjekt.Player
 
         private void Awake()
         {
-            playerRigidbody = GetComponent<Rigidbody2D>();
-            animator = GetComponent<Animator>();
-            playerController = GetComponent<PlayerController>();
 
             if (levelManager == null)
             {

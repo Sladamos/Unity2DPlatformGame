@@ -21,7 +21,7 @@ namespace MIIProjekt
         private AudioClip playerScoreIncreasedAudio;
 
         [SerializeField]
-        private PlayerController playerController;
+        private PlayerController2 playerController;
 
         [SerializeField]
         private AudioClip playerJumpedAudio;

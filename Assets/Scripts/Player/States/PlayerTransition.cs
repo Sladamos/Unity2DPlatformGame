@@ -8,5 +8,6 @@ namespace MIIProjekt.Player.States
         Jumped,
         PlayerNotOnGround,
         CoyoteTimeFinished,
+        Died,
     }
 }
