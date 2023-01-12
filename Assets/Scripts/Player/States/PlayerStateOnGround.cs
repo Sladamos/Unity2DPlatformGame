@@ -11,6 +11,7 @@ namespace MIIProjekt.Player.States
         public override void EnterState()
         {
             ChangeAnimation("OnGround");
+            Controller.InvokePlayerLanded();
         }
 
         public override void Process()
