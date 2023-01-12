@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using MIIProjekt.Player.States;
 using NLog;
@@ -18,7 +18,7 @@ namespace MIIProjekt.Player
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
         public event Action PlayerJumped;
-        public event Action PlayerLanded;
+        public event Action<Vector2> PlayerLanded;
 
         private Dictionary<PlayerStateEnum, Dictionary<PlayerTransition, PlayerStateEnum>> Transitions { get; }
         private Dictionary<PlayerTransition, PlayerStateEnum> DefaultTransitions { get; }
@@ -146,7 +146,7 @@ namespace MIIProjekt.Player
 
         public void InvokePlayerLanded()
         {
-            PlayerLanded?.Invoke();
+            PlayerLanded?.Invoke(transform.position);
         }
 
         private void ChangeState(PlayerStateEnum playerState)
