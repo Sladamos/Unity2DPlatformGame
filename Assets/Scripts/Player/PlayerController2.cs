@@ -153,7 +153,6 @@ namespace MIIProjekt.Player
         {
             StateMap[playerState].Process();
 
-            Logger.Debug("Velocity: {}", Velocity.x);
             if (Velocity.x > FlipThreshold) 
             {
                 spriteRenderer.flipX = false;
