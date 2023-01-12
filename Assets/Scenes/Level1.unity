@@ -42297,12 +42297,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1837421519}
     m_Modifications:
     - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
+      propertyPath: m_text
+      value: Gnimraw labolg
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_fontSize
-      value: 80
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_fontSizeBase
-      value: 80
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_sharedMaterial
@@ -42390,7 +42394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5138197224275469505, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5138197224275469505, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -43196,7 +43200,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 11.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
