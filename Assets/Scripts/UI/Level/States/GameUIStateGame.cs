@@ -12,6 +12,7 @@ namespace MIIProjekt.UI.Level.States
         {
             Logger.Trace("UI state Game entered");
             var gameObject = animator.GetComponent<UIManager>()?.UIObjectGame;
+            SoundsManager soundsManager = animator.GetComponent<SoundsManager>();
 
             // TODO: THIS IS INVALID, REMOVE!
             // TODO: Use TimeManager instead
@@ -25,6 +26,8 @@ namespace MIIProjekt.UI.Level.States
             {
                 Logger.Warn("Cannot set Game UI GameObject as active");
             }
+
+            soundsManager.PlayGameSound();
         }
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

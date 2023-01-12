@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &-4039652120215887790
 SpriteRenderer:
@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 0
+  attackCooldown: 2
+  attackRange: 10
 --- !u!61 &1364872858407488194
 BoxCollider2D:
   m_ObjectHideFlags: 0
