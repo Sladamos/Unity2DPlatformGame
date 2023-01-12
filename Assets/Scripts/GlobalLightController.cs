@@ -42,13 +42,13 @@ namespace MIIProjekt
         public void OnMediumTemperature()
         {
             ChangeGlobalLightColorGradually(lowTemperatureColor, lowTemperatureChangeTime);
-            Logger.Debug("Niska temperatura");
+            Logger.Debug("Srednia temperatura");
         }
 
         public void OnHighTemperature()
         {
             ChangeGlobalLightColorGradually(lowTemperatureColor, lowTemperatureChangeTime);
-            Logger.Debug("Niska temperatura");
+            Logger.Debug("Wysoka temperatura!");
         }
 
         private void Awake()
