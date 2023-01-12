@@ -14,6 +14,8 @@ namespace MIIProjekt.Player
 
         private new Rigidbody2D rigidbody2D;
 
+        private bool isOnGround;
+
         [SerializeField]
         private float gravity = 50;
 
@@ -32,11 +34,17 @@ namespace MIIProjekt.Player
         [SerializeField]
         private float jumpForce;
 
+        [SerializeField]
+        [Range(0.0f, 1.0f)]
+        private float gravityEffectTimePercent = 0.92f;
+
         public float Gravity => gravity;
         public float MaxFallingSpeed => maxFallingSpeed;
         public float MinJumpTime => minJumpTime;
         public float MaxJumpTime => maxJumpTime;
         public float JumpForce => jumpForce;
+        public bool IsOnGround => isOnGround;
+        public float GravityEffectTimePercent => gravityEffectTimePercent;
 
         public Vector2 Velocity
         {
@@ -59,6 +67,7 @@ namespace MIIProjekt.Player
             transitionsJumping.Add(PlayerTransition.JumpingFinished, PlayerStateEnum.Falling);
 
             Dictionary<PlayerTransition, PlayerStateEnum> transitionsOnGround = new();
+            transitionsOnGround.Add(PlayerTransition.Jumped, PlayerStateEnum.Jumping);
 
             Transitions = new();
             Transitions.Add(PlayerStateEnum.Falling, transitionsFalling);
@@ -78,16 +87,19 @@ namespace MIIProjekt.Player
                 return;
             }
 
-            PlayerStateEnum? nextState = currentStateTransitions.GetValueOrDefault(transition);
+            PlayerStateEnum nextState = currentStateTransitions.GetValueOrDefault(transition, PlayerStateEnum.Invalid);
 
-            if (nextState == null)
+            if (nextState == PlayerStateEnum.Invalid)
             {
                 Logger.Debug("No next state for transition {}", transition);
                 return;
             }
 
+            Logger.Debug("Transition: {}, nextstate: {}", transition, nextState);
             ChangeState((PlayerStateEnum)nextState);
         }
+
+
 
         private void ChangeState(PlayerStateEnum playerState)
         {
@@ -107,6 +119,7 @@ namespace MIIProjekt.Player
         {
             StateMap.Add(PlayerStateEnum.OnGround, new PlayerStateOnGround(this));
             StateMap.Add(PlayerStateEnum.Falling, new PlayerStateFalling(this));
+            StateMap.Add(PlayerStateEnum.Jumping, new PlayerStateJumping(this));
             rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
@@ -133,6 +146,8 @@ namespace MIIProjekt.Player
                 }
             }
 
+            isOnGround = true;
+            
             if (groundCollide)
             {
                 InvokeTransition(PlayerTransition.PlayerOnGround);

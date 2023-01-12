@@ -42445,7 +42445,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 11.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -91514,18 +91514,6 @@ MonoBehaviour:
   swayMagnitude: 0.5
   swaySpeed: 2
   swayDelay: 0.2
---- !u!114 &1818645409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818645399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080380cf83580744eaeb07df0beba4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1818645405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91538,9 +91526,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ce5e345495cfa728acc17476e1d57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 50
-  maxFallingSpeed: 20
+  gravity: 70
+  maxFallingSpeed: 40
   playerState: 2
+  minJumpTime: 0.2
+  maxJumpTime: 0.5
+  jumpForce: 25
+--- !u!114 &1818645409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818645399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080380cf83580744eaeb07df0beba4cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1819424135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1519919414503114968, guid: d7c1c6dfff93baddabbced904af703d4, type: 3}

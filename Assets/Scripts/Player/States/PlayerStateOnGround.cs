@@ -6,7 +6,15 @@ namespace MIIProjekt.Player.States
     {
         public PlayerStateOnGround(PlayerController2 playerController) : base(playerController)
         {
+            
+        }
 
+        public override void Process()
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                InvokeTransition(PlayerTransition.Jumped);
+            }
         }
 
         public override void PhysicsProcess()

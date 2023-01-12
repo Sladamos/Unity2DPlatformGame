@@ -25,7 +25,7 @@ namespace MIIProjekt.Player.States
         public override void Process()
         {
             timeLeft -= Time.deltaTime;
-            isJumpingPressed = Input.GetButtonDown("jump");
+            isJumpingPressed = Input.GetButton("Jump");
         }
 
         public override void PhysicsProcess()
@@ -36,11 +36,13 @@ namespace MIIProjekt.Player.States
                 return;
             }
 
-            float percent = Mathf.Clamp(timeLeft / Controller.MaxJumpTime, 0.0f, 1.0f);
-            float verticalVelocity = percent * Controller.JumpForce;
+            float percent = 1.0f - Mathf.Clamp(timeLeft / Controller.MaxJumpTime, 0.0f, 1.0f);
+            float progress = Mathf.Max(0.0f, -Mathf.Sqrt(percent) + Controller.GravityEffectTimePercent);
+            float verticalVelocity = progress * Controller.JumpForce;
 
+            // Replace old y velocity
             Vector2 currentVelocity = Controller.Velocity;
-            currentVelocity.y += verticalVelocity;
+            currentVelocity.y = verticalVelocity;
             Controller.Velocity = currentVelocity;
         }
 
