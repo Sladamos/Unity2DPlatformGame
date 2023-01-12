@@ -9,6 +9,8 @@ namespace MIIProjekt.Enemy.Eagle
         private SpriteRenderer spriteRenderer;
 
         private Vector2 velocity;
+        private Vector2 spawnPoint;
+        private float currentAttackCooldown = 0.0f;
 
         [SerializeField]
         private Transform target;
@@ -16,6 +18,52 @@ namespace MIIProjekt.Enemy.Eagle
         [SerializeField]
         private float speed;
 
+        [SerializeField]
+        private float attackCooldown;
+
+        private void Awake()
+        {
+            animator = GetComponent<Animator>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            spawnPoint = transform.position;
+        }
+
+        private void Update()
+        {
+            if (!animator.GetBool("isDead"))
+            {
+                if(CanChaseAPlayer())
+                {
+                    ChaseAPlayer();
+                }
+                else
+                {
+                    ReturnToSpawn();
+                }
+                currentAttackCooldown = Mathf.Max(0, currentAttackCooldown - Time.deltaTime);
+            }
+        }
+
+        private bool CanChaseAPlayer()
+        {
+            return currentAttackCooldown == 0.0f;
+        }
+
+        private void ChaseAPlayer()
+        {
+            GoInDirection(FindDirectionToTarget());
+            //jak odleciał za daleko niech wraca
+        }
+
+        private void ReturnToSpawn()
+        {
+
+            Vector2 currentPosition = transform.position;
+            if (currentPosition != spawnPoint)
+            {
+                GoInDirection(FindDirectionToSpawn());
+            }
+        }
         private Vector2 FindDirectionToTarget()
         {
             if (target == null)
@@ -28,20 +76,19 @@ namespace MIIProjekt.Enemy.Eagle
             return difference.normalized;
         }
 
-        private void Awake()
+        private Vector2 FindDirectionToSpawn()
         {
-            animator = GetComponent<Animator>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            Vector2 currentPosition = transform.position;
+            Vector2 difference = spawnPoint - currentPosition;
+            difference += Vector2.up * 0.5f;
+            return difference.normalized;
         }
 
-        private void Update()
+        private void GoInDirection(Vector2 direction)
         {
-            if (!animator.GetBool("isDead"))
-            {
-                Vector2 velocity = FindDirectionToTarget() * speed;
-                spriteRenderer.flipX = velocity.x > 0.0f;
-                transform.position += (Vector3)(velocity * Time.deltaTime);
-            }
+            Vector2 velocity = direction * speed;
+            spriteRenderer.flipX = velocity.x > 0.0f;
+            transform.position += (Vector3)(velocity * Time.deltaTime);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
@@ -55,9 +102,10 @@ namespace MIIProjekt.Enemy.Eagle
             {
                 animator.SetBool("isDead", true);
             }
-            else
+            else if (currentAttackCooldown == 0.0f)
             {
                 collider.SendMessage("CollidedWithEnemy");
+                currentAttackCooldown = attackCooldown;
             }
         }
     }
