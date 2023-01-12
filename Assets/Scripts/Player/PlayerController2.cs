@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MIIProjekt.Player.States;
 using NLog;
@@ -15,6 +16,10 @@ namespace MIIProjekt.Player
         private const float FlipThreshold = 0.1f;
 
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
+        public event Action PlayerJumped;
+        public event Action PlayerLanded;
+
         private Dictionary<PlayerStateEnum, Dictionary<PlayerTransition, PlayerStateEnum>> Transitions { get; }
         private Dictionary<PlayerTransition, PlayerStateEnum> DefaultTransitions { get; }
         private Dictionary<PlayerStateEnum, PlayerState> StateMap { get; }
@@ -132,6 +137,16 @@ namespace MIIProjekt.Player
 
             Logger.Debug("Transition: {}, nextstate: {}", transition, nextState);
             ChangeState((PlayerStateEnum)nextState);
+        }
+
+        public void InvokePlayerJumped()
+        {
+            PlayerJumped?.Invoke();
+        }
+
+        public void InvokePlayerLanded()
+        {
+            PlayerLanded?.Invoke();
         }
 
         private void ChangeState(PlayerStateEnum playerState)
