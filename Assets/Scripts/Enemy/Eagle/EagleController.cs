@@ -21,6 +21,9 @@ namespace MIIProjekt.Enemy.Eagle
         [SerializeField]
         private float attackCooldown;
 
+        [SerializeField]
+        private float attackRange;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
@@ -44,6 +47,11 @@ namespace MIIProjekt.Enemy.Eagle
             }
         }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(transform.position, attackRange);
+        }
+
         private bool CanChaseAPlayer()
         {
             return currentAttackCooldown == 0.0f;
@@ -51,15 +59,22 @@ namespace MIIProjekt.Enemy.Eagle
 
         private void ChaseAPlayer()
         {
-            GoInDirection(FindDirectionToTarget());
-            //jak odleciał za daleko niech wraca
+            Vector2 distance = target.position - transform.position;
+            float distanceSqr = distance.sqrMagnitude;
+            if(distance.magnitude <= attackRange)
+            {
+                GoInDirection(FindDirectionToTarget());
+            }
+            else
+            {
+                ReturnToSpawn();
+            }
         }
 
         private void ReturnToSpawn()
         {
             Vector2 currentPosition = transform.position;
             float distanceSqr = (spawnPoint - currentPosition).sqrMagnitude;
-            Debug.Log(distanceSqr);
             if (distanceSqr > 0.9f)
             {
                 Vector2 directionToSpawn = FindDirectionToSpawn();
