@@ -1847,6 +1847,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1754831155}
+    - target: {fileID: 7233144592343777732, guid: c5b4c1335ea5d8133b9556ed65a62172, type: 3}
+      propertyPath: attackCooldown
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 2119625712827862867, guid: c5b4c1335ea5d8133b9556ed65a62172, type: 3}
@@ -88341,7 +88345,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowTemperatureColor: {r: 1, g: 0.06668343, b: 0.0037735105, a: 0}
   lowTemperatureChangeTime: 2
-  timeManager: {fileID: 1142893780}
 --- !u!1 &1360653526
 GameObject:
   m_ObjectHideFlags: 0
