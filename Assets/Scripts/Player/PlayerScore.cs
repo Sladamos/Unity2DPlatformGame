@@ -12,6 +12,7 @@ namespace MIIProjekt.Player
         public event Action<int, int> PlayerScoreChanged;
 
         private int score = 0;
+        private int scoreForLive = 100;
 
         public int Score
         {
@@ -40,6 +41,12 @@ namespace MIIProjekt.Player
         private void IncreaseScore(int value)
         {
             Score += value;
+        }
+
+        private void CalculateFinalScore()
+        {
+            PlayerLife playerLife = this.GetComponent<PlayerLife>();
+            Score += playerLife.Lives * scoreForLive;
         }
     }
 }

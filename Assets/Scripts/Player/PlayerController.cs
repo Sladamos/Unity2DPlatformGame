@@ -22,13 +22,13 @@ namespace MIIProjekt.Player
         private Animator animator;
         private bool isWalking = false;
         private bool isFacingRight = true;
-        private Vector2 startPosition;
 
         public void Finish()
         {
             myRigidbody.bodyType = RigidbodyType2D.Static;
             animator.SetBool("isWalking", false);
             animator.SetBool("isGrounded", true);
+            this.SendMessage("CalculateFinalScore");
             enabled = false;
         }
 
@@ -36,7 +36,6 @@ namespace MIIProjekt.Player
         {
             myRigidbody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
-            startPosition = transform.position;
         }
 
         private void FixedUpdate()
@@ -99,11 +98,6 @@ namespace MIIProjekt.Player
         private bool IsGrounded()
         {
             return Physics2D.Raycast(transform.position, Vector2.down, rayLength, groundLayer.value);
-        }
-
-        private void ReturnToSpawn()
-        {
-            transform.position = startPosition;
         }
     }
 }
