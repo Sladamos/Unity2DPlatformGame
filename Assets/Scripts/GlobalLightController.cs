@@ -21,7 +21,31 @@ namespace MIIProjekt
         [SerializeField]
         private float lowTemperatureChangeTime;
 
+        [SerializeField]
+        private Color mediumTemperatureColor;
+
+        [SerializeField]
+        private float mediumTemperatureChangeTime;
+
+        [SerializeField]
+        private Color highTemperatureColor;
+
+        [SerializeField]
+        private float highTemperatureChangeTime;
+
         public void OnLowTemperature()
+        {
+            ChangeGlobalLightColorGradually(lowTemperatureColor, lowTemperatureChangeTime);
+            Logger.Debug("Niska temperatura");
+        }
+
+        public void OnMediumTemperature()
+        {
+            ChangeGlobalLightColorGradually(lowTemperatureColor, lowTemperatureChangeTime);
+            Logger.Debug("Niska temperatura");
+        }
+
+        public void OnHighTemperature()
         {
             ChangeGlobalLightColorGradually(lowTemperatureColor, lowTemperatureChangeTime);
             Logger.Debug("Niska temperatura");
