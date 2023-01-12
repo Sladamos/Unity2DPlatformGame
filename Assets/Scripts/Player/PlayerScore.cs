@@ -52,6 +52,11 @@ namespace MIIProjekt.Player
             Score = 0;
         }
 
+        private void IncreaseScore(int value)
+        {
+            Score += value;
+        }
+
         private void CalculateFinalScore()
         {
             PlayerLife playerLife = this.GetComponent<PlayerLife>();

@@ -41,13 +41,13 @@ namespace MIIProjekt
 
         public void OnMediumTemperature()
         {
-            ChangeGlobalLightColorGradually(lowTemperatureColor, lowTemperatureChangeTime);
+            ChangeGlobalLightColorGradually(mediumTemperatureColor, mediumTemperatureChangeTime);
             Logger.Debug("Srednia temperatura");
         }
 
         public void OnHighTemperature()
         {
-            ChangeGlobalLightColorGradually(lowTemperatureColor, lowTemperatureChangeTime);
+            ChangeGlobalLightColorGradually(highTemperatureColor, highTemperatureChangeTime);
             Logger.Debug("Wysoka temperatura!");
         }
 
