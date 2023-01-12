@@ -55,6 +55,7 @@ namespace MIIProjekt.UI
         {
             if(clip != null && levelMusic.clip != clip)
             {
+                levelMusic.Stop();
                 levelMusic.clip = clip;
                 levelMusic.PlayOneShot(clip);
             }
