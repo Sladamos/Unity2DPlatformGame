@@ -16,6 +16,7 @@ namespace MIIProjekt.Player
 
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
         private Dictionary<PlayerStateEnum, Dictionary<PlayerTransition, PlayerStateEnum>> Transitions { get; }
+        private Dictionary<PlayerTransition, PlayerStateEnum> DefaultTransitions { get; }
         private Dictionary<PlayerStateEnum, PlayerState> StateMap { get; }
 
         private SpriteRenderer spriteRenderer;
@@ -48,7 +49,7 @@ namespace MIIProjekt.Player
 
         [SerializeField]
         private float maxJumpTime = 0.5f;
-        
+
         [SerializeField]
         private float jumpForce = 35;
 
@@ -94,11 +95,15 @@ namespace MIIProjekt.Player
             transitionsCoyoteJump.Add(PlayerTransition.CoyoteTimeFinished, PlayerStateEnum.Falling);
             transitionsCoyoteJump.Add(PlayerTransition.Jumped, PlayerStateEnum.Jumping);
 
+            DefaultTransitions = new();
+            DefaultTransitions.Add(PlayerTransition.Died, PlayerStateEnum.Dead);
+
             Transitions = new();
             Transitions.Add(PlayerStateEnum.Falling, transitionsFalling);
             Transitions.Add(PlayerStateEnum.Jumping, transitionsJumping);
             Transitions.Add(PlayerStateEnum.OnGround, transitionsOnGround);
             Transitions.Add(PlayerStateEnum.CoyoteJump, transitionsCoyoteJump);
+            Transitions.Add(PlayerStateEnum.Dead, new());
 
             StateMap = new();
             playerState = PlayerStateEnum.Falling;
@@ -109,7 +114,7 @@ namespace MIIProjekt.Player
             Dictionary<PlayerTransition, PlayerStateEnum> currentStateTransitions = Transitions.GetValueOrDefault(playerState);
             if (currentStateTransitions == null)
             {
-                Logger.Error("No transitions for state {}", playerState);
+                currentStateTransitions = DefaultTransitions;
                 return;
             }
 
@@ -117,8 +122,12 @@ namespace MIIProjekt.Player
 
             if (nextState == PlayerStateEnum.Invalid)
             {
-                Logger.Debug("No next state for transition {}", transition);
-                return;
+                nextState = DefaultTransitions.GetValueOrDefault(transition, PlayerStateEnum.Invalid);
+                if (nextState == PlayerStateEnum.Invalid)
+                {
+                    Logger.Debug("No next state for transition {}", transition);
+                    return;
+                }
             }
 
             Logger.Debug("Transition: {}, nextstate: {}", transition, nextState);
@@ -144,6 +153,7 @@ namespace MIIProjekt.Player
             StateMap.Add(PlayerStateEnum.OnGround, new PlayerStateOnGround(this));
             StateMap.Add(PlayerStateEnum.Falling, new PlayerStateFalling(this));
             StateMap.Add(PlayerStateEnum.Jumping, new PlayerStateJumping(this));
+            StateMap.Add(PlayerStateEnum.Dead, new PlayerStateDead(this));
             spriteRenderer = GetComponent<SpriteRenderer>();
             rigidbody2D = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
@@ -153,7 +163,7 @@ namespace MIIProjekt.Player
         {
             StateMap[playerState].Process();
 
-            if (Velocity.x > FlipThreshold) 
+            if (Velocity.x > FlipThreshold)
             {
                 spriteRenderer.flipX = false;
             }
@@ -181,7 +191,7 @@ namespace MIIProjekt.Player
                 {
                     continue;
                 }
-                
+
                 if (contact.point.y < transform.position.y)
                 {
                     groundCollide = true;
@@ -190,11 +200,16 @@ namespace MIIProjekt.Player
             }
 
             isOnGround = true;
-            
+
             if (groundCollide)
             {
                 InvokeTransition(PlayerTransition.PlayerOnGround);
             }
+        }
+
+        private void PlayerDied()
+        {
+            InvokeTransition(PlayerTransition.Died);
         }
     }
 }

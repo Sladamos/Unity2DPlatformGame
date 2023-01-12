@@ -7,5 +7,6 @@ namespace MIIProjekt.Player.States
         Jumping,
         Falling,
         CoyoteJump,
+        Dead,
     }
 }
