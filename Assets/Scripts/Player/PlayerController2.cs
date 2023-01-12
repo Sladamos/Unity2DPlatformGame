@@ -26,35 +26,35 @@ namespace MIIProjekt.Player
 
         [Header("Debug")]
         [SerializeField]
-        private PlayerStateEnum playerState;
+        private PlayerStateEnum playerState = PlayerStateEnum.Falling;
 
         [Header("Moving")]
         [SerializeField]
-        private float moveSpeed;
+        private float moveSpeed = 10;
 
         [Header("Falling")]
         [SerializeField]
-        private float gravity = 50;
+        private float gravity = 70;
 
         [SerializeField]
-        private float maxFallingSpeed = 20;
+        private float maxFallingSpeed = 40;
 
         [SerializeField]
         private float coyoteTime = 1.0f;
 
         [Header("Jumping")]
         [SerializeField]
-        private float minJumpTime;
+        private float minJumpTime = 0.2f;
 
         [SerializeField]
-        private float maxJumpTime;
+        private float maxJumpTime = 0.5f;
         
         [SerializeField]
-        private float jumpForce;
+        private float jumpForce = 35;
 
         [SerializeField]
         [Range(0.0f, 1.0f)]
-        private float gravityEffectTimePercent = 0.92f;
+        private float gravityEffectTimePercent = 0.95f;
 
         public float Gravity => gravity;
         public float MaxFallingSpeed => maxFallingSpeed;
