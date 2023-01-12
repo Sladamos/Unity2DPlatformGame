@@ -42319,13 +42319,17 @@ PrefabInstance:
       value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_fontSizeBase
       value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
     - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
@@ -43214,7 +43218,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 11.25
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -106250,6 +106254,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1177780741}
     m_Modifications:
+    - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
+      propertyPath: m_text
+      value: Gnimraw labolg
+      objectReference: {fileID: 0}
     - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_fontSize
       value: 80
