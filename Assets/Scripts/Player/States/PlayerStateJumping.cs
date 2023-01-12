@@ -21,6 +21,7 @@ namespace MIIProjekt.Player.States
             timeLeft = Controller.MaxJumpTime;
             isJumpingPressed = true;
             ChangeAnimation("InAir");
+            Controller.InvokePlayerJumped();
         }
 
         public override void Process()

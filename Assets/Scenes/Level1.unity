@@ -93429,11 +93429,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9f989f15f1a7cdc86b0b0fbb711dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLife: {fileID: 0}
+  playerLife: {fileID: 2041824247}
   playerLifeDecreasedAudio: {fileID: 8300000, guid: cf2705c46be71409aad97b03b4854453, type: 3}
   playerScore: {fileID: 1754831160}
   playerScoreIncreasedAudio: {fileID: 8300000, guid: aef1ff078088d80b3bf3ba9f2c528d4c, type: 3}
-  playerController: {fileID: 0}
+  playerController: {fileID: 2041824241}
   playerJumpedAudio: {fileID: 8300000, guid: 7e3b9de43efe11d25923d7f6ea4e6558, type: 3}
 --- !u!4 &2022751070
 Transform:
@@ -93630,6 +93630,17 @@ Transform:
   m_Father: {fileID: 1316199441}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2041824241 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1818645405, guid: 3b6c97c2ade590c66b084dabe1835ee4, type: 3}
+  m_PrefabInstance: {fileID: 5282649693597878124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ce5e345495cfa728acc17476e1d57f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2041824247 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4874433284334463158, guid: 3b6c97c2ade590c66b084dabe1835ee4, type: 3}
