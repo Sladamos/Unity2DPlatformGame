@@ -59,9 +59,9 @@ namespace MIIProjekt.Enemy.Eagle
 
         private void ChaseAPlayer()
         {
-            Vector2 distance = target.position - transform.position;
-            float distanceSqr = distance.sqrMagnitude;
-            if(distance.magnitude <= attackRange)
+            Vector2 distanceVector = target.position - transform.position;
+            float distance = distanceVector.magnitude;
+            if(distance <= attackRange)
             {
                 GoInDirection(FindDirectionToTarget());
             }
