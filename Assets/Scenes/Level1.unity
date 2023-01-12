@@ -86139,6 +86139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onGroundHit: {fileID: 1884860593}
+  player: {fileID: 2041824241}
 --- !u!1001 &1145569837
 PrefabInstance:
   m_ObjectHideFlags: 0
