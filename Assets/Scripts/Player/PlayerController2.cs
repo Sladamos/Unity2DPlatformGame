@@ -35,9 +35,6 @@ namespace MIIProjekt.Player
         private float maxFallingSpeed = 20;
 
         [SerializeField]
-        private float playerColliderWidth;
-
-        [SerializeField]
         private float coyoteTime = 1.0f;
 
         [Header("Jumping")]
@@ -63,8 +60,6 @@ namespace MIIProjekt.Player
         public float GravityEffectTimePercent => gravityEffectTimePercent;
         public float MoveSpeed => moveSpeed;
         public float CoyoteTime => coyoteTime;
-
-        private List<Vector2> collisionPositions = new List<Vector2>();
 
         public Vector2 Velocity
         {
@@ -173,8 +168,6 @@ namespace MIIProjekt.Player
                 {
                     continue;
                 }
-
-                collisionPositions.Add(contact.point);
                 
                 if (contact.point.y < transform.position.y)
                 {
@@ -189,17 +182,6 @@ namespace MIIProjekt.Player
             {
                 InvokeTransition(PlayerTransition.PlayerOnGround);
             }
-        }
-
-        private void OnGizmosDraw()
-        {
-            Gizmos.DrawWireCube(transform.position, new Vector3(playerColliderWidth, 0.1f, 0.0f));
-            foreach (Vector2 vector in collisionPositions)
-            {
-                Vector3 vector3 = new Vector3(vector.x, vector.y, -20f);
-                Gizmos.DrawSphere(vector3, 1f);                
-            }
-            collisionPositions.Clear();
         }
     }
 }
