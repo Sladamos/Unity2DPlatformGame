@@ -150,7 +150,7 @@ Transform:
   m_Children:
   - {fileID: 817316300}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5282649692916866632
 SpriteRenderer:
@@ -329,7 +329,7 @@ MonoBehaviour:
   moveSpeed: 10
   gravity: 70
   maxFallingSpeed: 40
-  playerColliderWidth: 0
+  playerColliderWidth: 0.9
   minJumpTime: 0.2
   maxJumpTime: 0.5
   jumpForce: 25
