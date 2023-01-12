@@ -102,6 +102,7 @@ namespace MIIProjekt.Player
 
             DefaultTransitions = new();
             DefaultTransitions.Add(PlayerTransition.Died, PlayerStateEnum.Dead);
+            DefaultTransitions.Add(PlayerTransition.Finish, PlayerStateEnum.Finish);
 
             Transitions = new();
             Transitions.Add(PlayerStateEnum.Falling, transitionsFalling);
@@ -169,6 +170,7 @@ namespace MIIProjekt.Player
             StateMap.Add(PlayerStateEnum.Falling, new PlayerStateFalling(this));
             StateMap.Add(PlayerStateEnum.Jumping, new PlayerStateJumping(this));
             StateMap.Add(PlayerStateEnum.Dead, new PlayerStateDead(this));
+            StateMap.Add(PlayerStateEnum.Finish, new PlayerStateFinish(this));
             spriteRenderer = GetComponent<SpriteRenderer>();
             rigidbody2D = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
@@ -225,6 +227,12 @@ namespace MIIProjekt.Player
         private void PlayerDied()
         {
             InvokeTransition(PlayerTransition.Died);
+        }
+
+        private void Finish()
+        {
+            this.SendMessage("CalculateFinalScore");
+            InvokeTransition(PlayerTransition.Finish);
         }
     }
 }

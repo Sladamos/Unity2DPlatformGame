@@ -2,6 +2,7 @@
 using MIIProjekt.Collectables;
 using MIIProjekt.GameManagers;
 using MIIProjekt.Logging;
+using MIIProjekt.Player;
 using NLog;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ namespace MIIProjekt
         [SerializeField]
         private LevelManager levelManager;
 
+        [SerializeField]
+        private PlayerController2 player;
+
         private void CollectableArrived(ICollectable collectable)
         {
             Logger.Info("Collectable!");
@@ -25,6 +29,7 @@ namespace MIIProjekt
         private void AllCollectablesArrived()
         {
             Logger.Info("Zebrano wszystkie klucze");
+            player.SendMessage("Finish");
             levelManager.InvokeLevelCompleted();
         }
 

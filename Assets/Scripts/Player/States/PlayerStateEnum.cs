@@ -1,4 +1,4 @@
-namespace MIIProjekt.Player.States
+﻿namespace MIIProjekt.Player.States
 {
     public enum PlayerStateEnum
     {
@@ -8,5 +8,6 @@ namespace MIIProjekt.Player.States
         Falling,
         CoyoteJump,
         Dead,
+        Finish,
     }
 }
