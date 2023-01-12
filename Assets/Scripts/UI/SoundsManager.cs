@@ -15,21 +15,28 @@ namespace MIIProjekt.UI
         [SerializeField]
         private AudioClip levelCompletedMusic;
 
-        private float musicChangeTime = 2.0f;
+        [SerializeField]
+        private AudioClip gameOverMusic;
 
-        public void playLevelCompletedSound()
+
+        public void PlayLevelCompletedSound()
         {
-            playSound(levelCompletedMusic);
+            PlaySound(levelCompletedMusic);
         }
 
-        public void playGameSound()
+        public void PlayGameSound()
         {
-            playSound(backgroundMusic);
+            PlaySound(backgroundMusic);
         }
 
-        private void playSound(AudioClip clip)
+        public void PlayGameOverSound()
         {
-            if(levelMusic.clip != clip)
+            PlaySound(gameOverMusic);
+        }
+
+        private void PlaySound(AudioClip clip)
+        {
+            if(clip != null && levelMusic.clip != clip)
             {
                 levelMusic.clip = clip;
                 levelMusic.Play();

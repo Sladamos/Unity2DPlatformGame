@@ -26,7 +26,8 @@ namespace MIIProjekt.UI.Level.States
             {
                 Logger.Warn("Cannot set Game UI GameObject as active");
             }
-            soundsManager.playGameSound();
+
+            soundsManager.PlayGameSound();
         }
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
