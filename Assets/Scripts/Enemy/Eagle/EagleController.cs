@@ -57,13 +57,16 @@ namespace MIIProjekt.Enemy.Eagle
 
         private void ReturnToSpawn()
         {
-
             Vector2 currentPosition = transform.position;
-            if (currentPosition != spawnPoint)
+            float distanceSqr = (spawnPoint - currentPosition).sqrMagnitude;
+            Debug.Log(distanceSqr);
+            if (distanceSqr > 0.9f)
             {
-                GoInDirection(FindDirectionToSpawn());
+                Vector2 directionToSpawn = FindDirectionToSpawn();
+                GoInDirection(directionToSpawn);
             }
         }
+
         private Vector2 FindDirectionToTarget()
         {
             if (target == null)
