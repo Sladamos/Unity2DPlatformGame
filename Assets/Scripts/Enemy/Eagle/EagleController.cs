@@ -9,12 +9,78 @@ namespace MIIProjekt.Enemy.Eagle
         private SpriteRenderer spriteRenderer;
 
         private Vector2 velocity;
+        private Vector2 spawnPoint;
+        private float currentAttackCooldown = 0.0f;
 
         [SerializeField]
         private Transform target;
 
         [SerializeField]
         private float speed;
+
+        [SerializeField]
+        private float attackCooldown;
+
+        [SerializeField]
+        private float attackRange;
+
+        private void Awake()
+        {
+            animator = GetComponent<Animator>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            spawnPoint = transform.position;
+        }
+
+        private void Update()
+        {
+            if (!animator.GetBool("isDead"))
+            {
+                if(CanChaseAPlayer())
+                {
+                    ChaseAPlayer();
+                }
+                else
+                {
+                    ReturnToSpawn();
+                }
+                currentAttackCooldown = Mathf.Max(0, currentAttackCooldown - Time.deltaTime);
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(transform.position, attackRange);
+        }
+
+        private bool CanChaseAPlayer()
+        {
+            return currentAttackCooldown == 0.0f;
+        }
+
+        private void ChaseAPlayer()
+        {
+            Vector2 distanceVector = target.position - transform.position;
+            float distance = distanceVector.magnitude;
+            if(distance <= attackRange)
+            {
+                GoInDirection(FindDirectionToTarget());
+            }
+            else
+            {
+                ReturnToSpawn();
+            }
+        }
+
+        private void ReturnToSpawn()
+        {
+            Vector2 currentPosition = transform.position;
+            float distanceSqr = (spawnPoint - currentPosition).sqrMagnitude;
+            if (distanceSqr > 0.9f)
+            {
+                Vector2 directionToSpawn = FindDirectionToSpawn();
+                GoInDirection(directionToSpawn);
+            }
+        }
 
         private Vector2 FindDirectionToTarget()
         {
@@ -28,20 +94,19 @@ namespace MIIProjekt.Enemy.Eagle
             return difference.normalized;
         }
 
-        private void Awake()
+        private Vector2 FindDirectionToSpawn()
         {
-            animator = GetComponent<Animator>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            Vector2 currentPosition = transform.position;
+            Vector2 difference = spawnPoint - currentPosition;
+            difference += Vector2.up * 0.5f;
+            return difference.normalized;
         }
 
-        private void Update()
+        private void GoInDirection(Vector2 direction)
         {
-            if (!animator.GetBool("isDead"))
-            {
-                Vector2 velocity = FindDirectionToTarget() * speed;
-                spriteRenderer.flipX = velocity.x > 0.0f;
-                transform.position += (Vector3)(velocity * Time.deltaTime);
-            }
+            Vector2 velocity = direction * speed;
+            spriteRenderer.flipX = velocity.x > 0.0f;
+            transform.position += (Vector3)(velocity * Time.deltaTime);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
@@ -55,9 +120,10 @@ namespace MIIProjekt.Enemy.Eagle
             {
                 animator.SetBool("isDead", true);
             }
-            else
+            else if (currentAttackCooldown == 0.0f)
             {
                 collider.SendMessage("CollidedWithEnemy");
+                currentAttackCooldown = attackCooldown;
             }
         }
     }
