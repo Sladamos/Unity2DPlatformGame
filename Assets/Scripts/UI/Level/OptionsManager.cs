@@ -69,6 +69,7 @@ namespace MIIProjekt.UI.Level
             {
                 PlayerPrefs.SetInt(graphicsKey, value);
                 QualitySettings.SetQualityLevel(value);
+                dropdown.value = value;
             }
         }
 
@@ -148,7 +149,14 @@ namespace MIIProjekt.UI.Level
 
             if (dropdown != null)
             {
-                dropdown.value = Graphic;
+                if (!PlayerPrefs.HasKey(graphicsKey))
+                {
+                    Graphic = 3;
+                }
+                else
+                {
+                    Graphic = Graphic;
+                }
             }
             else
             {
