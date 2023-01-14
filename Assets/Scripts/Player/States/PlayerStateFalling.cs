@@ -11,7 +11,7 @@ namespace MIIProjekt.Player.States
 
         public override void EnterState()
         {
-            ChangeAnimation("InAir");
+            ChangeAnimation("Fall");
         }
 
         public override void PhysicsProcess()
