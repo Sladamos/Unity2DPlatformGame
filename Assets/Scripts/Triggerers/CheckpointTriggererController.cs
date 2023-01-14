@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using NLog;
 using UnityEngine;
 
-namespace MIIProjekt.Collectables
+namespace MIIProjekt.Triggerers
 {
     [RequireComponent(typeof(Collider2D))]
-    public class CheckpointController : MonoBehaviour
+    public class CheckpointTriggererController : MonoBehaviour
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
         private Collider2D selfCollider;

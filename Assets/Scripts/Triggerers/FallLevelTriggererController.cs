@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace MIIProjekt
+namespace MIIProjekt.Triggerers
 {
-    public class FallLevelController : MonoBehaviour
+    public class FallLevelTriggererController : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {

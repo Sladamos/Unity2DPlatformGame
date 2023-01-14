@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace MIIProjekt
+namespace MIIProjekt.Triggerers
 {
     public class TemperatureTriggerController : MonoBehaviour
     {
