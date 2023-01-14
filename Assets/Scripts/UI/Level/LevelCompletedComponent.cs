@@ -5,6 +5,7 @@ using NLog;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MIIProjekt.GameManagers;
 
 namespace MIIProjekt.UI.Level
 {
@@ -14,6 +15,9 @@ namespace MIIProjekt.UI.Level
 
         [SerializeField]
         private PlayerScore playerScore;
+
+        [SerializeField]
+        private HighScoresManager highScoreManager;
 
         [SerializeField]
         private TMP_Text scoreLabel;
@@ -41,7 +45,7 @@ namespace MIIProjekt.UI.Level
         private void OnEnable()
         {
             scoreLabel.VerifyNotNull().SetText(playerScore.Score.ToString("0000"));
-            highScoreLabel.VerifyNotNull().SetText(playerScore.Score.ToString("0000"));
+            highScoreLabel.VerifyNotNull().SetText(highScoreManager.HighScore.ToString("0000"));
         }
     }
 }
