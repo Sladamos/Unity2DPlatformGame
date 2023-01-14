@@ -7,16 +7,27 @@ namespace MIIProjekt.UI
 {
     public class DrawingManager : MonoBehaviour
     {
+        [SerializeField]
+        private TMP_Text checkpointsText;
 
         [SerializeField]
         private TMP_Text highTemperaturesText;
 
         public void DrawHighTemperaturesText()
         {
-            float fadeTime = 1.0f, duration = 3.0f;
-            StartCoroutine(FadeInText(highTemperaturesText, fadeTime));
-            StartCoroutine(DrawText(highTemperaturesText, duration, fadeTime));
-            StartCoroutine(FadeOutText(highTemperaturesText, fadeTime, fadeTime + duration));
+            DrawFadedText(highTemperaturesText, 3.0f, 1.0f);
+        }
+
+        public void DrawCheckpointsText(Vector2 trash)
+        {
+            DrawFadedText(checkpointsText, 1.5f, 0.7f);
+        }
+
+        private void DrawFadedText(TMP_Text text, float duration, float fadeTime)
+        {
+            StartCoroutine(FadeInText(text, fadeTime));
+            StartCoroutine(DrawText(text, duration, fadeTime));
+            StartCoroutine(FadeOutText(text, fadeTime, fadeTime + duration));
         }
 
         private IEnumerator DrawText(TMP_Text textToDraw, float duration, float delay)
