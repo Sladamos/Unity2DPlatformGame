@@ -28,6 +28,7 @@ namespace MIIProjekt.Player
         private new Rigidbody2D rigidbody2D;
         public Animator animator;
 
+        private bool lastFrameIsOnGround = false;
         private bool isOnGround;
 
         [Header("Debug")]
@@ -99,6 +100,7 @@ namespace MIIProjekt.Player
             Dictionary<PlayerTransition, PlayerStateEnum> transitionsCoyoteJump = new();
             transitionsCoyoteJump.Add(PlayerTransition.CoyoteTimeFinished, PlayerStateEnum.Falling);
             transitionsCoyoteJump.Add(PlayerTransition.Jumped, PlayerStateEnum.Jumping);
+            transitionsCoyoteJump.Add(PlayerTransition.PlayerOnGround, PlayerStateEnum.OnGround);
 
             DefaultTransitions = new();
             DefaultTransitions.Add(PlayerTransition.Died, PlayerStateEnum.Dead);
@@ -117,6 +119,7 @@ namespace MIIProjekt.Player
 
         public void InvokeTransition(PlayerTransition transition)
         {
+            Logger.Debug("Transition: {}", transition);
             Dictionary<PlayerTransition, PlayerStateEnum> currentStateTransitions = Transitions.GetValueOrDefault(playerState);
             if (currentStateTransitions == null)
             {
@@ -136,7 +139,6 @@ namespace MIIProjekt.Player
                 }
             }
 
-            Logger.Debug("Transition: {}, nextstate: {}", transition, nextState);
             ChangeState((PlayerStateEnum)nextState);
         }
 
@@ -171,6 +173,8 @@ namespace MIIProjekt.Player
             StateMap.Add(PlayerStateEnum.Jumping, new PlayerStateJumping(this));
             StateMap.Add(PlayerStateEnum.Dead, new PlayerStateDead(this));
             StateMap.Add(PlayerStateEnum.Finish, new PlayerStateFinish(this));
+            StateMap.Add(PlayerStateEnum.CoyoteJump, new PlayerStateCoyoteJump(this));
+            
             spriteRenderer = GetComponent<SpriteRenderer>();
             rigidbody2D = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
@@ -193,11 +197,28 @@ namespace MIIProjekt.Player
         private void FixedUpdate()
         {
             StateMap[playerState].PhysicsProcess();
+
+            if (lastFrameIsOnGround)
+            {
+                if (!isOnGround)
+                {
+                    InvokeTransition(PlayerTransition.PlayerNotOnGround);
+                }
+            }
+            else
+            {
+                if (isOnGround)
+                {
+                    InvokeTransition(PlayerTransition.PlayerOnGround);
+                }
+            }
+
+            lastFrameIsOnGround = isOnGround;
+            isOnGround = false;
         }
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            bool groundCollide = false;
             for (int i = 0; i < collision.contactCount; i++)
             {
                 ContactPoint2D contact = collision.GetContact(i);
@@ -211,16 +232,9 @@ namespace MIIProjekt.Player
 
                 if (contact.point.y < transform.position.y)
                 {
-                    groundCollide = true;
+                    isOnGround = true;
                     break;
                 }
-            }
-
-            isOnGround = true;
-
-            if (groundCollide)
-            {
-                InvokeTransition(PlayerTransition.PlayerOnGround);
             }
         }
 

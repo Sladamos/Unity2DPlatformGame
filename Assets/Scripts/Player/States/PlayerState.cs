@@ -1,9 +1,12 @@
+using NLog;
 using UnityEngine;
 
 namespace MIIProjekt.Player.States
 {
     public abstract class PlayerState
     {
+        private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
         protected PlayerController2 Controller { get; }
         protected Transform Transform { get; } 
 
@@ -32,11 +35,13 @@ namespace MIIProjekt.Player.States
 
         public void InvokeTransition(PlayerTransition transition)
         {
+            Logger.Trace("Invoke transition: {}", transition);
             Controller.InvokeTransition(transition);
         }
 
         protected void ChangeAnimation(string animation)
         {
+            Logger.Trace("Change animation: {}", animation);
             Controller.animator.SetTrigger(animation);
         }
 
