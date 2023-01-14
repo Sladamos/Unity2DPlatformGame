@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NLog;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MIIProjekt.Triggerers
 {
@@ -9,6 +10,10 @@ namespace MIIProjekt.Triggerers
     public class CheckpointTriggererController : MonoBehaviour
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
+        [SerializeField]
+        public UnityEvent<Vector2> checkpointReached;
+
         private Collider2D selfCollider;
 
         private void Awake()
@@ -22,7 +27,8 @@ namespace MIIProjekt.Triggerers
             {
                 Logger.Debug("Checkpoint reached");
                 Vector2 newSpawnPoint = transform.position;
-                collider.SendMessage("SetSpawnPoint", newSpawnPoint);
+                checkpointReached.Invoke(newSpawnPoint);
+                //collider.SendMessage("SetSpawnPoint", newSpawnPoint);
                 selfCollider.enabled = false;
             }
         }
