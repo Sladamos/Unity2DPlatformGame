@@ -42,7 +42,7 @@ namespace MIIProjekt.Player.States
         protected void ChangeAnimation(string animation)
         {
             Logger.Trace("Change animation: {}", animation);
-            Controller.animator.SetTrigger(animation);
+            Controller.Animator.SetTrigger(animation);
         }
 
         protected void AddGravityAndLimitFallingSpeed()

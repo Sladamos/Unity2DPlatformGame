@@ -26,7 +26,7 @@ namespace MIIProjekt.Player
 
         private SpriteRenderer spriteRenderer;
         private new Rigidbody2D rigidbody2D;
-        public Animator animator;
+        private Animator animator;
 
         private bool lastFrameIsOnGround = false;
         private bool isOnGround;
@@ -63,6 +63,7 @@ namespace MIIProjekt.Player
         [Range(0.0f, 1.0f)]
         private float gravityEffectTimePercent = 0.95f;
 
+        public Animator Animator => animator;
         public float Gravity => gravity;
         public float MaxFallingSpeed => maxFallingSpeed;
         public float MinJumpTime => minJumpTime;

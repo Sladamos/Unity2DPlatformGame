@@ -27,7 +27,7 @@ namespace MIIProjekt.Player.States
             AddGravityAndLimitFallingSpeed();
             MovePlayer();
 
-            Controller.animator.SetFloat("VelocityX", Mathf.Abs(Velocity.x));
+            Controller.Animator.SetFloat("VelocityX", Mathf.Abs(Velocity.x));
         }
     }
 }
