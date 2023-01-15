@@ -40,7 +40,7 @@ namespace MIIProjekt.Player
             return lives < maximumLives;
         }
 
-        private void GetHit()
+        public void GetHit()
         {
             DecreaseLives(1);
         }

@@ -21,14 +21,13 @@ namespace MIIProjekt.Triggerers
             selfCollider = GetComponent<Collider2D>();
         }
 
-        private void OnTriggerEnter2D(Collider2D collider)
+        private void SetCheckpoint(Collider2D collider)
         {
             if (collider.CompareTag("Player"))
             {
                 Logger.Debug("Checkpoint reached");
                 Vector2 newSpawnPoint = transform.position;
                 checkpointReached.Invoke(newSpawnPoint);
-                //collider.SendMessage("SetSpawnPoint", newSpawnPoint);
                 selfCollider.enabled = false;
             }
         }
