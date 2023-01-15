@@ -5,17 +5,13 @@ namespace MIIProjekt.Parallax
 {
     public class ParallaxItem : MonoBehaviour
     {
-        private const float InvalidDepth = Mathf.Infinity;
-
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
         [SerializeField]
-        private float customDepth = InvalidDepth;
+        private float depth;
 
         [SerializeField]
         private bool isActive = true;
-
-        private float Depth => customDepth == InvalidDepth ? transform.position.z : customDepth;
 
         public void UpdatePosition(Vector2 delta)
         {
@@ -24,7 +20,7 @@ namespace MIIProjekt.Parallax
                 return;
             }
 
-            transform.position -= (Vector3)(delta * Depth);
+            transform.position -= (Vector3)(delta * depth);
             Logger.Trace("{} UpdatePosition: {}", name, delta);
         }
     }
