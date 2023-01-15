@@ -35,7 +35,10 @@ namespace MIIProjekt.GameManagers
         private Color maxTemperatureColor = Color.red;
 
         [SerializeField]
-        private float lightTemperatureChangeDuration = 0.2f;
+        private float lightTemperatureChangeDuration = 0.5f;
+
+        [SerializeField]
+        private float temperatureMusicThreshold = 0.45f;
 
         public void SetTemperature(float newTemperature)
         {
@@ -50,6 +53,11 @@ namespace MIIProjekt.GameManagers
             globalLightController.SetLightGradually(lightColor, lightTemperatureChangeDuration);
 
             currentTemperature = newTemperature;
+
+            if (newTemperature >= temperatureMusicThreshold)
+            {
+                soundsManager.PlayHighTemperatureSong();
+            }
         }
 
         private void OnValidate()
