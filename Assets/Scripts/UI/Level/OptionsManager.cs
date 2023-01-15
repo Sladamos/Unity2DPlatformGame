@@ -5,11 +5,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 namespace MIIProjekt.UI.Level
 {
     public class OptionsManager : MonoBehaviour
     {
+        private const float MinVolume = -80.0f;
+        private const float MaxVolume = 0.0f;
+
+        private const string masterVolumeKey = "masterVolumeOpt";
+        private const string musicKey = "backgroundMusicOpt";
+        private const string effectsKey = "effectsVolumeOpt";
+        private const string graphicsKey = "graphicsOpt";
+
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
         public event Action<float> effectsVolumeUpdate;
@@ -32,10 +41,8 @@ namespace MIIProjekt.UI.Level
         [SerializeField]
         private AudioSource music;
 
-        private string masterVolumeKey = "masterVolumeOpt";
-        private string musicKey = "backgroundMusicOpt";
-        private string effectsKey = "effectsVolumeOpt";
-        private string graphicsKey = "graphicsOpt";
+        [SerializeField]
+        private AudioMixer audioMixer;
 
 
         public float MasterVolume
@@ -62,7 +69,8 @@ namespace MIIProjekt.UI.Level
             {
                 float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
                 PlayerPrefs.SetFloat(effectsKey, newValue);
-                effectsVolumeUpdate?.Invoke(newValue);
+                effectsVolumeUpdate.Invoke(newValue);
+                audioMixer.SetFloat("Volume", Mathf.Lerp(MinVolume, MaxVolume, newValue));
             }
         }
 
