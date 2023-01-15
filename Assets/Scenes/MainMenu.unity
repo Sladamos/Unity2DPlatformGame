@@ -395,8 +395,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
+  m_sharedMaterial: {fileID: 3891044365217961316, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -892,8 +892,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
+  m_sharedMaterial: {fileID: 3891044365217961316, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1163,8 +1163,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
+  m_sharedMaterial: {fileID: 3891044365217961316, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1623,9 +1623,17 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
+    - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_fontSizeBase
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3891044365217961316, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
     - target: {fileID: 5138197224275469504, guid: 15c14489631f364a496b6228db12991b, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
