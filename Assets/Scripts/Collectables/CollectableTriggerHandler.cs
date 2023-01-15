@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace MIIProjekt.Collectables
 {
-    [RequireComponent(typeof(Collider2D))]
     public class CollectableTriggerHandler : MonoBehaviour
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
@@ -15,49 +14,12 @@ namespace MIIProjekt.Collectables
         private bool isActive = true;
 
         [SerializeField]
-        private Transform collectableTriggerTargetTransform;
-
-        [SerializeField]
         private List<string> requiredCollectableNames;
 
         [SerializeField]
-        string commonCollectableName;
+        private string commonCollectableName;
 
-        private bool doesCollectorContainAllRequiredCollectables(ICollector collector)
-        {
-            if (!String.IsNullOrEmpty(commonCollectableName))
-            {
-                return true;
-            }
-
-            foreach (string requiredCollectableName in requiredCollectableNames)
-            {
-                if (!collector.Contains(requiredCollectableName))
-                {
-                    return false;
-                }
-            }
-            
-            return true;
-        }
-
-        private void Awake()
-        {
-            if (collectableTriggerTargetTransform == null)
-            {
-                Logger.Error("CollectableTriggerTargetTransform is null!");
-                return;
-            }
-
-            collectableTriggerTarget = collectableTriggerTargetTransform.GetComponent<ICollectableTriggerTarget>();
-
-            if (collectableTriggerTarget == null)
-            {
-                Logger.Error("CollectableTriggerTarget is null!");
-            }
-        }
-
-        private void OnTriggerEnter2D(Collider2D collider)
+        public void OnTrigger(Collider2D collider)
         {
             if (!isActive)
             {
@@ -99,6 +61,34 @@ namespace MIIProjekt.Collectables
             isActive = false;
             
             collectableTriggerTarget.InvokeCollectableTarget(collectables);
+        }
+
+        private bool doesCollectorContainAllRequiredCollectables(ICollector collector)
+        {
+            if (!String.IsNullOrEmpty(commonCollectableName))
+            {
+                return true;
+            }
+
+            foreach (string requiredCollectableName in requiredCollectableNames)
+            {
+                if (!collector.Contains(requiredCollectableName))
+                {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+
+        private void Awake()
+        {
+            collectableTriggerTarget = GetComponent<ICollectableTriggerTarget>();
+
+            if (collectableTriggerTarget == null)
+            {
+                Logger.Error("CollectableTriggerTarget is null!");
+            }
         }
     }
 }
