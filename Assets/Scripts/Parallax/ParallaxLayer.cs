@@ -23,10 +23,5 @@ namespace MIIProjekt.Parallax
             transform.position -= (Vector3)(delta * parallaxEffectMultiplier);
             Logger.Trace("{} UpdatePosition: {}", name, delta);
         }
-
-        private void Update()
-        {
-            transform.position += new Vector3(Mathf.Sin(Time.time), Mathf.Cos(Time.time), 0.0f) * Time.deltaTime;
-        }
     }
 }
