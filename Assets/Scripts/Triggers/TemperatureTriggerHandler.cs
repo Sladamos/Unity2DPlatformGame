@@ -39,7 +39,7 @@ namespace MIIProjekt
 
             currentTemperature = temperature;
 
-            temperatureController.SetTemperature(temperature);  
+            temperatureController.Temperature = temperature;  
         }
     }
 }

@@ -40,29 +40,37 @@ namespace MIIProjekt.GameManagers
         [SerializeField]
         private float temperatureMusicThreshold = 0.45f;
 
-        public void SetTemperature(float newTemperature)
+        public float Temperature
         {
-            if (Mathf.Approximately(currentTemperature, newTemperature))
+            get
             {
-                return;
+                return currentTemperature;
             }
-            
-            Logger.Debug("Setting temperature to {}", newTemperature);
-
-            Color lightColor = getTemperatureColor(newTemperature);
-            globalLightController.SetLightGradually(lightColor, lightTemperatureChangeDuration);
-
-            currentTemperature = newTemperature;
-
-            if (newTemperature >= temperatureMusicThreshold)
+            set
             {
-                soundsManager.PlayHighTemperatureSong();
+                value = Mathf.Clamp01(value);
+                Logger.Debug("Setting temperature to {}", value);
+
+                Color lightColor = getTemperatureColor(value);
+                globalLightController.SetLightGradually(lightColor, lightTemperatureChangeDuration);
+
+                currentTemperature = value;
+
+                if (value >= temperatureMusicThreshold)
+                {
+                    soundsManager.PlayHighTemperatureSong();
+                }
             }
         }
 
         private void OnValidate()
         {
-            SetTemperature(overrideTemperature);
+            if (Mathf.Approximately(Temperature, overrideTemperature))
+            {
+                return;
+            }
+
+            Temperature = overrideTemperature;
         }
 
         private Color getTemperatureColor(float temperature)
