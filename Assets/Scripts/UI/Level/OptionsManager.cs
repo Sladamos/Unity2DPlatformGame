@@ -2,6 +2,7 @@
 using NLog;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace MIIProjekt.UI.Level
@@ -29,7 +30,7 @@ namespace MIIProjekt.UI.Level
         private AudioSource music;
 
         [SerializeField]
-        private AudioSource effects;
+        private UnityEvent<float> effectsVolumeUpdate;
 
         private string masterVolumeKey = "masterVolumeOpt";
         private string musicKey = "backgroundMusicOpt";
@@ -61,10 +62,7 @@ namespace MIIProjekt.UI.Level
             {
                 float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
                 PlayerPrefs.SetFloat(effectsKey, newValue);
-                if (effects != null)
-                {
-                    effects.volume = newValue;
-                }
+                effectsVolumeUpdate.Invoke(newValue);
             }
         }
 
@@ -121,14 +119,6 @@ namespace MIIProjekt.UI.Level
         public void OnValueChangedEffectsVolume(float value)
         {
             EffectsVolume = value;
-            if (effects != null)
-            {
-                Logger.Debug("Effects volume set new value: {}", value);
-            }
-            else
-            {
-                Logger.Debug("Effects is not set!");
-            }
         }
 
         public void OnValueChangedGraphics(int value)
@@ -178,7 +168,7 @@ namespace MIIProjekt.UI.Level
             }
             else
             {
-                Logger.Warn("It's problem with slider or backgroudnMusic component");
+                Logger.Warn("It's problem with slider music");
             }
 
             if (!PlayerPrefs.HasKey(effectsKey))
@@ -190,10 +180,11 @@ namespace MIIProjekt.UI.Level
             if (sliderEffects != null)
             {
                 sliderEffects.value = EffectsVolume;
+                Logger.Warn(EffectsVolume);
             }
             else
             {
-                Logger.Warn("It's problem with slider or backgroudnMusic component");
+                Logger.Warn("It's problem with slider effects");
             }
 
 

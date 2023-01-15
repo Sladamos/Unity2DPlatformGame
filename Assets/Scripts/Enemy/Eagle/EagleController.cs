@@ -1,16 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace MIIProjekt.Enemy.Eagle
 {
     [RequireComponent(typeof(Animator))]
     public class EagleController : MonoBehaviour
     {
+        [SerializeField]
+        private UnityEvent eagleChaseStart;
+
+        [SerializeField]
+        private UnityEvent eagleChaseStop;
+
+
         private Animator animator;
         private SpriteRenderer spriteRenderer;
 
         private Vector2 velocity;
         private Vector2 spawnPoint;
         private float currentAttackCooldown = 0.0f;
+        private bool isOnChase = false;
 
         [SerializeField]
         private Transform target;
@@ -63,6 +72,7 @@ namespace MIIProjekt.Enemy.Eagle
             float distance = distanceVector.magnitude;
             if(distance <= attackRange)
             {
+                InformAboutChaseStartIfPossible();
                 GoInDirection(FindDirectionToTarget());
             }
             else
@@ -75,8 +85,10 @@ namespace MIIProjekt.Enemy.Eagle
         {
             Vector2 currentPosition = transform.position;
             float distanceSqr = (spawnPoint - currentPosition).sqrMagnitude;
+            isOnChase = false;
             if (distanceSqr > 0.9f)
             {
+                InformAboutChaseStopIfPossible();
                 Vector2 directionToSpawn = FindDirectionToSpawn();
                 GoInDirection(directionToSpawn);
             }
@@ -118,12 +130,33 @@ namespace MIIProjekt.Enemy.Eagle
 
             if (collider.transform.position.y > transform.position.y)
             {
+                InformAboutChaseStopIfPossible();
+                isOnChase = false;
                 animator.SetBool("isDead", true);
             }
             else if (currentAttackCooldown == 0.0f)
             {
+                InformAboutChaseStopIfPossible();
+                isOnChase = false;
                 collider.SendMessage("CollidedWithEnemy");
                 currentAttackCooldown = attackCooldown;
+            }
+        }
+
+        private void InformAboutChaseStopIfPossible()
+        {
+            if (isOnChase)
+            {
+                eagleChaseStop.Invoke();
+            }
+        }
+
+        private void InformAboutChaseStartIfPossible()
+        {
+            if (!isOnChase)
+            {
+                eagleChaseStart.Invoke();
+                isOnChase = true;
             }
         }
     }
