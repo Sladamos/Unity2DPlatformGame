@@ -171,23 +171,6 @@ namespace MIIProjekt.UI.Level
                 Logger.Warn("It's problem with slider music");
             }
 
-            if (!PlayerPrefs.HasKey(effectsKey))
-            {
-                EffectsVolume = 0.5f;
-            }
-            EffectsVolume = EffectsVolume;
-
-            if (sliderEffects != null)
-            {
-                sliderEffects.value = EffectsVolume;
-                Logger.Warn(EffectsVolume);
-            }
-            else
-            {
-                Logger.Warn("It's problem with slider effects");
-            }
-
-
             if (dropdown != null)
             {
                 if (!PlayerPrefs.HasKey(graphicsKey))
@@ -202,6 +185,25 @@ namespace MIIProjekt.UI.Level
             else
             {
                 Logger.Warn("Dropdown component is not set on the OptionsManager instance. The default value will not be applied to the slider.");
+            }
+        }
+
+        private void Start()
+        {
+            if (!PlayerPrefs.HasKey(effectsKey))
+            {
+                EffectsVolume = 0.5f;
+            }
+
+            EffectsVolume = EffectsVolume;
+
+            if (sliderEffects != null)
+            {
+                sliderEffects.value = EffectsVolume;
+            }
+            else
+            {
+                Logger.Warn("It's problem with slider effects");
             }
         }
     }
