@@ -13,6 +13,9 @@ namespace MIIProjekt.Sounds
         [SerializeField]
         private OptionsManager optionsManager;
 
+        [SerializeField]
+        private AudioClip eagleDeath;
+
         public void OnVolumeChanged(float newValue)
         {
             audioSource.volume = newValue;
@@ -37,6 +40,11 @@ namespace MIIProjekt.Sounds
         public void OnEagleStartChase()
         {
             audioSource.Play();
+        }
+        public void OnEagleDead()
+        {
+            audioSource.Stop();
+            audioSource.PlayOneShot(eagleDeath);
         }
     }
 

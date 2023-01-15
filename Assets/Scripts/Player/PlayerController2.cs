@@ -19,6 +19,7 @@ namespace MIIProjekt.Player
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
         public event Action PlayerJumped;
+        public event Action PlayerDashed;
         public event Action<Vector2> PlayerLanded;
 
         private Dictionary<PlayerStateEnum, Dictionary<PlayerTransition, PlayerStateEnum>> Transitions { get; }
@@ -179,6 +180,11 @@ namespace MIIProjekt.Player
         public void InvokePlayerJumped()
         {
             PlayerJumped?.Invoke();
+        }
+
+        public void InvokePlayerDashed()
+        {
+            PlayerDashed?.Invoke();
         }
 
         public void InvokePlayerLanded()
