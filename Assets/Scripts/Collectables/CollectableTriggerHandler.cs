@@ -7,7 +7,7 @@ using UnityEngine;
 namespace MIIProjekt.Collectables
 {
     [RequireComponent(typeof(Collider2D))]
-    public class CollectableTrigger : MonoBehaviour
+    public class CollectableTriggerHandler : MonoBehaviour
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
