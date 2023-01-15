@@ -4,19 +4,13 @@ using UnityEngine.Events;
 namespace MIIProjekt.Enemy.Eagle
 {
     [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(AudioSource))]
     public class EagleController : MonoBehaviour
     {
-        [SerializeField]
-        private UnityEvent eagleChaseStart;
-
-        [SerializeField]
-        private UnityEvent eagleChaseStop;
-
-        [SerializeField]
-        private UnityEvent eagleDead;
 
         private Animator animator;
         private SpriteRenderer spriteRenderer;
+        private AudioSource audioSource;
 
         private Vector2 velocity;
         private Vector2 spawnPoint;
@@ -34,11 +28,22 @@ namespace MIIProjekt.Enemy.Eagle
 
         [SerializeField]
         private float attackRange;
+        
+        [SerializeField]
+        private UnityEvent eagleChaseStart;
+
+        [SerializeField]
+        private UnityEvent eagleChaseStop;
+
+        [SerializeField]
+        private UnityEvent eagleDead;
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            audioSource = GetComponent<AudioSource>();
+
             spawnPoint = transform.position;
         }
 
@@ -132,6 +137,7 @@ namespace MIIProjekt.Enemy.Eagle
             if (collider.transform.position.y > transform.position.y)
             {
                 eagleDead?.Invoke();
+                audioSource.Stop();
                 animator.SetBool("isDead", true);
             }
             else if (currentAttackCooldown == 0.0f)
@@ -147,6 +153,7 @@ namespace MIIProjekt.Enemy.Eagle
             if (isOnChase)
             {
                 eagleChaseStop?.Invoke();
+                audioSource.Stop();
                 isOnChase = false;
             }
         }
@@ -156,6 +163,7 @@ namespace MIIProjekt.Enemy.Eagle
             if (!isOnChase)
             {
                 eagleChaseStart?.Invoke();
+                audioSource.Play();
                 isOnChase = true;
             }
         }
