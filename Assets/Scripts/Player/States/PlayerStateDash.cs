@@ -18,7 +18,7 @@ namespace MIIProjekt.Player.States
 
         public override void EnterState()
         {
-            Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             dashDirection = DirectionFromInput(input);
 
             Logger.Debug("Dashed! Input: {}, dashDirection: {}", input, dashDirection);
