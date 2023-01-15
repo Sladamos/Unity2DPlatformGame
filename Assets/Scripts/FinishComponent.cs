@@ -20,10 +20,21 @@ namespace MIIProjekt
         [SerializeField]
         private PlayerController2 player;
 
+        [SerializeField]
+        private TemperatureController temperatureController;
+
+        [SerializeField]
+        private float temperatureReductionOnCoin = 0.2f;
+
         private void CollectableArrived(ICollectable collectable)
         {
             Logger.Info("Collectable!");
             EndGameCollectableCollected?.Invoke(collectable);
+
+            if (temperatureController != null)
+            {
+                temperatureController.Temperature -= temperatureReductionOnCoin;
+            }
         }
 
         private void AllCollectablesArrived()
@@ -36,6 +47,11 @@ namespace MIIProjekt
         private void Awake()
         {
             LoggingManager.InitializeLogging();
+
+            if (temperatureController == null)
+            {
+                Logger.Warn("TemperateController instance on object {} is null", name);
+            }
         }
     }
 }

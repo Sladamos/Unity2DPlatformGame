@@ -1,6 +1,4 @@
-﻿using System;
-using MIIProjekt.GameManagers;
-using NLog;
+﻿using NLog;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -12,43 +10,25 @@ namespace MIIProjekt
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
         private Light2D controlledLight;
-        private Color colorDelta;
-        private float modificatorTimer = 0;
+        
+        private float timeLastLightSet = Mathf.Infinity;
+        private float changeDuration = 1.0f;
 
-        [SerializeField]
-        private Color lowTemperatureColor;
+        private Color colorLast = Color.white;
+        private Color colorTarget = Color.white;
 
-        [SerializeField]
-        private float lowTemperatureChangeTime;
+        private float TimeSinceLastLightSet => Time.time - timeLastLightSet;
 
-        [SerializeField]
-        private Color mediumTemperatureColor;
-
-        [SerializeField]
-        private float mediumTemperatureChangeTime;
-
-        [SerializeField]
-        private Color highTemperatureColor;
-
-        [SerializeField]
-        private float highTemperatureChangeTime;
-
-        public void OnLowTemperature()
+        public void SetLightGradually(Color color, float duration)
         {
-            ChangeGlobalLightColorGradually(lowTemperatureColor, lowTemperatureChangeTime);
-            Logger.Debug("Niska temperatura");
-        }
+            if (controlledLight != null) 
+            {
+                colorLast = controlledLight.color;
+            }
 
-        public void OnMediumTemperature()
-        {
-            ChangeGlobalLightColorGradually(mediumTemperatureColor, mediumTemperatureChangeTime);
-            Logger.Debug("Srednia temperatura");
-        }
-
-        public void OnHighTemperature()
-        {
-            ChangeGlobalLightColorGradually(highTemperatureColor, highTemperatureChangeTime);
-            Logger.Debug("Wysoka temperatura!");
+            colorTarget = color;
+            changeDuration = duration;
+            timeLastLightSet = Time.time;
         }
 
         private void Awake()
@@ -58,22 +38,9 @@ namespace MIIProjekt
 
         private void Update()
         {
-            if(ItIsNecessaryToChangeTheColor())
-            {
-                controlledLight.color += colorDelta * Time.deltaTime;
-                modificatorTimer = Math.Max(0, modificatorTimer - Time.deltaTime);
-            }
-        }
-
-        private bool ItIsNecessaryToChangeTheColor()
-        {
-            return modificatorTimer > 0;
-        }
-
-        private void ChangeGlobalLightColorGradually(Color color, float time)
-        {
-            colorDelta = (color - controlledLight.color) / time;
-            modificatorTimer = time;
+            float percent = Mathf.Clamp01((TimeSinceLastLightSet / changeDuration));
+            Color newColor = Color.Lerp(colorLast, colorTarget, percent);
+            controlledLight.color = newColor;
         }
     }
 }
