@@ -41,8 +41,6 @@ namespace MIIProjekt
             float percent = Mathf.Clamp01((TimeSinceLastLightSet / changeDuration));
             Color newColor = Color.Lerp(colorLast, colorTarget, percent);
             controlledLight.color = newColor;
-
-            Logger.Debug("Set color to {}", newColor);
         }
     }
 }
