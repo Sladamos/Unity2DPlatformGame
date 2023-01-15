@@ -166,47 +166,36 @@ namespace MIIProjekt.UI.Level
                 Logger.Warn("Slider component is not set on the OptionsManager instance. The default value will not be applied to the slider.");
             }
 
-            if(music != null)
+            if (!PlayerPrefs.HasKey(musicKey))
             {
-                if (!PlayerPrefs.HasKey(musicKey))
-                {
-                    MusicVolume = 0.5f;
-                }
-                else
-                {
-                    MusicVolume = MusicVolume;
-                }
+                MusicVolume = 0.5f;
+            }
+            MusicVolume = MusicVolume;
 
-                if (sliderMusic != null)
-                {
-                    sliderMusic.value = MusicVolume;
-                }
-                else
-                {
-                    Logger.Warn("It's problem with slider or backgroudnMusic component");
-                }
+            if (sliderMusic != null)
+            {
+                sliderMusic.value = MusicVolume;
+            }
+            else
+            {
+                Logger.Warn("It's problem with slider or backgroudnMusic component");
             }
 
-            if (effects != null)
+            if (!PlayerPrefs.HasKey(effectsKey))
             {
-                if (!PlayerPrefs.HasKey(effectsKey))
-                {
-                    EffectsVolume = 0.5f;
-                }
-                else
-                {
-                    EffectsVolume = EffectsVolume;
-                }
-
-                if (sliderEffects != null)
-                {
-                    sliderEffects.value = EffectsVolume;
-                }
-                else
-                {
-                    Logger.Warn("It's problem with slider or backgroudnMusic component");
-                }
+                EffectsVolume = 0.5f;
             }
+            EffectsVolume = EffectsVolume;
+
+            if (sliderEffects != null)
+            {
+                sliderEffects.value = EffectsVolume;
+            }
+            else
+            {
+                Logger.Warn("It's problem with slider or backgroudnMusic component");
+            }
+
 
             if (dropdown != null)
             {

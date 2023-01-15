@@ -9,15 +9,19 @@ namespace MIIProjekt.UI.MainMenu
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
+        [SerializeField]
+        private GameObject options;
+
         public void OnClickedButtonLevel1()
         {
             Logger.Debug("On clicked level 1");
             SceneManager.LoadScene("Level1");
         }
 
-        public void OnClickedButtonLevel2()
+        public void OnClickedButtonOptions()
         {
-            Logger.Debug("On clicked level 2");
+            this.gameObject.SetActive(false);
+            options.SetActive(true);
         }
 
         public void OnClickedButtonExitGame()
@@ -29,6 +33,9 @@ namespace MIIProjekt.UI.MainMenu
         private void Awake()
         {
             LoggingManager.InitializeLogging();
+            //Initialize awake
+            options.SetActive(true);
+            options.SetActive(false);
         }
     }
 }
