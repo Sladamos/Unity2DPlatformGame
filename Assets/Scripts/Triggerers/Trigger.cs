@@ -12,10 +12,10 @@ namespace MIIProjekt.Triggerers
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
         [SerializeField]
-        private UnityEvent triggerFunction;
+        private UnityEvent<Collider2D> triggerFunction;
 
         [SerializeField]
-        private UnityEvent triggerExitFunction;
+        private UnityEvent<Collider2D> triggerExitFunction;
 
         private void Awake()
         {
@@ -27,7 +27,7 @@ namespace MIIProjekt.Triggerers
             if (collision.CompareTag("Player"))
             {
                 Logger.Debug("Player entered trigger {}", name);
-                triggerFunction?.Invoke();
+                triggerFunction?.Invoke(collision);
             }
         }
 
@@ -36,7 +36,7 @@ namespace MIIProjekt.Triggerers
             if (collision.CompareTag("Player"))
             {
                 Logger.Debug("Player exited trigger {}", name);
-                triggerExitFunction?.Invoke();
+                triggerExitFunction?.Invoke(collision);
             }
         }
     }
