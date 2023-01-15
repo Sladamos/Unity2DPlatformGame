@@ -61,7 +61,10 @@ namespace MIIProjekt.UI.Level
             {
                 float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
                 PlayerPrefs.SetFloat(effectsKey, newValue);
-                effects.volume = newValue;
+                if (effects != null)
+                {
+                    effects.volume = newValue;
+                }
             }
         }
 
@@ -75,7 +78,10 @@ namespace MIIProjekt.UI.Level
             {
                 float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
                 PlayerPrefs.SetFloat(musicKey, newValue);
-                music.volume = newValue;
+                if (music != null)
+                {
+                    music.volume = newValue;
+                }
             }
         }
 
@@ -101,10 +107,10 @@ namespace MIIProjekt.UI.Level
 
         public void OnValueChangedMusicVolume(float value)
         {
+            MusicVolume = value;
             if (music != null)
             {
                 Logger.Debug("Background music volume set new value: {}", value);
-                MusicVolume = value;
             }
             else
             {
@@ -114,10 +120,10 @@ namespace MIIProjekt.UI.Level
 
         public void OnValueChangedEffectsVolume(float value)
         {
+            EffectsVolume = value;
             if (effects != null)
             {
                 Logger.Debug("Effects volume set new value: {}", value);
-                EffectsVolume = value;
             }
             else
             {
