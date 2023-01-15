@@ -46,7 +46,11 @@ namespace MIIProjekt.Player.States
 
         public override void PhysicsProcess()
         {
-            Velocity = dashDirection * Controller.InitialDashSpeed;
+            float progressPercent = 1.0f - (timeLeft / Controller.DashTime);
+            float velocityPercent = Controller.DashVelocityAnimationCurve.Evaluate(progressPercent);
+            float velocity = velocityPercent * Controller.DashVelocityMultiplier;
+            Logger.Trace("Dash info: progressPercent = {}, velocityPercent = {}, velocity = {}", progressPercent, velocityPercent, velocity);
+            Velocity = dashDirection * velocity;
         }
 
         private Vector2 DirectionFromInput(Vector2 input)

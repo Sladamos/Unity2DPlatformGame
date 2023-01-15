@@ -65,10 +65,13 @@ namespace MIIProjekt.Player
 
         [Header("Dash")]
         [SerializeField]
-        private float initialDashSpeed = 10f;
+        private float dashTime = 0.5f;
 
         [SerializeField]
-        private float dashTime = 0.5f;
+        private float dashVelocityMultiplier = 30.0f;
+
+        [SerializeField]
+        private AnimationCurve dashVelocityAnimationCurve;
 
         public Animator Animator => animator;
         public float Gravity => gravity;
@@ -80,9 +83,10 @@ namespace MIIProjekt.Player
         public float GravityEffectTimePercent => gravityEffectTimePercent;
         public float MoveSpeed => moveSpeed;
         public float CoyoteTime => coyoteTime;
-        public float InitialDashSpeed => initialDashSpeed;
         public float DashTime => dashTime;
         public bool IsFacingRight => !spriteRenderer.flipX;
+        public float DashVelocityMultiplier => dashVelocityMultiplier;
+        public AnimationCurve DashVelocityAnimationCurve => dashVelocityAnimationCurve;
 
         public Vector2 Velocity
         {
