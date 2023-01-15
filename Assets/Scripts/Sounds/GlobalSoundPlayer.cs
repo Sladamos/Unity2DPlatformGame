@@ -30,6 +30,9 @@ namespace MIIProjekt.Sounds
         [SerializeField]
         private AudioClip playerJumpedAudio;
 
+        [SerializeField]
+        private AudioClip playerDashedAudio;
+
         public void OnVolumeChanged(float newValue)
         {
             audioSource.volume = newValue;
@@ -52,6 +55,7 @@ namespace MIIProjekt.Sounds
             if (playerController != null)
             {
                 playerController.PlayerJumped += OnPlayerJumped;
+                playerController.PlayerDashed += OnPlayerDashed;
             }
 
             optionsManager.effectsVolumeUpdate += OnVolumeChanged;
@@ -83,6 +87,11 @@ namespace MIIProjekt.Sounds
             TryPlaySoundPlayerJumped();
         }
 
+        private void OnPlayerDashed()
+        {
+            TryPlaySoundPlayerDashed();
+        }
+
         private void TryPlaySoundLifeDecreased()
         {
             if (playerLifeDecreasedAudio != null)
@@ -104,6 +113,14 @@ namespace MIIProjekt.Sounds
             if (playerJumpedAudio != null)
             {
                 audioSource?.PlayOneShot(playerJumpedAudio);
+            }
+        }
+
+        private void TryPlaySoundPlayerDashed()
+        {
+            if (playerDashedAudio != null)
+            {
+                audioSource?.PlayOneShot(playerDashedAudio);
             }
         }
     }
