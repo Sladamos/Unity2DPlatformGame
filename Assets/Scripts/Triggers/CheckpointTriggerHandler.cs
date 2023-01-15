@@ -1,7 +1,7 @@
 ﻿using NLog;
 using UnityEngine;
 
-namespace MIIProjekt.Triggerers
+namespace MIIProjekt.Triggers
 {
     [RequireComponent(typeof(Collider2D))]
     public class CheckpointTriggerHandler : MonoBehaviour

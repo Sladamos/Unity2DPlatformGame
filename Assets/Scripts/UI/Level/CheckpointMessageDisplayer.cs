@@ -8,7 +8,7 @@ namespace MIIProjekt.UI.Level
     {
         private TMP_Text text;
 
-        private float timeDisplayActivated;
+        private float timeDisplayActivated = Mathf.Infinity;
 
         [SerializeField]
         private float animationDuration = 1.0f;

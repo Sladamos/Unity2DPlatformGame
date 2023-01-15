@@ -5,7 +5,7 @@ using NLog;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace MIIProjekt.Triggerers
+namespace MIIProjekt.Triggers
 {
     public class Trigger : MonoBehaviour
     {

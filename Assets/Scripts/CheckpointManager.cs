@@ -35,6 +35,8 @@ namespace MIIProjekt
             }
 
             playerRespawn?.SetSpawnPoint(checkpointPosition);
+
+            VisitedCheckpoints.Add(checkpointName);
         }
 
         private void Awake()
