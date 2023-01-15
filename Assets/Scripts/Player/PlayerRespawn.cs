@@ -16,7 +16,7 @@ public class PlayerRespawn : MonoBehaviour
         transform.position = spawnPoint;
     }
 
-    private void SetSpawnPoint(Vector2 newSpawnPoint)
+    public void SetSpawnPoint(Vector2 newSpawnPoint)
     {
         spawnPoint = newSpawnPoint;
     }
