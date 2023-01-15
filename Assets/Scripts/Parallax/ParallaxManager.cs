@@ -1,18 +1,57 @@
-using System.Collections;
 using System.Collections.Generic;
+using NLog;
 using UnityEngine;
 
-public class ParallaxManager : MonoBehaviour
+namespace MIIProjekt.Parallax
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ParallaxManager : MonoBehaviour
     {
-        
-    }
+        private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private List<ParallaxItem> ParallaxItems { get; } = new();
+
+        private Vector2 lastTransformPosition;
+
+        [SerializeField]
+        private Transform cameraTransform;
+
+        private void Awake()
+        {
+            if (cameraTransform == null)
+            {
+                Logger.Warn("Camera transform is not set on Parallax instance! GameObject name: {}", name);
+            }
+
+            lastTransformPosition = cameraTransform.position;
+        }
+
+        private void Start()
+        {
+            foreach (var child in transform)
+            {
+                if (child is Transform childTransform)
+                {
+                    var parallaxItem = childTransform.GetComponent<ParallaxItem>();
+                    if (parallaxItem != null)
+                    {
+                        ParallaxItems.Add(parallaxItem);
+                    }
+                }
+            }
+
+            Logger.Debug("Found {} ParallaxItems", ParallaxItems.Count);
+        }
+
+        private void Update()
+        {
+            Vector2 currentPosition = cameraTransform.position;
+            Vector2 difference = lastTransformPosition - currentPosition;
+            foreach (var item in ParallaxItems)
+            {
+                item.UpdatePosition(difference);
+            }
+
+            lastTransformPosition = currentPosition;
+        }
     }
 }

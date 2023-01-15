@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
+using NLog;
 using UnityEngine;
 
-public class ParallaxItem : MonoBehaviour
+namespace MIIProjekt.Parallax
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ParallaxItem : MonoBehaviour
     {
-        
-    }
+        private const float InvalidDepth = Mathf.Infinity;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
+        [SerializeField]
+        private float customDepth = InvalidDepth;
+
+        [SerializeField]
+        private bool isActive = true;
+
+        private float Depth => customDepth == InvalidDepth ? transform.position.z : customDepth;
+
+        public void UpdatePosition(Vector2 delta)
+        {
+            if (!isActive)
+            {
+                return;
+            }
+
+            transform.position -= (Vector3)(delta * Depth);
+            Logger.Trace("{} UpdatePosition: {}", name, delta);
+        }
     }
 }
