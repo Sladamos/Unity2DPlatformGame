@@ -63,6 +63,13 @@ namespace MIIProjekt.Player
         [Range(0.0f, 1.0f)]
         private float gravityEffectTimePercent = 0.95f;
 
+        [Header("Dash")]
+        [SerializeField]
+        private float initialDashSpeed = 10f;
+
+        [SerializeField]
+        private float dashTime = 0.5f;
+
         public Animator Animator => animator;
         public float Gravity => gravity;
         public float MaxFallingSpeed => maxFallingSpeed;
@@ -73,6 +80,9 @@ namespace MIIProjekt.Player
         public float GravityEffectTimePercent => gravityEffectTimePercent;
         public float MoveSpeed => moveSpeed;
         public float CoyoteTime => coyoteTime;
+        public float InitialDashSpeed => initialDashSpeed;
+        public float DashTime => dashTime;
+        public bool IsFacingRight => !spriteRenderer.flipX;
 
         public Vector2 Velocity
         {
@@ -90,18 +100,31 @@ namespace MIIProjekt.Player
         {
             Dictionary<PlayerTransition, PlayerStateEnum> transitionsFalling = new();
             transitionsFalling.Add(PlayerTransition.PlayerOnGround, PlayerStateEnum.OnGround);
+            transitionsFalling.Add(PlayerTransition.EnterDash, PlayerStateEnum.DashDecider);
 
             Dictionary<PlayerTransition, PlayerStateEnum> transitionsJumping = new();
             transitionsJumping.Add(PlayerTransition.JumpingFinished, PlayerStateEnum.Falling);
+            transitionsJumping.Add(PlayerTransition.EnterDash, PlayerStateEnum.DashDecider);
 
             Dictionary<PlayerTransition, PlayerStateEnum> transitionsOnGround = new();
             transitionsOnGround.Add(PlayerTransition.Jumped, PlayerStateEnum.Jumping);
             transitionsOnGround.Add(PlayerTransition.PlayerNotOnGround, PlayerStateEnum.CoyoteJump);
+            transitionsOnGround.Add(PlayerTransition.EnterDash, PlayerStateEnum.DashDecider);
 
             Dictionary<PlayerTransition, PlayerStateEnum> transitionsCoyoteJump = new();
             transitionsCoyoteJump.Add(PlayerTransition.CoyoteTimeFinished, PlayerStateEnum.Falling);
             transitionsCoyoteJump.Add(PlayerTransition.Jumped, PlayerStateEnum.Jumping);
             transitionsCoyoteJump.Add(PlayerTransition.PlayerOnGround, PlayerStateEnum.OnGround);
+            transitionsCoyoteJump.Add(PlayerTransition.EnterDash, PlayerStateEnum.DashDecider);
+
+            Dictionary<PlayerTransition, PlayerStateEnum> transitionsDashDecider = new();
+            transitionsDashDecider.Add(PlayerTransition.DashSuccess, PlayerStateEnum.Dash);
+            transitionsDashDecider.Add(PlayerTransition.DashFailedOnGround, PlayerStateEnum.OnGround);
+            transitionsDashDecider.Add(PlayerTransition.DashFailedNotOnGround, PlayerStateEnum.Falling);
+
+            Dictionary<PlayerTransition, PlayerStateEnum> transitionsDash = new();
+            transitionsDash.Add(PlayerTransition.DashFinishedOnGround, PlayerStateEnum.OnGround);
+            transitionsDash.Add(PlayerTransition.DashFinishedNotOnGround, PlayerStateEnum.Falling);
 
             DefaultTransitions = new();
             DefaultTransitions.Add(PlayerTransition.Died, PlayerStateEnum.Dead);
@@ -112,6 +135,8 @@ namespace MIIProjekt.Player
             Transitions.Add(PlayerStateEnum.Jumping, transitionsJumping);
             Transitions.Add(PlayerStateEnum.OnGround, transitionsOnGround);
             Transitions.Add(PlayerStateEnum.CoyoteJump, transitionsCoyoteJump);
+            Transitions.Add(PlayerStateEnum.DashDecider, transitionsDashDecider);
+            Transitions.Add(PlayerStateEnum.Dash, transitionsDash);
             Transitions.Add(PlayerStateEnum.Dead, new());
 
             StateMap = new();
@@ -175,6 +200,8 @@ namespace MIIProjekt.Player
             StateMap.Add(PlayerStateEnum.Dead, new PlayerStateDead(this));
             StateMap.Add(PlayerStateEnum.Finish, new PlayerStateFinish(this));
             StateMap.Add(PlayerStateEnum.CoyoteJump, new PlayerStateCoyoteJump(this));
+            StateMap.Add(PlayerStateEnum.DashDecider, new PlayerStateDashDecider(this));
+            StateMap.Add(PlayerStateEnum.Dash, new PlayerStateDash(this));
             
             spriteRenderer = GetComponent<SpriteRenderer>();
             rigidbody2D = GetComponent<Rigidbody2D>();

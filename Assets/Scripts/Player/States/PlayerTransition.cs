@@ -10,5 +10,11 @@
         CoyoteTimeFinished,
         Died,
         Finish,
+        EnterDash,
+        DashSuccess,
+        DashFailedOnGround,
+        DashFailedNotOnGround,
+        DashFinishedOnGround,
+        DashFinishedNotOnGround,
     }
 }

@@ -28,6 +28,11 @@ namespace MIIProjekt.Player.States
         {
             timeLeft -= Time.deltaTime;
             isJumpingPressed = Input.GetButton("Jump");
+            
+            if (Input.GetButtonDown("Dash"))
+            {
+                InvokeTransition(PlayerTransition.EnterDash);
+            }
         }
 
         public override void PhysicsProcess()

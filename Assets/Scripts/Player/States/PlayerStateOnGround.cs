@@ -20,6 +20,11 @@ namespace MIIProjekt.Player.States
             {
                 InvokeTransition(PlayerTransition.Jumped);
             }
+            
+            if (Input.GetButtonDown("Dash"))
+            {
+                InvokeTransition(PlayerTransition.EnterDash);
+            }
         }
 
         public override void PhysicsProcess()
