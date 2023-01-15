@@ -49,7 +49,6 @@ namespace MIIProjekt.Player.States
             float progressPercent = 1.0f - (timeLeft / Controller.DashTime);
             float velocityPercent = Controller.DashVelocityAnimationCurve.Evaluate(progressPercent);
             float velocity = velocityPercent * Controller.DashVelocityMultiplier;
-            Logger.Trace("Dash info: progressPercent = {}, velocityPercent = {}, velocity = {}", progressPercent, velocityPercent, velocity);
             Velocity = dashDirection * velocity;
         }
 
