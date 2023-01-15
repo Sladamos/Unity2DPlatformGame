@@ -21,7 +21,7 @@ namespace MIIProjekt.UI.MainMenu
 
         [SerializeField]
         private Slider sliderMusic;
-
+        
         [SerializeField]
         private Slider sliderEffects;
 
@@ -61,7 +61,7 @@ namespace MIIProjekt.UI.MainMenu
             {
                 float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
                 PlayerPrefs.SetFloat(effectsKey, newValue);
-                effectsVolumeUpdate.Invoke(newValue);
+                effectsVolumeUpdate?.Invoke(newValue);
             }
         }
 
