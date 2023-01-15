@@ -24,6 +24,7 @@ namespace MIIProjekt.Player.States
             Logger.Debug("Dashed! Input: {}, dashDirection: {}", input, dashDirection);
 
             timeLeft = Controller.DashTime;
+            ChangeAnimation("Dash");
         }
 
         public override void Process()
