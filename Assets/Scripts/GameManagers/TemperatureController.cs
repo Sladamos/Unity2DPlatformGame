@@ -1,4 +1,5 @@
 using MIIProjekt.UI;
+using NLog;
 using UnityEngine;
 
 namespace MIIProjekt.GameManagers
@@ -6,6 +7,9 @@ namespace MIIProjekt.GameManagers
     public class TemperatureController : MonoBehaviour
     {
         private const float MaxTemperatureValue = 1.0f;
+
+        private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
         private float currentTemperature = 0.0f;
 
         [Header("Debug")]
@@ -40,6 +44,8 @@ namespace MIIProjekt.GameManagers
                 return;
             }
             
+            Logger.Debug("Setting temperature to {}", newTemperature);
+
             Color lightColor = getTemperatureColor(newTemperature);
             globalLightController.SetLightGradually(lightColor, lightTemperatureChangeDuration);
 

@@ -17,32 +17,29 @@ namespace MIIProjekt
 
         public void OnTriggerLowTemperature(Collider2D collider)
         {
-            if (currentTemperature > LowTemperature)
-            {
-                return;
-            }
-
-            temperatureController.SetTemperature(LowTemperature);
+            SetTemperature(LowTemperature);
         }
 
         public void OnTriggerMediumTemperature(Collider2D collider)
         {
-            if (currentTemperature > MediumTemperature)
-            {
-                return;
-            }
-
-            temperatureController.SetTemperature(MediumTemperature);
+            SetTemperature(MediumTemperature);
         }
 
         public void OnTriggerHighTemperature(Collider2D collider)
         {
-            if (currentTemperature > HighTemperature)
+            SetTemperature(HighTemperature);
+        }
+
+        private void SetTemperature(float temperature)
+        {
+            if (currentTemperature > temperature)
             {
                 return;
             }
 
-            temperatureController.SetTemperature(HighTemperature);  
+            currentTemperature = temperature;
+
+            temperatureController.SetTemperature(temperature);  
         }
     }
 }
