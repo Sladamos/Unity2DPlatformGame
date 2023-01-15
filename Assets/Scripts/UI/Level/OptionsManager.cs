@@ -25,17 +25,66 @@ namespace MIIProjekt.UI.Level
         [SerializeField]
         private AudioSource music;
 
+        private string masterVolumeKey = "masterVolumeOpt";
+        private string musicKey = "backgroundMusicOpt";
+        private string graphicsKey = "graphicsOpt";
+
+        private string keyHighScore;
+
+        public float MasterVolume
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat(masterVolumeKey);
+            }
+            private set
+            {
+                float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
+                PlayerPrefs.SetFloat(masterVolumeKey, newValue);
+                AudioListener.volume = newValue;
+            }
+        }
+
+        public float MusicVolume
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat(musicKey);
+            }
+            private set
+            {
+                float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
+                PlayerPrefs.SetFloat(musicKey, newValue);
+                music.volume = newValue;
+            }
+        }
+
+        public int Graphic
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(graphicsKey);
+            }
+            private set
+            {
+                PlayerPrefs.SetInt(graphicsKey, value);
+                QualitySettings.SetQualityLevel(value);
+                dropdown.value = value;
+            }
+        }
+
         public void OnValueChangedMasterVolume(float value)
         {
             Logger.Debug("Master volume set new value: {}", value);
-            AudioListener.volume = Mathf.Clamp(value, 0.0f, 1.0f);
+            MasterVolume = value;
         }
+
         public void OnValueChangedMusicVolume(float value)
         {
             if (music != null)
             {
                 Logger.Debug("Background music volume set new value: {}", value);
-                music.volume = Mathf.Clamp(value, 0.0f, 1.0f);
+                MusicVolume = value;
             }
             else
             {
@@ -46,7 +95,7 @@ namespace MIIProjekt.UI.Level
         public void OnValueChangedGraphics(int value)
         {
             Logger.Debug("Graphics set new value: {} {}", value, (value < QualitySettings.names.Length ? QualitySettings.names[value] : "INVALID"));
-            QualitySettings.SetQualityLevel(value);
+            Graphic = value;
         }
 
         public void OnBackButtonClicked()
@@ -64,27 +113,50 @@ namespace MIIProjekt.UI.Level
                 Logger.Warn("UIAnimatorController is not set on OptionsManager instance. GameObject name = {}", name);
             }
 
+            if (!PlayerPrefs.HasKey(masterVolumeKey))
+            {
+                MasterVolume = 0.5f;
+            }
+
             if (sliderMaster != null)
             {
-                sliderMaster.value = AudioListener.volume;
+                sliderMaster.value = MasterVolume;
             }
             else
             {
                 Logger.Warn("Slider component is not set on the OptionsManager instance. The default value will not be applied to the slider.");
             }
+            if(music != null)
+            {
+                if (!PlayerPrefs.HasKey(musicKey))
+                {
+                    MusicVolume = 0.5f;
+                }
+                else
+                {
+                    MusicVolume = MusicVolume;
+                }
 
-            if (sliderMusic != null && music != null )
-            {
-                sliderMusic.value = music.volume;
-            }
-            else
-            {
-                Logger.Warn("It's problem with slider or backgroudnMusic component");
+                if (sliderMusic != null)
+                {
+                    sliderMusic.value = MusicVolume;
+                }
+                else
+                {
+                    Logger.Warn("It's problem with slider or backgroudnMusic component");
+                }
             }
 
             if (dropdown != null)
             {
-                dropdown.value = QualitySettings.GetQualityLevel();
+                if (!PlayerPrefs.HasKey(graphicsKey))
+                {
+                    Graphic = 3;
+                }
+                else
+                {
+                    Graphic = Graphic;
+                }
             }
             else
             {
