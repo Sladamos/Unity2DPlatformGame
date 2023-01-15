@@ -13,7 +13,7 @@ namespace MIIProjekt.Player.States
         public override void EnterState()
         {
             timeLeft = Controller.CoyoteTime;
-            ChangeAnimation("InAir");
+            ChangeAnimation("Fall");
         }
 
         public override void Process()

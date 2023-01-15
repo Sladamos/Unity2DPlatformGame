@@ -75,6 +75,7 @@ MonoBehaviour:
   requiredCollectableNames:
   - Key1Door1
   - Key2Door1
+  commonCollectableName: 
 --- !u!1 &1390278070668221240
 GameObject:
   m_ObjectHideFlags: 0
