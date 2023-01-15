@@ -12,6 +12,9 @@ namespace MIIProjekt.Enemy.Eagle
         [SerializeField]
         private UnityEvent eagleChaseStop;
 
+        [SerializeField]
+        private UnityEvent eagleDead;
+
         private Animator animator;
         private SpriteRenderer spriteRenderer;
 
@@ -128,7 +131,7 @@ namespace MIIProjekt.Enemy.Eagle
 
             if (collider.transform.position.y > transform.position.y)
             {
-                InformAboutChaseStopIfPossible();
+                eagleDead?.Invoke();
                 animator.SetBool("isDead", true);
             }
             else if (currentAttackCooldown == 0.0f)
@@ -143,7 +146,7 @@ namespace MIIProjekt.Enemy.Eagle
         {
             if (isOnChase)
             {
-                eagleChaseStop.Invoke();
+                eagleChaseStop?.Invoke();
                 isOnChase = false;
             }
         }
@@ -152,7 +155,7 @@ namespace MIIProjekt.Enemy.Eagle
         {
             if (!isOnChase)
             {
-                eagleChaseStart.Invoke();
+                eagleChaseStart?.Invoke();
                 isOnChase = true;
             }
         }
