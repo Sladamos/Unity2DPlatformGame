@@ -1,4 +1,5 @@
 ﻿using MIIProjekt.Player;
+using MIIProjekt.UI.Level;
 using UnityEngine;
 
 namespace MIIProjekt.Sounds
@@ -7,6 +8,9 @@ namespace MIIProjekt.Sounds
     public class GlobalSoundPlayer : MonoBehaviour
     {
         private AudioSource audioSource;
+
+        [SerializeField]
+        private OptionsManager optionsManager;
 
         [SerializeField]
         private PlayerLife playerLife;
@@ -49,6 +53,13 @@ namespace MIIProjekt.Sounds
             {
                 playerController.PlayerJumped += OnPlayerJumped;
             }
+
+            optionsManager.effectsVolumeUpdate += OnVolumeChanged;
+        }
+
+        private void Start()
+        {
+            audioSource.volume = optionsManager.EffectsVolume;
         }
 
         private void OnPlayerLifeChanged(int oldValue, int newValue)

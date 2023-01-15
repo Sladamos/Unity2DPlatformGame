@@ -57,7 +57,7 @@ namespace MIIProjekt.UI
             {
                 levelMusic.Stop();
                 levelMusic.clip = clip;
-                levelMusic.PlayOneShot(clip);
+                levelMusic.Play();
             }
         }
 
@@ -90,7 +90,7 @@ namespace MIIProjekt.UI
             yield return new WaitForSeconds(delay);
             float timeElapsed = 0;
             levelMusic.clip = clip;
-            levelMusic.PlayOneShot(clip);
+            levelMusic.Play();
 
             while (levelMusic.volume < volume)
             {

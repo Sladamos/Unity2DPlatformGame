@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using MIIProjekt.UI.Level;
 using UnityEngine;
 
 namespace MIIProjekt.Sounds
@@ -9,6 +10,9 @@ namespace MIIProjekt.Sounds
     {
         private AudioSource audioSource;
 
+        [SerializeField]
+        private OptionsManager optionsManager;
+
         public void OnVolumeChanged(float newValue)
         {
             audioSource.volume = newValue;
@@ -17,6 +21,12 @@ namespace MIIProjekt.Sounds
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
+            optionsManager.effectsVolumeUpdate += OnVolumeChanged;
+        }
+
+        private void Start()
+        {
+            audioSource.volume = optionsManager.EffectsVolume;
         }
 
         public void OnEagleStopChase()
