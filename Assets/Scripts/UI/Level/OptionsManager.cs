@@ -69,7 +69,7 @@ namespace MIIProjekt.UI.Level
             {
                 float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
                 PlayerPrefs.SetFloat(effectsKey, newValue);
-                effectsVolumeUpdate.Invoke(newValue);
+                effectsVolumeUpdate?.Invoke(newValue);
                 audioMixer.SetFloat("Volume", Mathf.Lerp(MinVolume, MaxVolume, newValue));
             }
         }
