@@ -39,11 +39,6 @@ namespace MIIProjekt
         private void Update()
         {
             float percent = Mathf.Clamp01((TimeSinceLastLightSet / changeDuration));
-            if (percent <= 0.0f && percent >= 1.0f)
-            {
-                return;
-            }
-
             Color newColor = Color.Lerp(colorLast, colorTarget, percent);
             controlledLight.color = newColor;
 
