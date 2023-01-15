@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MIIProjekt.GameManagers;
 using MIIProjekt.Player.States;
 using NLog;
 using UnityEngine;
@@ -30,6 +31,9 @@ namespace MIIProjekt.Player
 
         private bool lastFrameIsOnGround = false;
         private bool isOnGround;
+
+        [SerializeField]
+        private TimeManager timeManager;
 
         [Header("Debug")]
         [SerializeField]
@@ -210,10 +214,20 @@ namespace MIIProjekt.Player
             spriteRenderer = GetComponent<SpriteRenderer>();
             rigidbody2D = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+
+            if (timeManager == null)
+            {
+                Logger.Warn("TimeManager is not set on PlayerController2 instance!");
+            }
         }
 
         private void Update()
         {
+            if (timeManager != null && timeManager.IsGamePaused())
+            {
+                return;
+            }
+
             StateMap[playerState].Process();
 
             if (Velocity.x > FlipThreshold)
@@ -228,6 +242,11 @@ namespace MIIProjekt.Player
 
         private void FixedUpdate()
         {
+            if (timeManager != null && timeManager.IsGamePaused())
+            {
+                return;
+            }
+
             StateMap[playerState].PhysicsProcess();
 
             if (lastFrameIsOnGround)

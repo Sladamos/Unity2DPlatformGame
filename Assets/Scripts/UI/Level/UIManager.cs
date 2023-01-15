@@ -79,10 +79,6 @@ namespace MIIProjekt.UI.Level
             }
 
             drawings.SetActive(true);
-            foreach (RectTransform child in drawings.transform)
-            {
-                child.gameObject.SetActive(false);
-            }
         }
     }
 }
