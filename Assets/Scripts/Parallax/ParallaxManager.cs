@@ -8,7 +8,7 @@ namespace MIIProjekt.Parallax
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private List<ParallaxItem> ParallaxItems { get; } = new();
+        private List<ParallaxLayer> ParallaxItems { get; } = new();
 
         private Vector2 lastTransformPosition;
 
@@ -31,7 +31,7 @@ namespace MIIProjekt.Parallax
             {
                 if (child is Transform childTransform)
                 {
-                    var parallaxItem = childTransform.GetComponent<ParallaxItem>();
+                    var parallaxItem = childTransform.GetComponent<ParallaxLayer>();
                     if (parallaxItem != null)
                     {
                         ParallaxItems.Add(parallaxItem);
@@ -42,7 +42,7 @@ namespace MIIProjekt.Parallax
             Logger.Debug("Found {} ParallaxItems", ParallaxItems.Count);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             Vector2 currentPosition = cameraTransform.position;
             Vector2 difference = lastTransformPosition - currentPosition;
