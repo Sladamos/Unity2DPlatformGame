@@ -1,4 +1,4 @@
-using NLog;
+﻿using NLog;
 using UnityEngine;
 
 namespace MIIProjekt.Player.States
@@ -25,6 +25,7 @@ namespace MIIProjekt.Player.States
 
             timeLeft = Controller.DashTime;
             ChangeAnimation("Dash");
+            Controller.InvokePlayerDashed();
         }
 
         public override void Process()
