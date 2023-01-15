@@ -1,8 +1,8 @@
-﻿using MIIProjekt.Logging;
+﻿using System;
+using MIIProjekt.Logging;
 using NLog;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace MIIProjekt.UI.MainMenu
@@ -10,6 +10,8 @@ namespace MIIProjekt.UI.MainMenu
     public class MainMenuOptions : MonoBehaviour
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
+        public event Action<float> effectsVolumeUpdate;
 
         [SerializeField]
         private MainMenuComponent mainMenu;
@@ -28,9 +30,6 @@ namespace MIIProjekt.UI.MainMenu
 
         [SerializeField]
         private AudioSource music;
-
-        [SerializeField]
-        private UnityEvent<float> effectsVolumeUpdate;
 
         private string masterVolumeKey = "masterVolumeOpt";
         private string musicKey = "backgroundMusicOpt";

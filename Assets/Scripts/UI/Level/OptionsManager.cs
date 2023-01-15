@@ -1,4 +1,5 @@
-﻿using MIIProjekt.Logging;
+﻿using System;
+using MIIProjekt.Logging;
 using NLog;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace MIIProjekt.UI.Level
     public class OptionsManager : MonoBehaviour
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+
+        public event Action<float> effectsVolumeUpdate;
 
         [SerializeField]
         private UIAnimatorController uiAnimatorController;
@@ -28,9 +31,6 @@ namespace MIIProjekt.UI.Level
 
         [SerializeField]
         private AudioSource music;
-
-        [SerializeField]
-        private UnityEvent<float> effectsVolumeUpdate;
 
         private string masterVolumeKey = "masterVolumeOpt";
         private string musicKey = "backgroundMusicOpt";
@@ -186,15 +186,13 @@ namespace MIIProjekt.UI.Level
             {
                 Logger.Warn("Dropdown component is not set on the OptionsManager instance. The default value will not be applied to the slider.");
             }
-        }
 
-        private void Start()
-        {
+
             if (!PlayerPrefs.HasKey(effectsKey))
             {
                 EffectsVolume = 0.5f;
             }
-
+            Logger.Info("Volume " + EffectsVolume);
             EffectsVolume = EffectsVolume;
 
             if (sliderEffects != null)
@@ -206,5 +204,6 @@ namespace MIIProjekt.UI.Level
                 Logger.Warn("It's problem with slider effects");
             }
         }
+
     }
 }
