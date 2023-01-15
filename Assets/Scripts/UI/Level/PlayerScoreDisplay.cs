@@ -19,7 +19,7 @@ namespace MIIProjekt.UI.Level
                 return;
             }
 
-            string formattedString = value.ToString("000");
+            string formattedString = value.ToString("0000");
             text.SetText(formattedString);
         }
 
