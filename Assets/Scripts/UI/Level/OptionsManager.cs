@@ -20,16 +20,22 @@ namespace MIIProjekt.UI.Level
         private Slider sliderMusic;
 
         [SerializeField]
+        private Slider sliderEffects;
+
+        [SerializeField]
         private TMP_Dropdown dropdown;
 
         [SerializeField]
         private AudioSource music;
 
+        [SerializeField]
+        private AudioSource effects;
+
         private string masterVolumeKey = "masterVolumeOpt";
         private string musicKey = "backgroundMusicOpt";
+        private string effectsKey = "effectsVolumeOpt";
         private string graphicsKey = "graphicsOpt";
 
-        private string keyHighScore;
 
         public float MasterVolume
         {
@@ -42,6 +48,20 @@ namespace MIIProjekt.UI.Level
                 float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
                 PlayerPrefs.SetFloat(masterVolumeKey, newValue);
                 AudioListener.volume = newValue;
+            }
+        }
+
+        public float EffectsVolume
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat(effectsKey);
+            }
+            private set
+            {
+                float newValue = Mathf.Clamp(value, 0.0f, 1.0f);
+                PlayerPrefs.SetFloat(effectsKey, newValue);
+                effects.volume = newValue;
             }
         }
 
@@ -92,6 +112,19 @@ namespace MIIProjekt.UI.Level
             }
         }
 
+        public void OnValueChangedEffectsVolume(float value)
+        {
+            if (effects != null)
+            {
+                Logger.Debug("Effects volume set new value: {}", value);
+                EffectsVolume = value;
+            }
+            else
+            {
+                Logger.Debug("Effects is not set!");
+            }
+        }
+
         public void OnValueChangedGraphics(int value)
         {
             Logger.Debug("Graphics set new value: {} {}", value, (value < QualitySettings.names.Length ? QualitySettings.names[value] : "INVALID"));
@@ -126,6 +159,7 @@ namespace MIIProjekt.UI.Level
             {
                 Logger.Warn("Slider component is not set on the OptionsManager instance. The default value will not be applied to the slider.");
             }
+
             if(music != null)
             {
                 if (!PlayerPrefs.HasKey(musicKey))
@@ -140,6 +174,27 @@ namespace MIIProjekt.UI.Level
                 if (sliderMusic != null)
                 {
                     sliderMusic.value = MusicVolume;
+                }
+                else
+                {
+                    Logger.Warn("It's problem with slider or backgroudnMusic component");
+                }
+            }
+
+            if (effects != null)
+            {
+                if (!PlayerPrefs.HasKey(effectsKey))
+                {
+                    EffectsVolume = 0.5f;
+                }
+                else
+                {
+                    EffectsVolume = EffectsVolume;
+                }
+
+                if (sliderEffects != null)
+                {
+                    sliderEffects.value = EffectsVolume;
                 }
                 else
                 {
