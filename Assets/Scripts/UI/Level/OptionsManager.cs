@@ -180,7 +180,6 @@ namespace MIIProjekt.UI.Level
             if (sliderEffects != null)
             {
                 sliderEffects.value = EffectsVolume;
-                Logger.Warn(EffectsVolume);
             }
             else
             {

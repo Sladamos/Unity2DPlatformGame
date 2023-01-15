@@ -11,7 +11,6 @@ namespace MIIProjekt.Sounds
 
         public void OnVolumeChanged(float newValue)
         {
-            Debug.Log(audioSource == null);
             audioSource.volume = newValue;
         }
         
@@ -22,13 +21,12 @@ namespace MIIProjekt.Sounds
 
         public void OnEagleStopChase()
         {
-            audioSource.loop = false;
+            audioSource.Stop();
         }
 
         public void OnEagleStartChase()
         {
-            audioSource.loop = true;
-            audioSource.PlayOneShot(audioSource.clip);
+            audioSource.Play();
         }
     }
 

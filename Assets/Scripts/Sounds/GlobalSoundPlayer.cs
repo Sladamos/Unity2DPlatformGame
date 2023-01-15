@@ -28,8 +28,7 @@ namespace MIIProjekt.Sounds
 
         public void OnVolumeChanged(float newValue)
         {
-            Debug.Log(audioSource == null);
-            //audioSource.volume = newValue;
+            audioSource.volume = newValue;
         }
 
         private void Awake()
