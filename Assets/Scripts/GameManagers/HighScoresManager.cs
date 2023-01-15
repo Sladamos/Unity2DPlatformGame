@@ -28,6 +28,7 @@ namespace MIIProjekt.GameManagers
                 }
             }
         }
+
         private void Awake()
         {
             playerScore.PlayerScoreChanged += OnScoreChange;
