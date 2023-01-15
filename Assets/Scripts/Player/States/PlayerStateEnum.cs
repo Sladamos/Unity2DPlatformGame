@@ -9,5 +9,7 @@
         CoyoteJump,
         Dead,
         Finish,
+        DashDecider,
+        Dash,
     }
 }

@@ -14,6 +14,14 @@ namespace MIIProjekt.Player.States
             ChangeAnimation("Fall");
         }
 
+        public override void Process()
+        {
+            if (Input.GetButtonDown("Dash"))
+            {
+                InvokeTransition(PlayerTransition.EnterDash);
+            }
+        }
+
         public override void PhysicsProcess()
         {
             AddGravityAndLimitFallingSpeed();

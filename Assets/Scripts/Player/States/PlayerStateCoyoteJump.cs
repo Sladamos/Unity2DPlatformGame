@@ -22,6 +22,11 @@ namespace MIIProjekt.Player.States
             {
                 InvokeTransition(PlayerTransition.Jumped);
             }
+            
+            if (Input.GetButtonDown("Dash"))
+            {
+                InvokeTransition(PlayerTransition.EnterDash);
+            }
 
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0) 

@@ -55,7 +55,7 @@ namespace MIIProjekt.Player.States
 
         protected void MovePlayer()
         {
-            float input = Input.GetAxis("Horizontal");
+            float input = Input.GetAxisRaw("Horizontal");
 
             float speed = Controller.MoveSpeed;
             Vector2 velocity = Controller.Velocity;
