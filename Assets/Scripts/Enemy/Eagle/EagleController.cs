@@ -28,6 +28,9 @@ namespace MIIProjekt.Enemy.Eagle
 
         [SerializeField]
         private float attackRange;
+
+        [SerializeField]
+        private AudioClip eagleDeadAudioClip;
         
         [SerializeField]
         private UnityEvent eagleChaseStart;
@@ -138,6 +141,7 @@ namespace MIIProjekt.Enemy.Eagle
             {
                 eagleDead?.Invoke();
                 audioSource.Stop();
+                audioSource.PlayOneShot(eagleDeadAudioClip);
                 animator.SetBool("isDead", true);
             }
             else if (currentAttackCooldown == 0.0f)

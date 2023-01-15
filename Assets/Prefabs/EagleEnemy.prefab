@@ -124,6 +124,7 @@ MonoBehaviour:
   speed: 0
   attackCooldown: 2
   attackRange: 10
+  eagleDeadAudioClip: {fileID: 8300000, guid: 33816d36d0efd7b41a8e3203fd88a5d9, type: 3}
   eagleChaseStart:
     m_PersistentCalls:
       m_Calls: []
