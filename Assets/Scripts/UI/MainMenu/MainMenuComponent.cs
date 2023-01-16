@@ -12,6 +12,9 @@ namespace MIIProjekt.UI.MainMenu
         [SerializeField]
         private GameObject options;
 
+        [SerializeField]
+        private GameObject about;
+
         public void OnClickedButtonLevel1()
         {
             Logger.Debug("On clicked level 1");
@@ -22,6 +25,12 @@ namespace MIIProjekt.UI.MainMenu
         {
             this.gameObject.SetActive(false);
             options.SetActive(true);
+        }
+
+        public void OnClickedButtonAbout()
+        {
+            this.gameObject.SetActive(false);
+            about.SetActive(true);
         }
 
         public void OnClickedButtonExitGame()
