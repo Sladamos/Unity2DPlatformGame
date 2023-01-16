@@ -3738,9 +3738,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level 1
-
-'
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
   m_sharedMaterial: {fileID: 3891044365217961316, guid: 99aa408c89e434d4ea37be8225eaa23b, type: 2}
