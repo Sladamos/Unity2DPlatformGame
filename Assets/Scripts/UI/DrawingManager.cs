@@ -13,6 +13,30 @@ namespace MIIProjekt.UI
         [SerializeField]
         private TMP_Text highTemperaturesText;
 
+        [SerializeField]
+        private TMP_Text dashTutorialText;
+
+        [SerializeField]
+        private TMP_Text jumpTutorialText;
+
+        [SerializeField]
+        private TMP_Text longJumpTutorialText;
+
+        public void DrawDashTutorialText()
+        {
+            DrawFadedText(dashTutorialText, 4.0f, 0.75f);
+        }
+
+        public void DrawJumpTutorialText()
+        {
+            DrawFadedText(jumpTutorialText, 4.0f, 0.75f);
+        }
+
+        public void DrawLongJumpTutorialText()
+        {
+            DrawFadedText(longJumpTutorialText, 4.0f, 0.75f);
+        }
+
         public void DrawHighTemperaturesText()
         {
             DrawFadedText(highTemperaturesText, 3.0f, 1.0f);
