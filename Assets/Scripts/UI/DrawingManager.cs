@@ -24,17 +24,17 @@ namespace MIIProjekt.UI
 
         public void DrawDashTutorialText()
         {
-            DrawFadedText(dashTutorialText, 4.0f, 0.75f);
+            DrawFadedText(dashTutorialText, 2.0f, 0.75f);
         }
 
         public void DrawJumpTutorialText()
         {
-            DrawFadedText(jumpTutorialText, 4.0f, 0.75f);
+            DrawFadedText(jumpTutorialText, 2.0f, 0.75f);
         }
 
         public void DrawLongJumpTutorialText()
         {
-            DrawFadedText(longJumpTutorialText, 4.0f, 0.75f);
+            DrawFadedText(longJumpTutorialText, 2.0f, 0.75f);
         }
 
         public void DrawHighTemperaturesText()
